@@ -1,0 +1,20 @@
+{
+  "name": "coge120-webapp-ischedule4u",
+  "description": "coge120-webapp-ischedule4u",
+  "version": "0.0.1",
+  "author": "Eun Chul Lee,Anmol Maini,Hongyu Li",
+
+  "repository": {
+  	"type": "git",
+  	"url": "https://github.com/roaderj/coge120-webapp"
+  },
+  "license": "MIT",
+
+  "main": "server.js",
+  "dependencies": {
+    "express": "3.x"
+  },
+  "engines": {
+  	"node": "0.10.x"
+  }
+}
