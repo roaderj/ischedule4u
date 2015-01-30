@@ -1,0 +1,22 @@
+.header h1{
+	font-size: 40px;
+	color:#FFFFFF;
+}
+
+.main button {
+	/* Colors are in hexadecimal: http://www.colorpicker.com/ */	
+	
+	font-size: 24px;
+	color:#333333;
+	font-family:"Impact, Charcoal, sans-serif";
+	font-weight:bold;
+	background-color: #FFFFFF;
+}
+
+body{
+	background: #000000;
+}
+
+.images h2{
+	color:#FFFFFF;
+}
