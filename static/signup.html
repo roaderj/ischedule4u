@@ -1,7 +1,7 @@
 <!doctype html>
 <html>
 <head>
-  <title>Login</title>
+  <title>Signup</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link href="css/bootstrap.min.css" rel="stylesheet">
@@ -12,21 +12,20 @@
 <body>
 	<div class='container'>
     <div class = "header">
-      <button id="back" class="btn btn-primary btn" onClick="parent.location='index.html'" style="float: right;">Back</button>
+      <button id="back" class="btn btn-primary btn" onClick="parent.location='login.html'" style="float: right;">Back</button>
       <!--<h1 align="center" style="margin-top:5%">I Schedule 4 U</h1>-->
       <h1 style="margin-top:5%">I Schedule 4 U</font></h1>
-      <a href="signup.html" >New User?</a>
-      <div style='height:10px;clear:both;display:block'></div>
   </div>
     <form action='#' class='form-signin' role='form'>
-      <input type='email' class='form-control' placeholder='Email' required autofocus>
+      <input type='text' class='form-control' placeholder='Username' required autofocus>
+      <div style='height:10px;clear:both;display:block'></div>
+      <input type='email' class='form-control' placeholder='Email' required>
       <div style='height:10px;clear:both;display:block'></div>
       <input type='password' class='form-control' placeholder='Password' required>
-      <div class='checkbox'>
-        <input type='checkbox' id='remember-me' /> 
-        <label for='remember-me' style='color:white;'>Keep me logged in</label>
-      </div>
-      <button class='btn btn-lg btn-primary btn-block' type='submit'>Log in</button>
+      <div style='height:10px;clear:both;display:block'></div>
+      <input type='password' class='form-control' placeholder='Confirm Password' required>
+      <div style='height:10px;clear:both;display:block'></div>
+      <button class='btn btn-lg btn-primary btn-block' type='submit'>Sign Up</button>
     </form>
   </div>
 </body>
