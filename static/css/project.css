@@ -20,7 +20,13 @@ body{
 	color:#FFFFFF;
 }
 
+
 .setTimeCheckBox {
  width: 20%;
  background: #FFFFFF;
 }
+
+.schedule{
+	width:100%;
+}
+
