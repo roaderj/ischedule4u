@@ -19,3 +19,8 @@ body{
 .images h2{
 	color:#FFFFFF;
 }
+
+.setTimeCheckBox {
+ width: 20%;
+ background: #FFFFFF;
+}
