@@ -6,6 +6,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link href="css/bootstrap.min.css" rel="stylesheet">
 	<link href="css/bootstrap-theme.min.css" rel="stylesheet">
+	<link href="css/fullcalendar.css" rel="stylesheet">
 	<link href="css/project.css" rel="stylesheet">
 </head>
 
@@ -45,7 +46,8 @@
 	</div>
 	<div class = "images" style="margin-top:2%" align="center">
 		<h2> Current Schedule</h2>
-		<img src="schedule.png" alt="sample schedule.png" class="schedule">
+		<div class='schedule' id='calendar'></div>
+		<!--<img src="schedule.png" alt="sample schedule.png" class="schedule">-->
 	</div>
 	<div class = "main" style="margin-top:3%">
 		<p align = "center">
@@ -62,5 +64,15 @@
 </div>
 	<script src="https://code.jquery.com/jquery.js"></script>
 	<script src="js/bootstrap.min.js"></script>
+	<script src='js/moment.min.js'></script>
+	<script src='js/fullcalendar.js'></script>
+	<script>
+		$(document).ready(function() {
+		 // page is now ready, initialize the calendar...
+			$('#calendar').fullCalendar({
+        // put your options and callbacks here
+    		})
+		});
+	</script>
 </body>
 </html>
