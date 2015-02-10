@@ -2,7 +2,7 @@
 /*
  * GET home page.
  */
-
+var data = require('../Data/tasks.json')
 exports.view = function(req, res){
-  res.render('EditSchedule');
+  res.render('EditSchedule', data);
 };

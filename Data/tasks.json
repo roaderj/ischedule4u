@@ -2,6 +2,7 @@
   "tasks": [
     {
       "name": "COGS 120",
+      "priority": "high",
       "location": "CICC",
       "duration": "1:20",
       "start-time": "12:30",
@@ -11,6 +12,7 @@
     },
     {
       "name": "CSE 165",
+      "priority": "high",
       "location": "WLH",
       "duration": "1:20",
       "start-time": "14:00",
@@ -21,6 +23,7 @@
     },
     {
       "name": "CSE 160",
+      "priority": "high",
       "location": "WLH",
       "duration": "1:20",
       "start-time": "17:00",
@@ -30,6 +33,7 @@
     },
     {
       "name": "Group Meeting",
+      "priority": "medium",
       "location": "Geisel",
       "duration": "3:00",
       "start-time": "12:30",
