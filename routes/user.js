@@ -10,6 +10,33 @@ exports.loginCheck = function(req, res) {
 	res.json(checkRes);
 }
 
+exports.signupCheck = function(req, res) {
+	// get a random palette from the top ones
+	var email = req.body.email;
+	var password = req.body.password;
+	//console.log(email);
+	var checkRes = exist(email,password);
+	//console.log(checkRes);
+	res.json(checkRes);
+}
+
+function exist(email,password) {
+	for (var i=0; i<users.length;i++) {
+		var user = users[i];
+		//console.log(user["email"]);
+		if (email == user["email"]) {
+			return false;
+		}
+	}
+	create(email,password);
+	return true;
+}
+
+function create(email,password) {
+	var newUser = {"email":email,"password":password};
+	users.push(newUser);
+}
+
 function check(email,password) {
 	//console.log(users.length);
 	for (var i=0; i<users.length;i++) {

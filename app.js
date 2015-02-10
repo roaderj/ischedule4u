@@ -51,6 +51,7 @@ app.get('/addTask', addTask.view);
 app.get('/editSchedule', editSchedule.view);
 app.get('/blank', blank.view);
 app.post('/user_login', userinfo.loginCheck);
+app.post('/user_signup', userinfo.signupCheck);
 //app.get('/project/:name', project.viewProject);
 // Example route
 // app.get('/users', user.list);

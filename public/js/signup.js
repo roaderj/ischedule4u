@@ -14,35 +14,28 @@ function initializePage() {
 
 function signupSubmit(e) {
 	e.preventDefault();
-	var username = document.getElementById("username").value;
 	var email = document.getElementById("email").value;
 	var password = document.getElementById("password").value;
-	console.log(username);
+	var confirmPass = document.getElementById("confirmPass").value;
 	console.log(email);
 	console.log(password);
-	var info = {'email': email, 'password': password};
-	console.log(password);
-	//var check = check(email,password);
-	//console.log(check);
-	var urllink = "/user?username=" + username;
-	$.get(urllink, check);
+	console.log(confirmPass);
+	if (password != confirmPass) {
+		var err = "<p style='color:red;'>The email or the password is incorrect.</p>";
+		$('.signup-error').html(err);
+	}
+	else {
+		$.post("/user_signup", {email: email, password: password}, check);
+	}
 }
 
 function check(result) {
 	console.log(result);
-	var check = false;
-	for (var i=0; i<result.length;i++) {
-		var user = result[i];
-		var useremail = user["email"];
-		if (email = useremail) {
-			check = true;
-			if (password == user["password"]) {
-				console.log("true");
-			}
-			else {
-				console.log("false");
-			}
-		}
+	if (!result) {
+		var err = "<p style='color:red;'>The email has already been used.</p>";
+		$('.signup-error').html(err);
 	}
-	console.log("false");
+	else {
+		window.location="/login";
+	}
 }
