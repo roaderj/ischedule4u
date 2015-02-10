@@ -1,0 +1,41 @@
+{
+  "tasks": [
+    {
+      "name": "COGS 120",
+      "location": "CICC",
+      "duration": "1:20",
+      "start-time": "12:30",
+      "end-time:": "13:50",
+      "tag": "COGS 120",
+      "repeat": ["Tuesday", "Thursday"]
+    },
+    {
+      "name": "CSE 165",
+      "location": "WLH",
+      "duration": "1:20",
+      "start-time": "14:00",
+      "end-time:": "15:20",
+      "tag": "CSE 165",
+      "repeat": ["Tuesday", "Thursday"]
+
+    },
+    {
+      "name": "CSE 160",
+      "location": "WLH",
+      "duration": "1:20",
+      "start-time": "17:00",
+      "end-time:": "18:20",
+      "tag": "CSE 169",
+      "repeat": ["Monday", "Wednesday"]
+    },
+    {
+      "name": "Group Meeting",
+      "location": "Geisel",
+      "duration": "3:00",
+      "start-time": "12:30",
+      "end-time:": "15:30",
+      "tag": "COGS 120",
+      "repeat": ["Monday"]
+    },
+  ]
+}
