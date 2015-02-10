@@ -12,22 +12,26 @@
 <body>
 	<div class='container'>
     <div class = "header">
-      <button id="back" class="btn btn-primary btn" onClick="location.href='/'" style="float: right;">Back</button>
+      <!--<button id="back" class="btn btn-primary btn" onClick="location.href='/'" style="float: right;">Back</button> -->
       <!--<h1 align="center" style="margin-top:5%">I Schedule 4 U</h1>-->
       <h1 style="margin-top:5%">I Schedule 4 U</font></h1>
       <a href="/signup" >New User?</a>
       <div style='height:10px;clear:both;display:block'></div>
-  </div>
-    <form action='#' class='form-signin' role='form'>
-      <input type='email' class='form-control' placeholder='Email' required autofocus>
+    </div>
+    <div class="login-error"></div>
+    <form id='loginForm' method="POST" name="loginForm">
+      <input class='blank' type='email' name='email' id='email' placeholder='Email' required autofocus/>
       <div style='height:10px;clear:both;display:block'></div>
-      <input type='password' class='form-control' placeholder='Password' required>
+      <input class='blank' type='password' name='password' id='password' placeholder='Password' required/>
       <div class='checkbox'>
-        <input type='checkbox' id='remember-me' /> 
+        <input type='checkbox' name='remember-me' id='remember-me'/> 
         <label for='remember-me' style='color:white;'>Keep me logged in</label>
       </div>
-      <button class='btn btn-lg btn-primary btn-block' type='submit'>Log in</button>
+      <button id="submitBtn" class="btn btn-primary btn-lg">Log in!</button>
     </form>
   </div>
+  <script src="https://code.jquery.com/jquery.js"></script>
+  <script src="js/bootstrap.min.js"></script>
+  <script src="js/login.js"></script>
 </body>
 </html>	

@@ -4,6 +4,7 @@
  */
 
 var express = require('express');
+var bodyParser = require('body-parser');
 var http = require('http');
 var path = require('path');
 var handlebars = require('express3-handlebars')
@@ -14,6 +15,7 @@ var signup = require('./routes/signup');
 var editSchedule = require('./routes/editSchedule');
 var addTask = require('./routes/addTask');
 var blank = require('./routes/blank');
+var userinfo = require('./routes/user');
 
 //var project = require('./routes/project');
 // Example route
@@ -48,6 +50,7 @@ app.get('/signup', signup.view);
 app.get('/addTask', addTask.view);
 app.get('/editSchedule', editSchedule.view);
 app.get('/blank', blank.view);
+app.post('/user_login', userinfo.loginCheck);
 //app.get('/project/:name', project.viewProject);
 // Example route
 // app.get('/users', user.list);

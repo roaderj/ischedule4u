@@ -15,17 +15,17 @@
       <button id="back" class="btn btn-primary btn" onClick="location.href='/login'" style="float: right;">Back</button>
       <!--<h1 align="center" style="margin-top:5%">I Schedule 4 U</h1>-->
       <h1 style="margin-top:5%">I Schedule 4 U</font></h1>
-  </div>
-    <form action='#' class='form-signin' role='form'>
-      <input type='text' class='form-control' placeholder='Username' required autofocus>
+    </div>
+    <div class="signup-error"></div>
+    <form id='signupForm' method="POST" name="signupForm">
       <div style='height:10px;clear:both;display:block'></div>
-      <input type='email' class='form-control' placeholder='Email' required>
+      <input class='blank' type='email' name='email' id='email' placeholder='Email' required>
       <div style='height:10px;clear:both;display:block'></div>
-      <input type='password' class='form-control' placeholder='Password' required>
+      <input class='blank' type='password' name='password' id='password' placeholder='Password' required>
       <div style='height:10px;clear:both;display:block'></div>
-      <input type='password' class='form-control' placeholder='Confirm Password' required>
+      <input class='blank' type='password' name='confirmPass' id='confirmPass' placeholder='Confirm Password' required>
       <div style='height:10px;clear:both;display:block'></div>
-      <button class='btn btn-lg btn-primary btn-block' type='submit'>Sign Up</button>
+      <button id='submitBtn' class='btn btn-lg btn-primary btn-block'>Sign Up</button>
     </form>
   </div>
 </body>
