@@ -143,7 +143,7 @@
 
 		<p><font color="#FFFFFF"> Set Time: </font>
 			<label>
-				<input type="checkbox" id="setTimeCheck">
+				<input type="checkbox" name="setTimeCheck" id="setTimeCheck">
 				</input>
 			</label>
 			<br>
@@ -155,11 +155,11 @@
 
 		<p><font color="#FFFFFF"> Do you know location? </font>
 			<label>
-				<input type="checkbox" id="setLocation">
+				<input type="checkbox" name="setLocation" id="setLocation">
 				</input>
 			</label>
 			<br>
-			<input style="width:100%" type="text" class="setTimeCheckBox" value="type specific location for job if exist"></input>
+			<input style="width:100%" type="text" class="setLocationCheckBox" value="type specific location for job if exist"></input>
 		</p>
 
 		<p style="margin-top:1.5%"><font color="#FFFFFF">Priority: </font>
@@ -173,9 +173,9 @@
 		<br>
 
 		<p style="margin-top:1%"><font color="#FFFFFF">Does it Repeat? </font>
-			<input type="checkbox" id="repeated">
+			<input type="checkbox" class="repeated" name="repeated">
 		</p>
-		<p style="margin-left:2%">
+		<ul id="dateRepeatChecked" class="dateRepeatChecked">
 			<font color="#FFFFFF"  style="font-size:12px;margin-right:2%">Mon</font>
 			<input type="checkbox" id="repeatedMonday">
 			<br>
@@ -196,16 +196,16 @@
 			<br>
 			<font color="#FFFFFF"  style="font-size:12px;margin-right:2.1%">Sun</font>
 			<input type="checkbox" id="repeatedSunday">
-			<br>
-		</p>
+			<br>			
+		</ul>
 
 		<p><font color="#FFFFFF"> Does this relate to any other task? </font>
 			<label>
-				<input type="checkbox" id="setLocation">
+				<input type="checkbox" class="setLocation">
 				</input>
 			</label>
 			<br>
-			<select>
+			<select class="setLocationList">
 				<option value="1">COGS 120</option>
 				<option value="2">CSE 165</option>
 				<option value="3">CSE 169</option>
