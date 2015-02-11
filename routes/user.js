@@ -35,6 +35,13 @@ function exist(email,password) {
 function create(email,password) {
 	var newUser = {"email":email,"password":password};
 	users.push(newUser);
+	var fs = require('fs');
+	var outputFilename = 'Data/user.json';
+	fs.writeFile(outputFilename,JSON.stringify(users,null,4),function(err) {
+		if (err) {
+			console.log(err);
+		}
+	});
 }
 
 function check(email,password) {
