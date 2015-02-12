@@ -1,0 +1,89 @@
+{
+  "places":
+  [
+      {
+        "name": "Geisel Library",
+        "location": "https://www.google.com/maps/place/Geisel+Library/@32.88057,-117.237874,17z/data=!3m1!4b1!4m2!3m1!1s0x80dc06c3dd6a942b:0x6e1866e684c68a79",
+        "start-time":"7:30",
+        "end-time":"23:59",
+        "type":["Reading", "Study/Homework", "Group Study"]
+      },
+      {
+        "name": "EBU Basement",
+        "location": "https://www.google.com/maps/place/Computer+Science+and+Engineering+Building/@32.881801,-117.233523,17z/data=!3m1!4b1!4m2!3m1!1s0x80dc06c3409a5d5f:0xa7dc3be7597d4d47",
+        "start-time":"0:00",
+        "end-time":"23:59",
+        "type":["CS Lab"]
+      },
+      {
+        "name": "RIMAC",
+        "location": "https://www.google.com/maps/place/RIMAC+Arena/@32.8799686,-117.2391878,16z/data=!4m2!3m1!1s0x0000000000000000:0x5986425d4b318e9f",
+        "start-time":"5:30",
+        "end-time":"23:59",
+        "type":["Gym"]
+      },
+      {
+        "name": "Main",
+        "location": "https://www.google.com/maps/place/Main+Gymnasium/@32.8799686,-117.2404109,16z/data=!4m2!3m1!1s0x0000000000000000:0x4d59a2c95e1ae459",
+        "start-time":"7:00",
+        "end-time":"23:00",
+        "type":["Gym"]
+      },
+      {
+        "name": "Canyon View",
+        "location": "https://www.google.com/maps/place/Canyonview+Athletics+and+Recreation/@32.8799686,-117.2404109,16z/data=!4m2!3m1!1s0x0000000000000000:0xf635c4a3cfa3b140",
+        "start-time":"9:00",
+        "end-time":"20:00",
+        "type":["Gym", "Swimming"]
+      },
+      {
+        "name": "Pepper Canyon Hall",
+        "location": "https://www.google.com/maps/place/Pepper+Canyon+Hall/@32.8799686,-117.2404109,16z/data=!4m2!3m1!1s0x0000000000000000:0x35b529e2d12c4a7f",
+        "start-time":"8:00",
+        "end-time":"23:00",
+        "type":["Class"]
+      },
+      {
+        "name": "Warren Lecture Hall",
+        "location": "https://www.google.com/maps/place/Warren+Lecture+Hall,+University+of+California+San+Diego,+Warren+College,+San+Diego,+CA+92161/@32.8805291,-117.2343119,17z/data=!3m1!4b1!4m2!3m1!1s0x80dc06c3637516e9:0x4dc9ec87c8ce68e7",
+        "start-time":"8:00",
+        "end-time":"23:00",
+        "type":["Class"]
+      },
+      {
+        "name": "Galbraith Hall",
+        "location": "https://www.google.com/maps/place/Galbraith+Hall,+University+of+California+San+Diego,+Revelle+College,+San+Diego,+CA+92161/@32.8737205,-117.2409323,18z/data=!3m1!4b1!4m2!3m1!1s0x80dc06c5dccf6f6d:0xbb94253e54bc1d55",
+        "start-time":"8:00",
+        "end-time":"23:00",
+        "type":["Class", "Study/Homework"]
+      },
+      {
+        "name": "Ledden Hall",
+        "location": "https://www.google.com/maps/place/Patrick+J.+Ledden+Auditorium/@32.8781492,-117.2418496,18z/data=!4m2!3m1!1s0x0000000000000000:0xe2b1fcfc06af89d0",
+        "start-time":"8:00",
+        "end-time":"23:00",
+        "type":["Class"]
+      },
+      {
+        "name": "Solis Hall",
+        "location": "https://www.google.com/maps/place/Solis+Hall,+University+of+California+San+Diego,+Thurgood+Marshall+College,+San+Diego,+CA+92161/@32.8804919,-117.2404012,18z/data=!4m2!3m1!1s0x80dc06c16d4a732f:0x401b6981943c488d",
+        "start-time":"8:00",
+        "end-time":"23:00",
+        "type":["Class"]
+      },
+      {
+        "name": "Copley International Conference Center",
+        "location": "https://www.google.com/maps/place/Copley+International+Conference+Center/@32.8839511,-117.2417742,18z/data=!4m2!3m1!1s0x0000000000000000:0xab8311ad3d1e7cc6",
+        "start-time":"8:00",
+        "end-time":"23:00",
+        "type":["Class"]
+      },
+      {
+        "name": "Applied Physics and Mathematics Building",
+        "location": "https://www.google.com/maps/place/Applied+Physics+and+Mathematics+Building/@32.8795001,-117.2409964,18z/data=!4m2!3m1!1s0x0000000000000000:0xf0cad23aca78b4ff",
+        "start-time":"8:00",
+        "end-time":"23:00",
+        "type":["Class"]
+      }
+  ]
+}

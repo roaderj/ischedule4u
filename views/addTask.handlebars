@@ -43,7 +43,8 @@
 		<h2 align="center" style="margin-top:5%" ><font color="#FFFFFF"> New Task </font></h2>
 	</div>
 	<div class = "form" align="left">
-		<p><font color="#FFFFFF" > Name: </font> <br> <input type="text" name="taskName"></input> </p>
+		<form id ='taskForm' method = "POST" name = "taskForm">
+		<p><font color="#FFFFFF" > Name: </font> <br> <input type="text" name="taskName" id = "taskName"></input> </p>
 
 		<br>
 
@@ -150,9 +151,6 @@
 			<input style="width:100%" type="text" class="setTimeCheckBox" value="type specific time for job if exist"></input>
 		</p>
 
-
-
-
 		<p><font color="#FFFFFF"> Do you know location? </font>
 			<label>
 				<input type="checkbox" name="setLocation" id="setLocation">
@@ -196,7 +194,7 @@
 			<br>
 			<font color="#FFFFFF"  style="font-size:12px;margin-right:2.1%">Sun</font>
 			<input type="checkbox" id="repeatedSunday">
-			<br>			
+			<br>
 		</ul>
 
 		<p><font color="#FFFFFF"> Does this relate to any other task? </font>
@@ -214,11 +212,9 @@
 		</p>
 
 
-		<form action="index.html" style="margin-top:5%;padding-bottom:30px" align="center">
 			<button style="width:50%;height:10%" type="button" onclick="location.href='/'">
 			Create Task </button>
-		</form>
-
+	</form>
 
 
 
