@@ -47,7 +47,11 @@ function setCalendar(result) {
 }
 
 function addTasks(result) {
-	var userTasks = result['tasks'];
+	var user = getCookie("email");
+	if (!(user in result))
+		return -1;
+	var userTasks = result[user];
+	//console.log(userTasks);
 	//console.log(userTasks.length);
 	for (var i=0; i<userTasks.length;i++) {
 		var task = userTasks[i];

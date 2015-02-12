@@ -1,5 +1,10 @@
 <!doctype html>
 <html>
+	<script src="https://code.jquery.com/jquery.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+	<script src='js/moment.min.js'></script>
+	<script src='js/cookie.js'></script>
+	<script src="js/editSchedule.js"></script>
 <head>
 	<meta charset="utf-8">
 	<title>I Schedule 4 U</title>
@@ -7,6 +12,7 @@
 	<link href="css/bootstrap.min.css" rel="stylesheet">
 	<link href="css/bootstrap-theme.min.css" rel="stylesheet">
 	<link href="css/project.css" rel="stylesheet">
+	<script>checkCookie()</script>
 </head>
 
 <body>
@@ -44,26 +50,12 @@
 
 	<div class = "list" align="left">
 		<h3><font color="#FFFFFF">Current Tasks</font></h3>
-		<p style="margin-top:0.5%"><font  color="#FFFFFF"> Click a task below to edit </font> </p>
+		<div id = "clicktoedit">
+			<p style="margin-top:0.5%"><font  color="#FFFFFF"> Click a task below to edit </font> </p>
+		</div>
 		<br>
-		<br>
-		{{#each tasks}}
-		<p style="background-color:#222222;padding:0.5%">
-			<font color="#FFFFFF">{{name}}</font><br>
-			<font style="margin-left:0.5%" color="#FFFFFF">Duration: {{duration}}</font><br>
-			<font style="margin-left:0.5%" color="#FFFFFF">Priority: {{priority}}</font><br>
-			<font style="margin-left:0.5%" color="#FFFFFF">Location: {{location}}</font><br>
-			<font style="margin-left:0.5%" color="#FFFFFF">{{start-time}} - {{end-time}}</font><br>
-			<font style="margin-left:0.5%" color="#FFFFFF">{{date}}</font><br>
-			<font style="margin-left:0.5%" color="#FFFFFF">Repeats: {{repeat}}</font><br>
-			<font style="margin-left:0.5%" color="#FFFFFF">Related To: {{tag}}</font>
-
-		</p>
-		<br>
-		{{/each}}
+		<div id = "displaySchedule">
+		</div>
 	</div>
-	<script src="https://code.jquery.com/jquery.js"></script>
-	<script src="js/bootstrap.min.js"></script>
 </body>
-
 </html>
