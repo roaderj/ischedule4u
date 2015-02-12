@@ -16,6 +16,15 @@ function defaultSetting() {
 	var day = today.getDate();
 	var month = today.getMonth()+1; //January is 0!
 	var year = today.getFullYear();
+	var hour = today.getHours();
+	var minute = today.getMinutes();
+	if (hour<10) {
+		hour='0'+hour;
+	}
+	if (minute<10) {
+		minute='0'+minute;
+	}
+	var time = hour + ":" + minute;
 	if(day<10) {
 	    day='0'+day;
 	} 
@@ -23,6 +32,8 @@ function defaultSetting() {
     	month='0'+month;
 	} 
 	$('#setDateBox').val(year + "-" + month + "-" + day);
+	$('#setTimeStart').val(time);
+	$('#setTimeEnd').val(time);
 }
 
 function hide() {
