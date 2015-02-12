@@ -49,9 +49,10 @@ function displayTask(result) {
 		} 
 		// Repeat task
 		else {
+			repeat = "Repeat: ";
 			for (var j=0; j<task['repeat'].length; j++) {
 				// Display the day of repeat
-				repeat = "Repeat: " + days[task['repeat'][j]-1] + " ";
+				repeat += days[task['repeat'][j]-1] + " ";
 			}
 		} 
 		// Display the task info

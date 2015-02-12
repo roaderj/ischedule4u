@@ -143,12 +143,13 @@
 			</select>
 		</p>
 		<p><font color="#FFFFFF"> Set Time: </font>
-			<label>
-				<input type="checkbox" name="setTimeCheck" id="setTimeCheck">
-				</input>
-			</label>
-			<br>
-			<input style="width:100%" type="text" class="setTimeCheckBox" id="setTimeBlank" placeholder="type specific time for job if exist"></input>
+			<input type="checkbox" name="setTimeCheck" id="setTimeCheck"></input>
+			<div id="setTimeCheckBox" style="margin-left:5%">
+				<font color='#FFFFFF'>Start Time:</font><br>
+				<input type="time" id="setTimeStart" value="00:00:00"></input><br>
+				<font color='#FFFFFF'>End Time:</font><br>
+				<input type="time" id="setTimeEnd" value="00:00:00"></input>
+			</div>
 		</p>
 		<p><font color="#FFFFFF"> Do you know location? </font>
 			<label>
@@ -191,6 +192,11 @@
 			<input type="checkbox" id="repeated7">
 			<br>
 		</ul>
+		<div id='setDate'>
+			<p><font color="#FFFFFF">Date:
+			<input style="width:100%" type="text" id="setDateBox" placeholder="YYYY-MM-DD (Not need if it repeats)"></input>
+			</p>
+		</div>
 		<p><font color="#FFFFFF"> Does this relate to any other task? </font>
 			<label>
 				<input type="checkbox" class="setTag" id="setTag">

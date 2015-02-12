@@ -64,6 +64,10 @@ function addTasks(result) {
 		var task = userTasks[i];
 		// Repeat task
 		if (task['is_repeat'] == 1) {
+			for (var j=0;j<task['repeat'].length;j++) {
+				if (task['repeat'][j] == 7)
+					task['repeat'][j] = 0;
+			}
 			var taskModified = {
 				title : task['name'],
 				location : task['location'],

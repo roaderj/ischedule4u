@@ -6,3 +6,19 @@ exports.getTask = function(req, res) {
 	// Return all tasks
 	res.json(info);
 }
+
+exports.updateTask = function(req, res) {
+	var user = req.body.user;
+	var taskID = req.body.id;
+	var task = req.body.task;
+	tasks[user][taskID] = task;
+	res.json("success");
+}
+
+exports.deleteTask = function(req, res) {
+	var user = req.body.user;
+	var taskID = req.body.id;
+	tasks[user].splice(taskID,1);
+	console.log(tasks);
+	res.json("success");
+}
