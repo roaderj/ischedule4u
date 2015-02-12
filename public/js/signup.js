@@ -18,10 +18,16 @@ function signupSubmit(e) {
 	var password = document.getElementById("password").value;
 	var confirmPass = document.getElementById("confirmPass").value;
 	console.log(email);
-	console.log(password);
-	console.log(confirmPass);
-	if (password != confirmPass) {
-		var err = "<p style='color:red;'>The email or the password is incorrect.</p>";
+	if (email == "") {
+		var err = "<p style='color:red;'>Please enter an email address.</p>";
+		$('.signup-error').html(err);
+	} 
+	else if (password == "") {
+		var err = "<p style='color:red;'>Please enter a password.</p>";
+		$('.signup-error').html(err);
+	} 
+	else if (password != confirmPass) {
+		var err = "<p style='color:red;'>Password is different from the confirm Password.</p>";
 		$('.signup-error').html(err);
 	}
 	else {

@@ -9,7 +9,8 @@
       "end-time": "13:50",
       "tag": "COGS 120",
       "date":"Repetitive Task",
-      "repeat": ["Tuesday", "Thursday"]
+      "is_repeat": 1,
+      "repeat": [2,4]
     },
     {
       "name": "CSE 165",
@@ -20,7 +21,8 @@
       "end-time": "15:20",
       "tag": "CSE 165",
       "date":"Repetitive Task",
-      "repeat": ["Tuesday", "Thursday"]
+      "is_repeat": 1,
+      "repeat": [2,4]
 
     },
     {
@@ -32,7 +34,8 @@
       "end-time": "18:20",
       "tag": "CSE 169",
       "date":"Repetitive Task",
-      "repeat": ["Monday", "Wednesday"]
+      "is_repeat": 1,
+      "repeat": [1,3]
     },
     {
       "name": "Group Meeting",
@@ -43,18 +46,20 @@
       "end-time": "15:30",
       "tag": "COGS 120",
       "date":"Repetitive Task",
-      "repeat": ["Monday"]
+      "is_repeat": 1,
+      "repeat": [1]
     },
     {
       "name": "Midterm",
       "priority": "high",
       "location": "WLH",
       "duration": "2:00",
-      "start-time": "18:30",
-      "end-time": "20:00",
+      "start-time": "2015-02-20T18:30:00",
+      "end-time": "2015-02-20T20:00:00",
       "tag": "CSE 169",
       "date":"One Time Task: 2/20/2015",
-      "repeat": ["Never"]
+      "is_repeat": 0,
+      "repeat": []
     }
   ]
 }

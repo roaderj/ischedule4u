@@ -16,6 +16,7 @@ var editSchedule = require('./routes/editSchedule');
 var addTask = require('./routes/addTask');
 var blank = require('./routes/blank');
 var userinfo = require('./routes/user');
+var getTask = require('./routes/getTask');
 
 //var project = require('./routes/project');
 // Example route
@@ -50,6 +51,7 @@ app.get('/signup', signup.view);
 app.get('/addTask', addTask.view);
 app.get('/editSchedule', editSchedule.view);
 app.get('/blank', blank.view);
+app.get('/getTask', getTask.getTask);
 app.post('/user_login', userinfo.loginCheck);
 app.post('/user_signup', userinfo.signupCheck);
 //app.get('/project/:name', project.viewProject);
