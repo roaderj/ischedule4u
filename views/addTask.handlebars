@@ -55,7 +55,7 @@
 
 		<p><font color="#FFFFFF"> Duration: </font> <br>
 			<!-- hour selector -->
-			<select>
+			<select form="taskForm" id="hour">
 				<option value="0">0 hours</option>
 				<option value="1">1 hours</option>
 				<option value="2">2 hours</option>
@@ -82,7 +82,7 @@
 				<option value="23">23 hours</option>
 			</select>
 			<!-- min selector -->
-			<select>
+			<select form="taskForm" id="minute">
 				<option value="0">0 minutes</option>
 				<option value="1">1 minutes</option>
 				<option value="2">2 minutes</option>
@@ -153,7 +153,12 @@
 				</input>
 			</label>
 			<br>
-			<input style="width:100%" type="text" class="setTimeCheckBox" value="type specific time for job if exist"></input>
+			<div class="setTimeCheckBox">
+				<font>Start Time:</font> <br>
+				<input style="width:100%" type="time" id="setTimeStart" value="00:00:00"></input>
+				<font>End Time:</font> <br>
+				<input style="width:100%" type="time" id="setTimeEnd" value="00:00:00"></input>
+			</div>
 		</p>
 
 		<p><font color="#FFFFFF"> Do you know location? </font>
@@ -166,10 +171,10 @@
 		</p>
 
 		<p style="margin-top:1.5%"><font color="#FFFFFF">Priority: </font>
-		<select>
-			<option value="3">High</option>
-			<option value="2">Medium</option>
-			<option value="1">Low</option>
+		<select id="prioritySelect">
+			<option value="high">High</option>
+			<option value="medium">Medium</option>
+			<option value="low">Low</option>
 		</select>
 		</p>
 
@@ -195,7 +200,7 @@
 			<input type="checkbox" id="repeatedFriday">
 			<br>
 			<font color="#FFFFFF"  style="font-size:12px;margin-right:2.5%">Sat</font>
-			<input type="checkbox" id="repeatedSatday">
+			<input type="checkbox" id="repeatedSaturday">
 			<br>
 			<font color="#FFFFFF"  style="font-size:12px;margin-right:2.1%">Sun</font>
 			<input type="checkbox" id="repeatedSunday">
@@ -204,20 +209,20 @@
 
 		<p><font color="#FFFFFF"> Does this relate to any other task? </font>
 			<label>
-				<input type="checkbox" class="setLocation">
+				<input type="checkbox" class="setTag">
 				</input>
 			</label>
 			<br>
-			<select class="setLocationList">
-				<option value="1">COGS 120</option>
-				<option value="2">CSE 165</option>
-				<option value="3">CSE 169</option>
-				<option value="4">HCI group meeting</option>
+			<select class="setTagList">
+				<option value="COGS 120">COGS 120</option>
+				<option value="CSE 165">CSE 165</option>
+				<option value="CSE 169">CSE 169</option>
+				<option value="HCI group">HCI group meeting</option>
 			</select>
 		</p>
 
 
-			<button style="width:50%;height:10%" type="button" onclick="location.href='/'">
+			<button style="width:50%;height:10%" type="button" id="submitBtn">
 			Create Task </button>
 		</form>
 	</div>
