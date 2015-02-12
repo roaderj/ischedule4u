@@ -9,39 +9,47 @@ function initializePage() {
 	$('#submitBtn').click(signupSubmit);
 }
 
-//var email = "#";
-//var password = "#";
-
+// Submit signup info
 function signupSubmit(e) {
 	e.preventDefault();
+	// email
 	var email = document.getElementById("email").value;
+	// password
 	var password = document.getElementById("password").value;
+	// confirm password
 	var confirmPass = document.getElementById("confirmPass").value;
-	console.log(email);
+	// Email is empty
 	if (email == "") {
 		var err = "<p style='color:red;'>Please enter an email address.</p>";
 		$('.signup-error').html(err);
 	} 
+	// Password is empty
 	else if (password == "") {
 		var err = "<p style='color:red;'>Please enter a password.</p>";
 		$('.signup-error').html(err);
 	} 
+	// Password and confirm password are not matched
 	else if (password != confirmPass) {
-		var err = "<p style='color:red;'>Password is different from the confirm Password.</p>";
+		var err = "<p style='color:red;'>Confirm password is different from password.</p>";
 		$('.signup-error').html(err);
 	}
+	// post the signup info
 	else {
 		$.post("/user_signup", {email: email, password: password}, check);
 	}
 }
 
+// Callback of post the signup info
+// If true, go to login page; if false, the account is existed
 function check(result) {
-	console.log(result);
+	// The email has been used
 	if (!result) {
 		var err = "<p style='color:red;'>The email has already been used.</p>";
 		$('.signup-error').html(err);
 	}
+	// Signup success
 	else {
+		// Go back to login page
 		window.location="/login";
 	}
 }
