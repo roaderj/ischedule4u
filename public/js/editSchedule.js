@@ -39,13 +39,13 @@ function displayTask(result) {
 		var etime = task['end-time'];
 		// One time task
 		if (task['is_repeat'] == 0) {
-			var date = moment(stime);
+			var vars = stime.split('T');
+			var date = vars[0];
 			// Display date if not repeat
-			repeat = "Date: " + date.year() + "/" + date.month() + 
-				"/" + date.date();
-			stime = date.hour() + ":" + date.minutes();
-			date = moment(etime);
-			etime = date.hour() + ":" + date.minutes();
+			repeat = "Date: " + date;
+			stime = vars[1];
+			vars = etime.split('T');
+			etime = vars[1];
 		} 
 		// Repeat task
 		else {

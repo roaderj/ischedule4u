@@ -18,7 +18,12 @@ exports.updateTask = function(req, res) {
 exports.createTask = function(req, res) {
 	var user = req.body.user;
 	var task = req.body.task;
-	tasks[user].push(task);
+	if (!(user in tasks)) {
+		tasks[user] = [task];
+	}
+	else {
+		tasks[user].push(task);
+	}
 	res.json("success");
 }
 

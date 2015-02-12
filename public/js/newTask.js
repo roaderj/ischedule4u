@@ -6,8 +6,23 @@
 
 function initializePage() {
 	//console.log("Javascript connected!");
+	defaultSetting()
 	hide();
   	$('#submitBtn').click(addTask);
+}
+
+function defaultSetting() {
+	var today = new Date();
+	var day = today.getDate();
+	var month = today.getMonth()+1; //January is 0!
+	var year = today.getFullYear();
+	if(day<10) {
+	    day='0'+day;
+	} 
+	if(month<10) {
+    	month='0'+month;
+	} 
+	$('#setDateBox').val(year + "-" + month + "-" + day);
 }
 
 function hide() {
@@ -33,6 +48,11 @@ function hide() {
 
 function addTask() {
 	var user = getCookie("email");
+	var name = $('#taskName').val();
+	if (name == "") {
+		$('#addError').html("<p style='color:red'>Please enter a name for the Task.</p>");
+		return -1;
+	}
 	var duration = $('#durationHour').val() + ":" + $('#durationMinutes').val();
 	var repeat = [];
 	var stime = $('#setTimeStart').val();
@@ -52,7 +72,7 @@ function addTask() {
 		etime = date + "T" + etime;
 	}
 	var task = {
-      "name": $('#taskName').val(),
+      "name": name,
       "priority": $('#setPriority').val(),
       "location": $('#setLocationBlank').val(),
       "duration": duration,

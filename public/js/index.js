@@ -36,16 +36,14 @@ function setCalendar(result) {
         scrollTime : '06:00:00',
         // Pop up when event is clicked
         eventClick : function(event) {
-        	var stime = moment(event['start']);
-        	var etime = moment(event['end']);
-        	var shour = stime.hour();
-        	var sminute = stime.minutes();
-        	var ehour = etime.hour();
-        	var eminute = etime.minutes();
+        	var vars = stime.split('T');
+        	var stime = vars[vars.length-1];
+        	vars = stime.split('T');
+        	var etime = vars[vars.length-1];
         	alert('Task: ' + event.title + 
         		'\nLocation: ' + event['location'] +
-        		'\nTime: ' + shour + ':' + sminute + 
-        		'-' + ehour + ':' + eminute);
+        		'\nTime: ' + stime + 
+        		'-' + etime);
         }
     });
 }

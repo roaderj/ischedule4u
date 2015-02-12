@@ -46,6 +46,7 @@
 	<div class = "header" style="margin-bottom:5%">
 		<h2 align="center" style="margin-top:5%" ><font color="#FFFFFF"> New Task </font></h2>
 	</div>
+	<div class = 'error' id="addError"></div>
 	<div class = "form" align="left">
 		<form id ='taskForm' method = "POST" name = "taskForm">
 		<p><font color="#FFFFFF" > Name: </font> <br> <input type="text" name="taskName" id = "taskName"></input> </p>
@@ -145,9 +146,9 @@
 			<input type="checkbox" name="setTimeCheck" id="setTimeCheck"></input>
 			<div id="setTimeCheckBox" style="margin-left:5%">
 				<font color='#FFFFFF'>Start Time:</font><br>
-				<input type="time" id="setTimeStart" value="00:00:00"></input><br>
+				<input type="time" id="setTimeStart" value="08:00"></input><br>
 				<font color='#FFFFFF'>End Time:</font><br>
-				<input type="time" id="setTimeEnd" value="00:00:00"></input>
+				<input type="time" id="setTimeEnd" value="08:00"></input>
 			</div>
 		</p>
 		<p><font color="#FFFFFF"> Do you know location? </font>
