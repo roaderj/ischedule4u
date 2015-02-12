@@ -1,31 +1,82 @@
  'use strict';
+
  $(document).ready(function() {
 	initializePage();
 })
 
 function initializePage() {
-	console.log("Javascript connected!");
-	$('.setTimeCheckBox').hide();
+	//console.log("Javascript connected!");
+	hide();
+  	$('#submitBtn').click(addTask);
+}
+
+function hide() {
+	$('#setTimeCheckBox').hide();
 	$('.setLocationCheckBox').hide();
 	$('.dateRepeatChecked').hide();
-	$('.setLocationList').hide();
-  $('#setTimeCheck').click(function() {
-	$('.setTimeCheckBox')[this.checked ? "show" : "hide"]();	
-  });
-  
-  $('#setLocation').click(function() {
-	$('.setLocationCheckBox')[this.checked ? "show" : "hide"]();	
-  });
-  
-  $('.repeated').click(function() {
-	$('.dateRepeatChecked')[this.checked ? "show" : "hide"]();	
-  });
-  
-  $('.setTag').click(function() {
-	$('.setTagList')[this.checked ? "show" : "hide"]();
-  });
-  $('#submitBtn').click(submit);
+	$('#TagList').hide();
+	$('#setDate').show();
+  	$('#setTimeCheck').click(function() {
+		$('#setTimeCheckBox')[this.checked ? "show" : "hide"]();	
+  	});
+  	$('#setLocation').click(function() {
+		$('.setLocationCheckBox')[this.checked ? "show" : "hide"]();	
+  	});
+  	$('.repeated').click(function() {
+		$('.dateRepeatChecked')[this.checked ? "show" : "hide"]();	
+		$('#setDate')[this.checked ? "hide" : "show"]();
+  	}); 
+  	$('.setTag').click(function() {
+		$('#TagList')[this.checked ? "show" : "hide"]();
+  	});
 }
+
+function addTask() {
+	var user = getCookie("email");
+	var duration = $('#durationHour').val() + ":" + $('#durationMinutes').val();
+	var repeat = [];
+	var stime = $('#setTimeStart').val();
+	var etime = $('#setTimeEnd').val();
+	var date = $('#setDateBox').val();
+	if (document.getElementById("setRepeat").checked) {
+		var is_repeat = 1;
+		for (var i=1;i<8;i++) {
+			if (document.getElementById("repeated"+i).checked) {
+				repeat.push(i);
+			}
+		}
+	}
+	else {
+		var is_repeat = 0;
+		stime = date + "T" + stime;
+		etime = date + "T" + etime;
+	}
+	var task = {
+      "name": $('#taskName').val(),
+      "priority": $('#setPriority').val(),
+      "location": $('#setLocationBlank').val(),
+      "duration": duration,
+      "start-time": stime,
+      "end-time": etime,
+      "tag": $('#TagList').val(),
+      "date": date,
+      "is_repeat": is_repeat,
+      "repeat": repeat
+    };
+    $.post("/createTask", {user: user, task: task}, done);
+}
+
+function done(result) {
+	window.location = "/";
+}
+
+
+
+
+
+// Didn't use below
+
+
 
 function callback(result){
 	var user = result[getCookie("email")];

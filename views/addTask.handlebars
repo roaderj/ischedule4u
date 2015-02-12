@@ -51,7 +51,7 @@
 		<p><font color="#FFFFFF" > Name: </font> <br> <input type="text" name="taskName" id = "taskName"></input> </p>
 		<p><font color="#FFFFFF"> Duration: </font> <br>
 			<!-- hour selector -->
-			<select form="taskForm" id="hour">
+			<select id = 'durationHour'>
 				<option value="0">0 hours</option>
 				<option value="1">1 hours</option>
 				<option value="2">2 hours</option>
@@ -78,7 +78,7 @@
 				<option value="23">23 hours</option>
 			</select>
 			<!-- min selector -->
-			<select form="taskForm" id="minute">
+			<select id = 'durationMinutes'>
 				<option value="0">0 minutes</option>
 				<option value="1">1 minutes</option>
 				<option value="2">2 minutes</option>
@@ -142,16 +142,12 @@
 			</select>
 		</p>
 		<p><font color="#FFFFFF"> Set Time: </font>
-			<label>
-				<input type="checkbox" name="setTimeCheck" id="setTimeCheck">
-				</input>
-			</label>
-			<br>
-			<div class="setTimeCheckBox">
-				<font>Start Time:</font> <br>
-				<input style="width:100%" type="time" id="setTimeStart" value="00:00:00"></input>
-				<font>End Time:</font> <br>
-				<input style="width:100%" type="time" id="setTimeEnd" value="00:00:00"></input>
+			<input type="checkbox" name="setTimeCheck" id="setTimeCheck"></input>
+			<div id="setTimeCheckBox" style="margin-left:5%">
+				<font color='#FFFFFF'>Start Time:</font><br>
+				<input type="time" id="setTimeStart" value="00:00:00"></input><br>
+				<font color='#FFFFFF'>End Time:</font><br>
+				<input type="time" id="setTimeEnd" value="00:00:00"></input>
 			</div>
 		</p>
 		<p><font color="#FFFFFF"> Do you know location? </font>
@@ -160,57 +156,65 @@
 				</input>
 			</label>
 			<br>
-			<input style="width:100%" type="text" class="setLocationCheckBox" placeholder="type specific location for job if exist"></input>
+			<input style="width:100%" type="text" class="setLocationCheckBox" id="setLocationBlank"  placeholder="type specific location for job if exist"></input>
 		</p>
 		<p style="margin-top:1.5%"><font color="#FFFFFF">Priority: </font>
-		<select id="prioritySelect">
+		<select id="setPriority">
 			<option value="high">High</option>
 			<option value="medium">Medium</option>
 			<option value="low">Low</option>
 		</select>
 		</p>
 		<p style="margin-top:1%"><font color="#FFFFFF">Does it Repeat? </font>
-			<input type="checkbox" class="repeated" name="repeated">
+			<input type="checkbox" class="repeated" id="setRepeat" name="repeated">
 		</p>
 		<ul id="dateRepeatChecked" class="dateRepeatChecked">
 			<font color="#FFFFFF"  style="font-size:12px;margin-right:2%">Mon</font>
-			<input type="checkbox" id="repeatedMonday">
+			<input type="checkbox" id="repeated1">
 			<br>
 			<font color="#FFFFFF"  style="font-size:12px;margin-right:2.2%">Tue</font>
-			<input type="checkbox" id="repeatedTuesday">
+			<input type="checkbox" id="repeated2">
 			<br>
 			<font color="#FFFFFF"  style="font-size:12px;margin-right:1.9%">Wed</font>
-			<input type="checkbox" id="repeatedWednesday">
+			<input type="checkbox" id="repeated3">
 			<br>
 			<font color="#FFFFFF"  style="font-size:12px;margin-right:2.2%">Thu</font>
-			<input type="checkbox" id="repeatedThursday">
+			<input type="checkbox" id="repeated4">
 			<br>
 			<font color="#FFFFFF"  style="font-size:12px;margin-right:2.8%">Fri</font>
-			<input type="checkbox" id="repeatedFriday">
+			<input type="checkbox" id="repeated5">
 			<br>
 			<font color="#FFFFFF"  style="font-size:12px;margin-right:2.5%">Sat</font>
-			<input type="checkbox" id="repeatedSaturday">
+			<input type="checkbox" id="repeated6">
 			<br>
 			<font color="#FFFFFF"  style="font-size:12px;margin-right:2.1%">Sun</font>
-			<input type="checkbox" id="repeatedSunday">
+			<input type="checkbox" id="repeated7">
 			<br>
 		</ul>
+		<div id='setDate'>
+			<p><font color="#FFFFFF">Date:
+			<input style="width:100%" type="text" id="setDateBox" placeholder="YYYY-MM-DD (Not need if it repeats)"></input>
+			</p>
+		</div>
 		<p><font color="#FFFFFF"> Does this relate to any other task? </font>
 			<label>
-				<input type="checkbox" class="setTag">
+				<input type="checkbox" class="setTag" id="setTag">
 				</input>
 			</label>
 			<br>
-			<select class="setTagList">
+			<select class="setTagList" id="TagList">
 				<option value="COGS 120">COGS 120</option>
 				<option value="CSE 165">CSE 165</option>
 				<option value="CSE 169">CSE 169</option>
-				<option value="HCI group">HCI group meeting</option>
+				<option value="HCI group meeting">HCI group meeting</option>
 			</select>
 		</p>
-			<button style="width:50%;height:10%" type="button" id="submitBtn">
+			<button style="width:100%;height:10%" type="button" id="submitBtn">
 			Create Task </button>
 		</form>
+		<br>
+		<br>
+		<br>
 	</div>
 </div>
 

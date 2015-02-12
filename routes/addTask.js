@@ -6,6 +6,7 @@ exports.view = function(req, res){
 
 };
 
+// Not use for now
 exports.addTask = function(req, res)
 {
   var name = req.param('taskName');
