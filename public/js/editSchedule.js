@@ -43,7 +43,7 @@ function displayTask(result) {
 				repeat = "Repeat: " + days[task['repeat'][j]-1] + " ";
 			}
 		} 
-		post += "<a href='/addTask'>";
+		post += "<a href='/editTask/" + i + "'>";
 		post += "<div class = 'userTask' id = 'task" + i + "'>"
 		post += "<p style='background-color:#222222;padding:0.5%'>";
 		post += "<font color='#FFFFFF'>" + task['name'] + "</font><br>";
