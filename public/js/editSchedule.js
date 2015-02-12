@@ -7,13 +7,6 @@ $(document).ready(function() {
 
 function initializePage() {
 	getTasks();
-	$('.userTask').click(editTask);
-}
-
-function editTask(e) {
-	e.preventDefault();
-	var taskId = $(this).closest('.list').attr('id');
-	console.log(taskId);
 }
 
 function getTasks() {
@@ -50,7 +43,8 @@ function displayTask(result) {
 				repeat = "Repeat: " + days[task['repeat'][j]-1] + " ";
 			}
 		} 
-		post += "<div class = 'userTask' id = 'task" + j + "'>"
+		post += "<a href='/addTask'>";
+		post += "<div class = 'userTask' id = 'task" + i + "'>"
 		post += "<p style='background-color:#222222;padding:0.5%'>";
 		post += "<font color='#FFFFFF'>" + task['name'] + "</font><br>";
 		post += "<font style='margin-left:0.5%' color='#FFFFFF'>Duration: " +
@@ -66,7 +60,7 @@ function displayTask(result) {
 		post += "<font style='margin-left:0.5%' color='#FFFFFF'>Related To: " +
 			task['tag'] + "</font>";
 		post += "</p>";
-		post += "</div><br>";
+		post += "</div></a><br>";
 	}
 	$('#displaySchedule').html(post);
 }
