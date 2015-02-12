@@ -32,7 +32,16 @@ function setCalendar(result) {
         allDaySlot : false,
         scrollTime : '06:00:00',
         eventClick : function(event) {
-        	alert('Event: ' + event.title);
+        	var stime = moment(event['start']);
+        	var etime = moment(event['end']);
+        	var shour = stime.hour();
+        	var sminute = stime.minutes();
+        	var ehour = etime.hour();
+        	var eminute = etime.minutes();
+        	alert('Task: ' + event.title + 
+        		'\nLocation: ' + event['location'] +
+        		'\nTime: ' + shour + ':' + sminute + 
+        		'-' + ehour + ':' + eminute);
         }
     });
 }
@@ -44,7 +53,8 @@ function addTasks(result) {
 		var task = userTasks[i];
 		if (task['is_repeat'] == 1) {
 			var taskModified = {
-				title : task['name'] + "\n Location: " + task['location'],
+				title : task['name'],
+				location : task['location'],
 				start : task['start-time'],
 				end : task['end-time'],
 				dow : task['repeat']
@@ -52,9 +62,10 @@ function addTasks(result) {
 		}
 		else {
 			var taskModified = {
-				title : task['name'] + "\n Location: " + task['location'],
+				title : task['name'],
+				location : task['location'],
 				start : task['start-time'],
-				end : 	task['end-time']
+				end : task['end-time']
 			};
 		}
 		tasks.push(taskModified);
