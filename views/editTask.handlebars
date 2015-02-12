@@ -4,7 +4,6 @@
 	<script src="../js/bootstrap.min.js"></script>
 	<script src='../js/moment.min.js'></script>
 	<script src='../js/cookie.js'></script>
-	<!--<script src="../js/newTask.js"></script>-->
 	<script src='../js/editTask.js'></script>
 <head>
 	<meta charset="utf-8">
@@ -13,11 +12,11 @@
 	<link href="../css/bootstrap.min.css" rel="stylesheet">
 	<link href="../css/bootstrap-theme.min.css" rel="stylesheet">
 	<link href="../css/project.css" rel="stylesheet">
+	<!-- Check if there is an user logged in -->
 	<script>checkCookie()</script>
 </head>
 
 <body>
-		<!-- this is a comment in HTML -->
 	<nav class="navbar navbar-default">
 	<div class="container-fluid">
 		<!-- Brand and toggle get grouped for better mobile display -->
@@ -30,7 +29,6 @@
 			</button>
 			<a class="navbar-brand" href="#">IS4U</a>
 		</div>
-
 		<!-- Collect the nav links, forms, and other content for toggling -->
 		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 			<ul class="nav navbar-nav">
@@ -43,7 +41,7 @@
 			</ul>
 		</div><!-- /.navbar-collapse -->
 	</div><!-- /.container-fluid -->
-</nav>
+	</nav>
 
 <div class = "container">
 	<div class = "header" style="margin-bottom:5%">
@@ -52,9 +50,6 @@
 	<div class = "form" align="left">
 		<form id ='taskForm' method = "POST" name = "taskForm">
 		<p><font color="#FFFFFF" > Name: </font> <br> <input type="text" name="taskName" id = "taskName"></input> </p>
-
-		<br>
-
 		<p><font color="#FFFFFF"> Duration: </font> <br>
 			<!-- hour selector -->
 			<select id = 'durationHour'>
@@ -147,8 +142,6 @@
 				<option value="59">59 minutes</option>
 			</select>
 		</p>
-		<br>
-
 		<p><font color="#FFFFFF"> Set Time: </font>
 			<label>
 				<input type="checkbox" name="setTimeCheck" id="setTimeCheck">
@@ -157,7 +150,6 @@
 			<br>
 			<input style="width:100%" type="text" class="setTimeCheckBox" id="setTimeBlank" placeholder="type specific time for job if exist"></input>
 		</p>
-
 		<p><font color="#FFFFFF"> Do you know location? </font>
 			<label>
 				<input type="checkbox" name="setLocation" id="setLocation">
@@ -166,7 +158,6 @@
 			<br>
 			<input style="width:100%" type="text" class="setLocationCheckBox" id="setLocationBlank"  placeholder="type specific location for job if exist"></input>
 		</p>
-
 		<p style="margin-top:1.5%"><font color="#FFFFFF">Priority: </font>
 		<select id="setPriority">
 			<option value="high">High</option>
@@ -174,9 +165,6 @@
 			<option value="low">Low</option>
 		</select>
 		</p>
-
-		<br>
-
 		<p style="margin-top:1%"><font color="#FFFFFF">Does it Repeat? </font>
 			<input type="checkbox" class="repeated" id="setRepeat" name="repeated">
 		</p>
@@ -203,7 +191,6 @@
 			<input type="checkbox" id="repeated7">
 			<br>
 		</ul>
-
 		<p><font color="#FFFFFF"> Does this relate to any other task? </font>
 			<label>
 				<input type="checkbox" class="setTag" id="setTag">
@@ -217,13 +204,13 @@
 				<option value="HCI group meeting">HCI group meeting</option>
 			</select>
 		</p>
-
-			<button id="updateEdit" style="width:45%;height:10%" type="button">
-			Update Task </button>
-			<button style="width:45%;height:10%" type="button" onclick="location.href='/editSchedule'">
-			Cancel </button>
+			<button id="updateEdit" style="width:100%;height:10%" type="button">Update Task</button>
+			<div style='height:5px;clear:both;display:block'></div>
+			<button id="deleteTask" style="width:49.25%;height:10%" type="button">Delete Task</button>
+			<button style="width:49.25%;height:10%" type="button" onclick="location.href='/editSchedule'">Cancel</button>
 		</form>
 	</div>
 </div>
+
 </body>
 </html>

@@ -1,21 +1,13 @@
-'use strict';
-
-// Call this function when the page loads (the "ready" event)
-$(document).ready(function() {
-	initializePage();
-})
-
-function initializePage() {
-	//checkCookie();
-}
-
+// Check if there is an user logged in
 function checkCookie() {
     var email=getCookie("email");
+    // if noone is logged in, go to login page
     if (email=="") {
         window.location = "/login";
     }
 }
 
+// Get the name of the user
 function getCookie(cname) {
     var name = cname + "=";
     var ca = document.cookie.split(';');

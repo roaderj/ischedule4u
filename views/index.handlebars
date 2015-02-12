@@ -14,11 +14,11 @@
 	<link href="css/bootstrap-theme.min.css" rel="stylesheet">
 	<link href="css/fullcalendar.css" rel="stylesheet">
 	<link href="css/project.css" rel="stylesheet">
+	<!-- Check if there is an user logged in -->
 	<script>checkCookie()</script>
 </head>
 
 <body>
-	<!-- this is a comment in HTML -->
 	<nav class="navbar navbar-default">
 	<div class="container-fluid">
 		<!-- Brand and toggle get grouped for better mobile display -->
@@ -32,7 +32,6 @@
 			</button>
 			<a class="navbar-brand" href="#">IS4U</a>
 		</div>
-
 		<!-- Collect the nav links, forms, and other content for toggling -->
 		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 			<ul class="nav navbar-nav">
@@ -45,34 +44,17 @@
 			</ul>
 		</div><!-- /.navbar-collapse -->
 	</div><!-- /.container-fluid -->
-</nav>
+	</nav>
 
  <div class = "container">
 	<div class = "header">
-		<!--<div id="user" >
-			<button id="login" class="btn btn-primary btn" onClick="location.href='/login'" style="float: right;">Log out</button>
-		</div>-->
-	 <!--<h1 align="center" style="margin-top:5%">I Schedule 4 U</h1>-->
 		<h1 align="center" style="margin-top:5%">I Schedule 4 U</font></h1>
 	</div>
 	<div class = "images" style="margin-top:2%;padding-bottom:5%" align="center">
 		<h2> Current Schedule</h2>
 		<div class='schedule' id='calendar'></div>
-		<!--<img src="schedule.png" alt="sample schedule.png" class="schedule">-->
 	</div>
-	<!--
-	<div class = "main" style="margin-top:3%">
-		<p align = "center">
-		<button id="new" class="btn btn-primary btn-lg" onClick="location.href='addTask.html'">New Task</button>
-		<br>
-		<br>
-		<button id="schedule" class="btn btn-primary btn-lg" onClick="parent.location='EditSchedule.html'">Edit Schedule</button>
-		<br>
-		<br>
-		<button id="About Us" class="btn btn-primary btn-lg" onClick="parent.location='blank.html'">About Us</button>
-	  </p>
-	</div>
-	-->
 </div>
+
 </body>
 </html>
