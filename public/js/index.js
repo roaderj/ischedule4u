@@ -36,14 +36,18 @@ function setCalendar(result) {
         scrollTime : '06:00:00',
         // Pop up when event is clicked
         eventClick : function(event) {
-        	var vars = stime.split('T');
+        	var vars = event['startTime'].split('T');
         	var stime = vars[vars.length-1];
-        	vars = stime.split('T');
+        	vars = event['endTime'].split('T');
         	var etime = vars[vars.length-1];
+        	var tagMessage = "";
+        	if (event['tag'] != "") {
+        		tagMessage = "\nTag: " + event['tag'];
+        	}
         	alert('Task: ' + event.title + 
         		'\nLocation: ' + event['location'] +
         		'\nTime: ' + stime + 
-        		'-' + etime);
+        		'-' + etime +tagMessage);
         }
     });
 }
@@ -69,6 +73,9 @@ function addTasks(result) {
 			var taskModified = {
 				title : task['name'],
 				location : task['location'],
+				startTime : task['start-time'],
+				endTime: task['end-time'],
+				tag: task['tag'],
 				start : task['start-time'],
 				end : task['end-time'],
 				dow : task['repeat']
@@ -79,6 +86,9 @@ function addTasks(result) {
 			var taskModified = {
 				title : task['name'],
 				location : task['location'],
+				startTime : task['start-time'],
+				endTime: task['end-time'],
+				tag: task['tag'],
 				start : task['start-time'],
 				end : task['end-time']
 			};

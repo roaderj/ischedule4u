@@ -54,11 +54,13 @@ app.get('/editTask/:id', editTask.view);
 app.get('/editSchedule', editSchedule.view);
 app.get('/blank', blank.view);
 app.get('/getTask', getTask.getTask);
+app.get('/getTag', getTask.getTag);
 app.post('/user_login', userinfo.loginCheck);
 app.post('/user_signup', userinfo.signupCheck);
 app.post('/updateTask', getTask.updateTask);
 app.post('/deleteTask', getTask.deleteTask);
 app.post('/createTask', getTask.createTask);
+app.post('/setTag', getTask.setTag);
 //app.get('/project/:name', project.viewProject);
 // Example route
 // app.get('/users', user.list);

@@ -1,4 +1,7 @@
 {
+  "setting": {
+      "a": ["COGS 120", "CSE 165", "CSE 169"]
+    },
   "a": [
     {
       "name": "COGS 120",
@@ -54,8 +57,8 @@
       "priority": "high",
       "location": "WLH",
       "duration": "2:00",
-      "start-time": "2015-02-20T18:30:00",
-      "end-time": "2015-02-20T20:00:00",
+      "start-time": "2015-02-20T18:30",
+      "end-time": "2015-02-20T20:00",
       "tag": "CSE 169",
       "date":"One Time Task: 2/20/2015",
       "is_repeat": 0,

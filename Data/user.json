@@ -14,5 +14,9 @@
     {
         "email": "b",
         "password": "b"
+    },
+    {
+        "email": "setting",
+        "password": "this is no an account"
     }
 ]

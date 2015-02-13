@@ -4,13 +4,17 @@
 	initializePage();
 })
 
+var user = "";
+
 function initializePage() {
 	//console.log("Javascript connected!");
+	user = getCookie("email");
 	defaultSetting()
 	hide();
   	$('#submitBtn').click(addTask);
 }
 
+// Default setting
 function defaultSetting() {
 	var today = new Date();
 	var day = today.getDate();
@@ -34,13 +38,16 @@ function defaultSetting() {
 	$('#setDateBox').val(year + "-" + month + "-" + day);
 	$('#setTimeStart').val(time);
 	$('#setTimeEnd').val(time);
+	$('#TagList').val("blank");
 }
 
+// Hide not checked box
 function hide() {
 	$('#setTimeCheckBox').hide();
 	$('.setLocationCheckBox').hide();
 	$('.dateRepeatChecked').hide();
 	$('#TagList').hide();
+	$('#otherTag').hide();
 	$('#setDate').show();
   	$('#setTimeCheck').click(function() {
 		$('#setTimeCheckBox')[this.checked ? "show" : "hide"]();	
@@ -55,10 +62,31 @@ function hide() {
   	$('.setTag').click(function() {
 		$('#TagList')[this.checked ? "show" : "hide"]();
   	});
+  	$('#TagList').change(function() {
+  		if ($('#TagList').val() == 'other') {
+  			$('#otherTag').show();
+  		}
+  		else {
+  			$('#otherTag').hide();
+  		}
+  	});
+  	$.get("/getTag",setTag);
 }
 
+// Display all tags
+function setTag(result) {
+	var tags = result[user];
+	if (!tag) {
+		for (var i=0;i<tags.length;i++) {
+			var tag = tags[i];
+			$('#TagList').append("<option value='" + tag + 
+				"'>" + tag + "</option>");
+		}
+	}
+}
+
+// Add task to db
 function addTask() {
-	var user = getCookie("email");
 	var name = $('#taskName').val();
 	if (name == "") {
 		$('#addError').html("<p style='color:red'>Please enter a name for the Task.</p>");
@@ -82,6 +110,13 @@ function addTask() {
 		stime = date + "T" + stime;
 		etime = date + "T" + etime;
 	}
+	// Add new tag to db
+	var newTag = $('#otherTag').val();
+	var tag = $('#TagList').val();
+	if ($('#TagList').val() == 'other' && newTag != "") {
+		$.post("/setTag", {user: user, tag: newTag}, function(){});
+		tag = newTag;
+	}
 	var task = {
       "name": name,
       "priority": $('#setPriority').val(),
@@ -89,7 +124,7 @@ function addTask() {
       "duration": duration,
       "start-time": stime,
       "end-time": etime,
-      "tag": $('#TagList').val(),
+      "tag": tag,
       "date": date,
       "is_repeat": is_repeat,
       "repeat": repeat
@@ -97,6 +132,7 @@ function addTask() {
     $.post("/createTask", {user: user, task: task}, done);
 }
 
+// Go back to homepage
 function done(result) {
 	window.location = "/";
 }
@@ -171,6 +207,7 @@ function callback(result){
 	user.push(taskJson);
 	console.log(user);
 }
+
 function submit(){
 	
 	$.get('/getTask', callback);

@@ -10,8 +10,9 @@ var user = "";
 
 function initializePage() {
 	// Get tasks from database
-	$.get("/getTask", displayTask);
+	user = getCookie("email"); // Get the current user
 	hide();
+	$.get("/getTask", displayTask);
 	$('#updateEdit').click(updateTask);
 	$('#deleteTask').click(deleteTask);
 }
@@ -36,6 +37,13 @@ function updateTask() {
 		stime = date + "T" + stime;
 		etime = date + "T" + etime;
 	}
+	// Adding new tag to db
+	var newTag = $('#otherTag').val();
+	var tag = $('#TagList').val();
+	if ($('#TagList').val() == 'other' && newTag != "") {
+		$.post("/setTag", {user: user, tag: newTag}, function(){});
+		tag = newTag;
+	}
 	var task = {
       "name": $('#taskName').val(),
       "priority": $('#setPriority').val(),
@@ -43,7 +51,7 @@ function updateTask() {
       "duration": duration,
       "start-time": stime,
       "end-time": etime,
-      "tag": $('#TagList').val(),
+      "tag": tag,
       "date": date,
       "is_repeat": is_repeat,
       "repeat": repeat
@@ -51,6 +59,7 @@ function updateTask() {
     $.post("/updateTask", {user: user, id: taskID, task: task}, done);
 }
 
+// Go back to homepage
 function done(result) {
 	window.location = "/";
 }
@@ -64,7 +73,6 @@ function deleteTask() {
 // Display the select task
 function displayTask(result) {
 	// Get current user
-	user = getCookie("email");
 	// This user has no task, go back to schedule
 	if (!(user in result)) {
 		window.location = "/editSchedule";
@@ -131,6 +139,7 @@ function displayTask(result) {
 
 // Hide unclick blanks
 function hide() {
+	$('#otherTag').hide();
   	$('#setTimeCheck').click(function() {
 		$('#setTimeCheckBox')[this.checked ? "show" : "hide"]();	
   	});
@@ -142,6 +151,29 @@ function hide() {
 		$('#setDate')[this.checked ? "hide" : "show"]();
   	}); 
   	$('.setTag').click(function() {
-		$('.setTagList')[this.checked ? "show" : "hide"]();
+		$('#TagList')[this.checked ? "show" : "hide"]();
   	});
+  	$('#TagList').change(function() {
+  		if ($('#TagList').val() == 'other') {
+  			$('#otherTag').show();
+  		}
+  		else {
+  			$('#otherTag').hide();
+  		}
+  	});
+  	$.get("/getTag",setTag);
+}
+
+// Callback function of getTag
+// Display all tags
+function setTag(result) {
+	var tags = result[user];
+	if (!tag) {
+		for (var i=0;i<tags.length;i++) {
+			var tag = tags[i];
+			$('#TagList').append("<option value='" + tag + 
+				"'>" + tag + "</option>");
+		}
+	}
+
 }
