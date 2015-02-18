@@ -20,6 +20,7 @@ function initializePage() {
 // Update task
 function updateTask() {
 	var duration = $('#durationHour').val() + ":" + $('#durationMinutes').val();
+	var type = $('#TypeList').val();
 	var repeat = [];
 	var stime = $('#setTimeStart').val();
 	var etime = $('#setTimeEnd').val();
@@ -47,6 +48,7 @@ function updateTask() {
 	var task = {
       "name": $('#taskName').val(),
       "priority": $('#setPriority').val(),
+			"type": type,
       "location": $('#setLocationBlank').val(),
       "duration": duration,
       "start-time": stime,
@@ -80,7 +82,7 @@ function displayTask(result) {
 	var query = window.location.pathname;
 	var vars = query.split('/');
 	// Get the select task id
-	taskID = parseInt(vars[vars.length-1]);	
+	taskID = parseInt(vars[vars.length-1]);
 	var tasks = result[user];
 	var task = tasks[taskID];
 	// This task id is not exist, go back to schedule
@@ -116,6 +118,8 @@ function displayTask(result) {
 	vars = duration.split(':');
 	// Show name
 	$('#taskName').val(task['name']);
+	// Show Type
+	$('#TypeList').val(task['type']);
 	// Show duration
 	$('#durationHour').val("" + parseInt(vars[0]));
 	$('#durationMinutes').val("" + parseInt(vars[1]));
@@ -140,16 +144,24 @@ function displayTask(result) {
 // Hide unclick blanks
 function hide() {
 	$('#otherTag').hide();
+	$('#Advanced').hide();
+
   	$('#setTimeCheck').click(function() {
-		$('#setTimeCheckBox')[this.checked ? "show" : "hide"]();	
+		$('#setTimeCheckBox')[this.checked ? "show" : "hide"]();
   	});
+
+		$("#AdvancedButton").click(function()
+		{
+			$("#Advanced").toggle();
+		});
+
   	$('#setLocation').click(function() {
-		$('.setLocationCheckBox')[this.checked ? "show" : "hide"]();	
+		$('.setLocationCheckBox')[this.checked ? "show" : "hide"]();
   	});
   	$('.repeated').click(function() {
-		$('.dateRepeatChecked')[this.checked ? "show" : "hide"]();	
+		$('.dateRepeatChecked')[this.checked ? "show" : "hide"]();
 		$('#setDate')[this.checked ? "hide" : "show"]();
-  	}); 
+  	});
   	$('.setTag').click(function() {
 		$('#TagList')[this.checked ? "show" : "hide"]();
   	});
@@ -171,7 +183,7 @@ function setTag(result) {
 	if (!tag) {
 		for (var i=0;i<tags.length;i++) {
 			var tag = tags[i];
-			$('#TagList').append("<option value='" + tag + 
+			$('#TagList').append("<option value='" + tag +
 				"'>" + tag + "</option>");
 		}
 	}

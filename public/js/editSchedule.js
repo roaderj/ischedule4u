@@ -21,8 +21,8 @@ function displayTask(result) {
 	var user = getCookie("email");
 	// There is no task associated
 	if (!(user in result)) {
-		var text = "<p style='margin-top:0.5%''><font  " + 
-			"color='#FFFFFF'> There is no task right now </font> </p>" + 
+		var text = "<p style='margin-top:0.5%''><font  " +
+			"color='#FFFFFF'> There is no task right now </font> </p>" +
 			"<a href='/addTask' >Add task?</a>";
 		$('#clicktoedit').html(text);
 		return -1;
@@ -46,7 +46,7 @@ function displayTask(result) {
 			stime = vars[1];
 			vars = etime.split('T');
 			etime = vars[1];
-		} 
+		}
 		// Repeat task
 		else {
 			repeat = "Repeat: ";
@@ -54,7 +54,7 @@ function displayTask(result) {
 				// Display the day of repeat
 				repeat += days[task['repeat'][j]-1] + " ";
 			}
-		} 
+		}
 		// Display the task info
 		post += "<a href='/editTask/" + i + "'>";
 		post += "<div class = 'userTask' id = 'task" + i + "'>"
@@ -62,11 +62,13 @@ function displayTask(result) {
 		post += "<font color='#FFFFFF'>" + task['name'] + "</font><br>";
 		post += "<font style='margin-left:0.5%' color='#FFFFFF'>Duration: " +
 			task['duration'] + "</font><br>";
-		post += "<font style='margin-left:0.5%' color='#FFFFFF'>Priority: " + 
+		post += "<font style='margin-left:0.5%' color='#FFFFFF'>Type: " +
+			task['type'] + "</font><br>";
+		post += "<font style='margin-left:0.5%' color='#FFFFFF'>Priority: " +
 			task['priority'] + "</font><br>";
 		post += "<font style='margin-left:0.5%' color='#FFFFFF'>Location: " +
 			task['location'] + "</font><br>";
-		post += "<font style='margin-left:0.5%' color='#FFFFFF'>" + 
+		post += "<font style='margin-left:0.5%' color='#FFFFFF'>" +
 			stime + "-" + etime + "</font><br>";
 		post += "<font style='margin-left:0.5%' color='#FFFFFF'>" +
 			repeat + "</font><br>";
@@ -77,7 +79,3 @@ function displayTask(result) {
 	}
 	$('#displaySchedule').html(post);
 }
-
-
-
-

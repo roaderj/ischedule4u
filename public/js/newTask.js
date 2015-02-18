@@ -39,6 +39,8 @@ function defaultSetting() {
   $('#setTimeStart').val(time);
   $('#setTimeEnd').val(time);
   $('#TagList').val("blank");
+  $('#TypeList').val("blank");
+
 }
 
 // Hide not checked box
@@ -47,29 +49,48 @@ function hide() {
   $('.setLocationCheckBox').hide();
   $('.dateRepeatChecked').hide();
   $('#TagList').hide();
+  $('#Advanced').hide();
   $('#otherTag').hide();
   $('#setDate').show();
-    $('#setTimeCheck').click(function() {
-    $('#setTimeCheckBox')[this.checked ? "show" : "hide"]();
+
+    $('#setTimeCheck').click(function()
+    {
+      $('#setTimeCheckBox')[this.checked ? "show" : "hide"]();
     });
-    $('#setLocation').click(function() {
-    $('.setLocationCheckBox')[this.checked ? "show" : "hide"]();
+
+    $("#AdvancedButton").click(function()
+    {
+      $("#Advanced").toggle();
     });
-    $('.repeated').click(function() {
-    $('.dateRepeatChecked')[this.checked ? "show" : "hide"]();
-    $('#setDate')[this.checked ? "hide" : "show"]();
+
+    $('#setLocation').click(function()
+    {
+      $('.setLocationCheckBox')[this.checked ? "show" : "hide"]();
     });
-    $('.setTag').click(function() {
-    $('#TagList')[this.checked ? "show" : "hide"]();
+
+    $('.repeated').click(function()
+    {
+      $('.dateRepeatChecked')[this.checked ? "show" : "hide"]();
+      $('#setDate')[this.checked ? "hide" : "show"]();
     });
-    $('#TagList').change(function() {
-      if ($('#TagList').val() == 'other') {
+
+    $('.setTag').click(function()
+    {
+      $('#TagList')[this.checked ? "show" : "hide"]();
+    });
+
+    $('#TagList').change(function()
+    {
+      if ($('#TagList').val() == 'other')
+      {
         $('#otherTag').show();
       }
-      else {
+      else
+      {
         $('#otherTag').hide();
       }
     });
+
     $.get("/getTag",setTag);
 }
 
@@ -93,6 +114,7 @@ function addTask() {
     return -1;
   }
   var duration = $('#durationHour').val() + ":" + $('#durationMinutes').val();
+  var type = $('#TypeList').val();
   var repeat = [];
   var stime = $('#setTimeStart').val();
   var etime = $('#setTimeEnd').val();
@@ -121,6 +143,7 @@ function addTask() {
       "name": name,
       "priority": $('#setPriority').val(),
       "location": $('#setLocationBlank').val(),
+      "type": type,
       "duration": duration,
       "start-time": stime,
       "end-time": etime,
