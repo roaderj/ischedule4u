@@ -142,6 +142,22 @@
 				<option value="59">59 minutes</option>
 			</select>
 		</p>
+		<p><font color="#FFFFFF"> Type: </font> <br> 
+		<select class="setTypeList" id="TypeList">
+			<option value="blank"> </option>
+			<option value="class">Class</option>
+			<option value="homework">Homework</option>
+			<option value="programming">Programming Assignment</option>
+			<option value="exam">Midterm/Final</option>
+			<option value="reading">Reading</option>
+			<option value="fitness">Fitness</option>
+			<option value="other">Other</option>
+		</select>
+	</p>
+		<div id ="AdvancedButton">
+			<p style="color:#FFFFFF"> <u>Advanced Settings</u> </p>
+		</div>
+		<div id = "Advanced">
 		<p><font color="#FFFFFF"> Set Time: </font>
 			<input type="checkbox" name="setTimeCheck" id="setTimeCheck"></input>
 			<div id="setTimeCheckBox" style="margin-left:5%">
@@ -206,10 +222,12 @@
 			<select class="setTagList" id="TagList">
 				<option value="blank"> </option>
 				<option value="other">Other</option>
-			</select>	
+			</select>
 			<input style="margin-left:3%" type="text" id="otherTag" placeholder="Enter Tag"></input>
 		</p>
 		<br>
+	</div>
+
 			<button style="width:100%;height:10%" type="button" id="submitBtn">
 			Create Task </button>
 		</form>
