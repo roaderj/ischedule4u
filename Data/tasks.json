@@ -1,68 +1,68 @@
-{
-  "setting": {
-      "a": ["COGS 120", "CSE 165", "CSE 169"]
-    },
-  "a": [
+[
     {
-      "name": "COGS 120",
-      "priority": "high",
+      "user": "a",
+      "taskName": "COGS 120",
       "location": "CICC",
       "duration": "1:20",
       "start-time": "12:30",
       "end-time": "13:50",
       "tag": "COGS 120",
-      "date":"Repetitive Task",
-      "is_repeat": 1,
+      "date":"",
+      "is_repeat": true,
       "repeat": [2,4]
     },
     {
-      "name": "CSE 165",
+      "user": "a",
+      "taskName": "CSE 165",
       "priority": "high",
       "location": "WLH",
       "duration": "1:20",
       "start-time": "14:00",
       "end-time": "15:20",
       "tag": "CSE 165",
-      "date":"Repetitive Task",
-      "is_repeat": 1,
+      "date":"",
+      "is_repeat": true,
       "repeat": [2,4]
 
     },
     {
-      "name": "CSE 169",
+      "user": "a",
+      "taskName": "CSE 169",
       "priority": "high",
       "location": "WLH",
       "duration": "1:20",
       "start-time": "17:00",
       "end-time": "18:20",
       "tag": "CSE 169",
-      "date":"Repetitive Task",
-      "is_repeat": 1,
+      "date":"",
+      "is_repeat": true,
       "repeat": [1,3]
     },
     {
-      "name": "Group Meeting",
+      "user": "a",
+      "taskName": "Group Meeting",
       "priority": "medium",
       "location": "Geisel",
       "duration": "3:00",
       "start-time": "12:30",
       "end-time": "15:30",
       "tag": "COGS 120",
-      "date":"Repetitive Task",
-      "is_repeat": 1,
+      "date":"",
+      "is_repeat": true,
       "repeat": [1]
     },
     {
-      "name": "Midterm",
+      "user": "a",
+      "taskName": "Midterm",
       "priority": "high",
       "location": "WLH",
       "duration": "2:00",
-      "start-time": "2015-02-20T18:30",
-      "end-time": "2015-02-20T20:00",
+      "start-time": "18:30",
+      "end-time": "20:00",
       "tag": "CSE 169",
-      "date":"One Time Task: 2/20/2015",
-      "is_repeat": 0,
+      "date":"2015-02-20",
+      "is_repeat": false,
       "repeat": []
     }
-  ]
-}
+]
+

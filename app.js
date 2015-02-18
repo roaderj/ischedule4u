@@ -7,7 +7,8 @@ var express = require('express');
 var bodyParser = require('body-parser');
 var http = require('http');
 var path = require('path');
-var handlebars = require('express3-handlebars')
+var handlebars = require('express3-handlebars');
+var mongoose = require('mongoose');
 
 var index = require('./routes/index');
 var login = require('./routes/login');
@@ -18,6 +19,11 @@ var editTask = require('./routes/editTask');
 var blank = require('./routes/blank');
 var userinfo = require('./routes/user');
 var getTask = require('./routes/getTask');
+
+var local_database_name = 'tasks';
+var local_database_uri  = 'mongodb://localhost/' + local_database_name
+var database_uri = process.env.MONGOLAB_URI || local_database_uri
+mongoose.connect(database_uri);
 
 //var project = require('./routes/project');
 // Example route
@@ -53,7 +59,7 @@ app.get('/addTask', addTask.view);
 app.get('/editTask/:id', editTask.view);
 app.get('/editSchedule', editSchedule.view);
 app.get('/blank', blank.view);
-app.get('/getTask', getTask.getTask);
+app.post('/getTask', getTask.getTask);
 app.get('/getTag', getTask.getTag);
 app.post('/user_login', userinfo.loginCheck);
 app.post('/user_signup', userinfo.signupCheck);

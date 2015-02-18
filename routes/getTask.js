@@ -1,20 +1,31 @@
 var tasks = require('../Data/tasks.json');
+var models = require('../models');
 
 // Get all task
 exports.getTask = function(req, res) {
-	var info = tasks;
-	// Return all tasks
-	res.json(info);
+	var user = req.body.user;
+	console.log(user);
+	models.Task
+      .find({"user":user})
+      .exec(afterQuery);
+
+    function afterQuery(err, tasks) {
+    	console.log(tasks);
+    	if(err) console.log(err);
+    	res.json(tasks);
+  	}
 }
 
+
 exports.getTag = function(req, res) {
-	var info = tasks['setting'];
+	/*var info = tasks['setting'];
 	// Return all tags
-	res.json(info);
+	res.json(info);*/
+	res.send('ok');
 }
 
 exports.setTag = function(req, res) {
-	var user = req.body.user;
+	/*var user = req.body.user;
 	var tag = req.body.tag;
 	if (user in tasks['setting']) {
 		tasks['setting'][user].push(tag);
@@ -24,7 +35,8 @@ exports.setTag = function(req, res) {
 		tasks['setting'][user].push(tag);
 	}
 	// Return all tags
-	res.json("success");
+	res.json("success");*/
+	res.send('ok');
 }
 
 exports.updateTask = function(req, res) {
@@ -38,19 +50,35 @@ exports.updateTask = function(req, res) {
 exports.createTask = function(req, res) {
 	var user = req.body.user;
 	var task = req.body.task;
-	if (!(user in tasks)) {
-		tasks[user] = [task];
-	}
-	else {
-		tasks[user].push(task);
-	}
-	res.json("success");
+	var newTask = new models.Task({
+		"user": user,
+		"taskName": task['name'],
+		"duration": task['duration'],
+		"date": task['date'],
+		"location": task['location'],
+		"start-time": task['start-time'],
+    	"end-time": task['end-time'],
+    	"tag": task['tag'],
+    	"is_repeat": task['is_repeat'],
+    	"repeat": task['repeat']
+	});
+	newPost.save(function(err){
+		if (err) { 
+    	  console.log(err); 
+    	}
+    	res.send("OK");
+	});
 }
 
 exports.deleteTask = function(req, res) {
-	var user = req.body.user;
 	var taskID = req.body.id;
-	tasks[user].splice(taskID,1);
-	console.log(tasks);
-	res.json("success");
+	models.Task
+      .find({"_id":taskID})
+      .remove()
+      .exec(function(err){
+        if (err) { 
+          console.log(err); 
+        }
+        res.send("OK");
+      });
 }
