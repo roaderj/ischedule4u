@@ -1,40 +1,38 @@
-{
-  "places":
-  [
+[
       {
         "name": "Geisel Library",
         "location": "https://www.google.com/maps/place/Geisel+Library/@32.88057,-117.237874,17z/data=!3m1!4b1!4m2!3m1!1s0x80dc06c3dd6a942b:0x6e1866e684c68a79",
         "start-time":"7:30",
         "end-time":"23:59",
-        "type":["Reading", "Study/Homework", "Group Study"]
+        "type":["Reading", "Homework", "Other"]
       },
       {
         "name": "EBU Basement",
         "location": "https://www.google.com/maps/place/Computer+Science+and+Engineering+Building/@32.881801,-117.233523,17z/data=!3m1!4b1!4m2!3m1!1s0x80dc06c3409a5d5f:0xa7dc3be7597d4d47",
         "start-time":"0:00",
         "end-time":"23:59",
-        "type":["CS Lab"]
+        "type":["Programming"]
       },
       {
         "name": "RIMAC",
         "location": "https://www.google.com/maps/place/RIMAC+Arena/@32.8799686,-117.2391878,16z/data=!4m2!3m1!1s0x0000000000000000:0x5986425d4b318e9f",
         "start-time":"5:30",
         "end-time":"23:59",
-        "type":["Gym"]
+        "type":["Fitness"]
       },
       {
-        "name": "Main",
+        "name": "Main Gym",
         "location": "https://www.google.com/maps/place/Main+Gymnasium/@32.8799686,-117.2404109,16z/data=!4m2!3m1!1s0x0000000000000000:0x4d59a2c95e1ae459",
         "start-time":"7:00",
         "end-time":"23:00",
-        "type":["Gym"]
+        "type":["Fitness"]
       },
       {
         "name": "Canyon View",
         "location": "https://www.google.com/maps/place/Canyonview+Athletics+and+Recreation/@32.8799686,-117.2404109,16z/data=!4m2!3m1!1s0x0000000000000000:0xf635c4a3cfa3b140",
         "start-time":"9:00",
         "end-time":"20:00",
-        "type":["Gym", "Swimming"]
+        "type":["Fitness"]
       },
       {
         "name": "Pepper Canyon Hall",
@@ -55,7 +53,7 @@
         "location": "https://www.google.com/maps/place/Galbraith+Hall,+University+of+California+San+Diego,+Revelle+College,+San+Diego,+CA+92161/@32.8737205,-117.2409323,18z/data=!3m1!4b1!4m2!3m1!1s0x80dc06c5dccf6f6d:0xbb94253e54bc1d55",
         "start-time":"8:00",
         "end-time":"23:00",
-        "type":["Class", "Study/Homework"]
+        "type":["Class", "Homework"]
       },
       {
         "name": "Ledden Hall",
@@ -85,5 +83,4 @@
         "end-time":"23:00",
         "type":["Class"]
       }
-  ]
-}
+]

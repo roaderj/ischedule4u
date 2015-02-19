@@ -53,6 +53,9 @@ function displayTask(tasks) {
 				repeat += days[task['repeat'][j]-1] + " ";
 			}
 		}
+		var location = task['location'];
+		if (location == "")
+			location = "Unknown";
 		// Display the task info
 		post += "<a href='/editTask/" + task["_id"] + "'>";
 		post += "<div class = 'userTask' id = 'task" + i + "'>"
@@ -65,7 +68,7 @@ function displayTask(tasks) {
 		post += "<font style='margin-left:0.5%' color='#FFFFFF'>Priority: " +
 			task['priority'] + "</font><br>";
 		post += "<font style='margin-left:0.5%' color='#FFFFFF'>Location: " +
-			task['location'] + "</font><br>";
+			location + "</font><br>";
 		post += "<font style='margin-left:0.5%' color='#FFFFFF'>" +
 			stime + "-" + etime + "</font><br>";
 		post += "<font style='margin-left:0.5%' color='#FFFFFF'>" +

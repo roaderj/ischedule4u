@@ -36,9 +36,10 @@ function defaultSetting() {
       month='0'+month;
   }
   //$('#TagList').val("blank");
-  $('#TypeList').val("blank");
-  $('#setTimeStart').val("");
-  $('#setTimeEnd').val("");
+  $('#TypeList').val("Other");
+  $('#setDateBox').val(year + "-" + month + "-" + day);
+  $('#setTimeStart').val(time);
+  $('#setTimeEnd').val(time);
 
 }
 
@@ -60,9 +61,6 @@ function hide() {
     $("#AdvancedButton").click(function()
     {
       $("#Advanced").toggle();
-      $('#setTimeStart').val(time);
-      $('#setTimeEnd').val(time);
-      $('#setDateBox').val(year + "-" + month + "-" + day);
     });
 
     $('#setLocation').click(function()
@@ -118,8 +116,39 @@ function addTask() {
   var duration = $('#durationHour').val() + ":" + $('#durationMinutes').val();
   var type = $('#TypeList').val();
   var repeat = [];
-  var stime = $('#setTimeStart').val();
-  var etime = $('#setTimeEnd').val();
+  if (document.getElementById("setTimeCheck").checked) {
+    var stime = $('#setTimeStart').val();
+    var etime = $('#setTimeEnd').val();
+  }
+  else {
+    var today = new Date();
+    var shour = today.getHours();
+    var sminute = today.getMinutes();
+    var ehour = shour + parseInt($('#durationHour').val());
+    var eminute = sminute + parseInt($('#durationMinutes').val());
+    if (shour<10) {
+      shour='0'+shour;
+    }
+    if (sminute<10) {
+      sminute='0'+sminute;
+    }
+    if (eminute>60) {
+      eminute=eminute-60;
+      ehour+=1;
+    }
+    if (ehour>24) {
+      ehour=24;
+    }
+    if (ehour<10) {
+      ehour='0'+ehour;
+    }
+    if (eminute<10) {
+      eminute='0'+eminute;
+    }
+    var stime = shour + ":" + sminute;
+    var etime = ehour + ":" + eminute;
+
+  }
   var date = $('#setDateBox').val();
   if (document.getElementById("setRepeat").checked) {
     var is_repeat = true;

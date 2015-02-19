@@ -29,10 +29,41 @@ function updateTask() {
 	var type = $('#TypeList').val();
 	var repeat = [];
 	var stime = $('#setTimeStart').val();
-	var etime = $('#setTimeEnd').val();
+	if (document.getElementById("setTimeCheck").checked) {
+	    var stime = $('#setTimeStart').val();
+	    var etime = $('#setTimeEnd').val();
+	}
+	else {
+	    var today = new Date();
+	    var shour = today.getHours();
+	    var sminute = today.getMinutes();
+	    var ehour = shour + parseInt($('#durationHour').val());
+	    var eminute = sminute + parseInt($('#durationMinutes').val());
+	    if (shour<10) {
+	      	shour='0'+shour;
+	    }
+	    if (sminute<10) {
+	      	sminute='0'+sminute;
+	    }
+	    if (eminute>60) {
+	      	eminute=eminute-60;
+	      	ehour+=1;
+	    }
+	    if (ehour>24) {
+	      	ehour=24;
+	    }
+	    if (ehour<10) {
+	      	ehour='0'+ehour;
+	    }
+	    if (eminute<10) {
+	      	eminute='0'+eminute;
+	    }
+	    var stime = shour + ":" + sminute;
+	    var etime = ehour + ":" + eminute;
+	}
 	var date = $('#setDateBox').val();
 	if (document.getElementById("setRepeat").checked) {
-		var is_repeat = false;
+		var is_repeat = true;
 		date = "";
 		for (var i=1;i<8;i++) {
 			if (document.getElementById("repeated"+i).checked) {
@@ -70,7 +101,7 @@ function updateTask() {
 
 // Go back to homepage
 function done(result) {
-	window.location = "/";
+	window.location = "/editSchedule";
 }
 
 // Delete task
@@ -99,6 +130,7 @@ function displayTask(result) {
 	document.getElementById("setTimeCheck").checked = true;
 	document.getElementById("setLocation").checked = true;
 	var date = task['date'];
+	console.log(task['is_repeat']);
 	// Repeat task
 	if (task['is_repeat'] == true) {
 		document.getElementById("setRepeat").checked = true;
