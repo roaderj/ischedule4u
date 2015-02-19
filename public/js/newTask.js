@@ -35,11 +35,10 @@ function defaultSetting() {
   if(month<10) {
       month='0'+month;
   }
-  $('#setDateBox').val(year + "-" + month + "-" + day);
-  $('#setTimeStart').val(time);
-  $('#setTimeEnd').val(time);
   //$('#TagList').val("blank");
   $('#TypeList').val("blank");
+  $('#setTimeStart').val("");
+  $('#setTimeEnd').val("");
 
 }
 
@@ -61,6 +60,9 @@ function hide() {
     $("#AdvancedButton").click(function()
     {
       $("#Advanced").toggle();
+      $('#setTimeStart').val(time);
+      $('#setTimeEnd').val(time);
+      $('#setDateBox').val(year + "-" + month + "-" + day);
     });
 
     $('#setLocation').click(function()
