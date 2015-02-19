@@ -32,7 +32,8 @@ function updateTask() {
 	var etime = $('#setTimeEnd').val();
 	var date = $('#setDateBox').val();
 	if (document.getElementById("setRepeat").checked) {
-		var is_repeat = 1;
+		var is_repeat = false;
+		date = "";
 		for (var i=1;i<8;i++) {
 			if (document.getElementById("repeated"+i).checked) {
 				repeat.push(i);
@@ -40,7 +41,7 @@ function updateTask() {
 		}
 	}
 	else {
-		var is_repeat = 0;
+		var is_repeat = false;
 	}
 	// Adding new tag to db
 	//var newTag = $('#otherTag').val();
@@ -92,12 +93,12 @@ function displayTask(result) {
 		window.location = "/editSchedule";
 	}
 	var task = result[0];
-	console.log(task);
+	//console.log(task);
 	var stime = task['start-time'];
 	var etime = task['end-time'];
 	document.getElementById("setTimeCheck").checked = true;
 	document.getElementById("setLocation").checked = true;
-	var date = "";
+	var date = task['date'];
 	// Repeat task
 	if (task['is_repeat'] == true) {
 		document.getElementById("setRepeat").checked = true;
@@ -115,7 +116,7 @@ function displayTask(result) {
 	}
 	var duration = task['duration'];
 	var vars = duration.split(':');
-	console.log(parseInt(vars[1]));
+	//console.log(parseInt(vars[1]));
 	// Show name
 	$('#taskName').val(task['name']);
 	// Show Type
