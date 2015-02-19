@@ -14,7 +14,8 @@ function initializePage() {
 
 // Get tasks from database
 function getEvents() {
-	$.post("/getTask", {user: user}, setCalendar);
+	var blank = "";
+	$.post("/getTask", {user: user, taskID: blank}, setCalendar);
 }
 
 // all the tasks
@@ -44,15 +45,15 @@ function setCalendar(result) {
         	//var stime = vars[vars.length-1];
         	//vars = event['endTime'].split('T');
         	//var etime = vars[vars.length-1];
-        	var tagMessage = "";
-        	if (event['tag'] != "") {
-        		tagMessage = "\nTag: " + event['tag'];
-        	}
-        	console.log(event['start']);
+        	//var tagMessage = "";
+        	//if (event['tag'] != "") {
+        	//	tagMessage = "\nTag: " + event['tag'];
+        	//}
+        	//console.log(event['start']);
         	alert('Task: ' + event.title + 
         		'\nLocation: ' + event['location'] +
         		'\nTime: ' + event['startTime'] + 
-        		'-' + event['endTime'] +tagMessage);
+        		'-' + event['endTime']);
         }
     });
 }
@@ -77,11 +78,11 @@ function addTasks(userTasks) {
 					task['repeat'][j] = 0;
 			}
 			var taskModified = {
-				title : task['taskName'],
+				title : task['name'],
 				location : task['location'],
 				startTime : task['start-time'],
 				endTime: task['end-time'],
-				tag: task['tag'],
+				//tag: task['tag'],
 				start : task['start-time'],
 				end : task['end-time'],
 				dow : task['repeat']
@@ -92,11 +93,11 @@ function addTasks(userTasks) {
 			var starttime = task['date'] + "T" + task['start-time'];
 			var endtime = task['date'] + "T" + task['end-time'];
 			var taskModified = {
-				title : task['taskName'],
+				title : task['name'],
 				location : task['location'],
 				startTime : task['start-time'],
 				endTime: task['end-time'],
-				tag: task['tag'],
+				//tag: task['tag'],
 				start : starttime,
 				end : endtime
 			};

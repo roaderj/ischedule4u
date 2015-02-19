@@ -18,5 +18,13 @@
     {
         "email": "setting",
         "password": "this is no an account"
+    },
+    {
+        "email": "asd",
+        "password": "asd"
+    },
+    {
+        "email": "qwe",
+        "password": "qwe"
     }
 ]

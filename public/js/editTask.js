@@ -12,7 +12,13 @@ function initializePage() {
 	// Get tasks from database
 	user = getCookie("email"); // Get the current user
 	hide();
-	$.get("/getTask", displayTask);
+	var query = window.location.pathname;
+	//console.log(query);
+	var vars = query.split('/');
+	// Get the select task id
+	taskID = vars[vars.length-1];
+	//console.log(taskID);
+	$.post("/getTask", {user: user, taskID: taskID},displayTask);
 	$('#updateEdit').click(updateTask);
 	$('#deleteTask').click(deleteTask);
 }
@@ -35,30 +41,30 @@ function updateTask() {
 	}
 	else {
 		var is_repeat = 0;
-		stime = date + "T" + stime;
-		etime = date + "T" + etime;
 	}
 	// Adding new tag to db
-	var newTag = $('#otherTag').val();
-	var tag = $('#TagList').val();
-	if ($('#TagList').val() == 'other' && newTag != "") {
-		$.post("/setTag", {user: user, tag: newTag}, function(){});
-		tag = newTag;
-	}
+	//var newTag = $('#otherTag').val();
+	//var tag = $('#TagList').val();
+	//if ($('#TagList').val() == 'other' && newTag != "") {
+	//	$.post("/setTag", {user: user, tag: newTag}, function(){});
+	//	tag = newTag;
+	//}
 	var task = {
+	  //"_id": taskID,
+	  "user": user,
       "name": $('#taskName').val(),
       "priority": $('#setPriority').val(),
-			"type": type,
+	  "type": type,
       "location": $('#setLocationBlank').val(),
       "duration": duration,
       "start-time": stime,
       "end-time": etime,
-      "tag": tag,
+      //"tag": tag,
       "date": date,
       "is_repeat": is_repeat,
       "repeat": repeat
     };
-    $.post("/updateTask", {user: user, id: taskID, task: task}, done);
+    $.post("/updateTask", {user: user, taskID: taskID, task: task}, done);
 }
 
 // Go back to homepage
@@ -68,7 +74,9 @@ function done(result) {
 
 // Delete task
 function deleteTask() {
-	$.post("/deleteTask", {user: user, id: taskID}, done);
+	$.post("/deleteTask", {user: user, taskID: taskID}, function(result){
+    	window.location = "/editSchedule";
+    });
 }
 
 // Callback of the get tasks
@@ -76,26 +84,22 @@ function deleteTask() {
 function displayTask(result) {
 	// Get current user
 	// This user has no task, go back to schedule
-	if (!(user in result)) {
-		window.location = "/editSchedule";
-	}
-	var query = window.location.pathname;
-	var vars = query.split('/');
-	// Get the select task id
-	taskID = parseInt(vars[vars.length-1]);
-	var tasks = result[user];
-	var task = tasks[taskID];
+	//if (!(user in result)) {
+	//	window.location = "/editSchedule";
+	//}
 	// This task id is not exist, go back to schedule
-	if (!task) {
+	if (result.length < 1) {
 		window.location = "/editSchedule";
 	}
+	var task = result[0];
+	console.log(task);
 	var stime = task['start-time'];
 	var etime = task['end-time'];
 	document.getElementById("setTimeCheck").checked = true;
 	document.getElementById("setLocation").checked = true;
 	var date = "";
 	// Repeat task
-	if (task['is_repeat'] == 1) {
+	if (task['is_repeat'] == true) {
 		document.getElementById("setRepeat").checked = true;
 		$('.dateRepeatChecked').show();
 		$('#setDate').hide();
@@ -105,24 +109,20 @@ function displayTask(result) {
 	}
 	// One time task
 	else {
-		vars = stime.split('T');
-		date = vars[0];
-		stime = vars[1];
-		vars = etime.split('T');
-		etime = vars[1];
 		$('#setDateBox').val(date);
 		$('#setDate').show();
 		$('.dateRepeatChecked').hide();
 	}
 	var duration = task['duration'];
-	vars = duration.split(':');
+	var vars = duration.split(':');
+	console.log(parseInt(vars[1]));
 	// Show name
 	$('#taskName').val(task['name']);
 	// Show Type
 	$('#TypeList').val(task['type']);
 	// Show duration
-	$('#durationHour').val("" + parseInt(vars[0]));
-	$('#durationMinutes').val("" + parseInt(vars[1]));
+	$('#durationHour').val(vars[0]);
+	$('#durationMinutes').val(vars[1]);
 	// Show set time
 	$('#setTimeStart').val(stime);
 	$('#setTimeEnd').val(etime);
@@ -131,19 +131,19 @@ function displayTask(result) {
 	// Show priority
 	$('#setPriority').val(task['priority']);
 	// Show tag
-	if (task['tag'] != "") {
-		$('#TagList').val(task['tag']);
-		document.getElementById("setTag").checked = true;
-		$('.setTagList').show();
-	}
-	else {
-		$('.setTagList').hide();
-	}
+	//if (task['tag'] != "") {
+	//	$('#TagList').val(task['tag']);
+	//	document.getElementById("setTag").checked = true;
+	//	$('.setTagList').show();
+	//}
+	//else {
+	//	$('.setTagList').hide();
+	//}
 }
 
 // Hide unclick blanks
 function hide() {
-	$('#otherTag').hide();
+	//$('#otherTag').hide();
 	$('#Advanced').hide();
 
   	$('#setTimeCheck').click(function() {
@@ -162,22 +162,23 @@ function hide() {
 		$('.dateRepeatChecked')[this.checked ? "show" : "hide"]();
 		$('#setDate')[this.checked ? "hide" : "show"]();
   	});
-  	$('.setTag').click(function() {
-		$('#TagList')[this.checked ? "show" : "hide"]();
-  	});
-  	$('#TagList').change(function() {
-  		if ($('#TagList').val() == 'other') {
-  			$('#otherTag').show();
-  		}
-  		else {
-  			$('#otherTag').hide();
-  		}
-  	});
-  	$.get("/getTag",setTag);
+  	//$('.setTag').click(function() {
+	//	$('#TagList')[this.checked ? "show" : "hide"]();
+  	//});
+  	//$('#TagList').change(function() {
+  	//	if ($('#TagList').val() == 'other') {
+  	//		$('#otherTag').show();
+  	//	}
+  	//	else {
+  	//		$('#otherTag').hide();
+  	//	}
+  	//});
+  	//$.get("/getTag",setTag);
 }
 
 // Callback function of getTag
 // Display all tags
+/*
 function setTag(result) {
 	var tags = result[user];
 	if (!tag) {
@@ -189,3 +190,4 @@ function setTag(result) {
 	}
 
 }
+*/

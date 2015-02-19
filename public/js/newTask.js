@@ -38,7 +38,7 @@ function defaultSetting() {
   $('#setDateBox').val(year + "-" + month + "-" + day);
   $('#setTimeStart').val(time);
   $('#setTimeEnd').val(time);
-  $('#TagList').val("blank");
+  //$('#TagList').val("blank");
   $('#TypeList').val("blank");
 
 }
@@ -48,9 +48,9 @@ function hide() {
   $('#setTimeCheckBox').hide();
   $('.setLocationCheckBox').hide();
   $('.dateRepeatChecked').hide();
-  $('#TagList').hide();
+  //$('#TagList').hide();
   $('#Advanced').hide();
-  $('#otherTag').hide();
+  //$('#otherTag').hide();
   $('#setDate').show();
 
     $('#setTimeCheck').click(function()
@@ -74,28 +74,28 @@ function hide() {
       $('#setDate')[this.checked ? "hide" : "show"]();
     });
 
-    $('.setTag').click(function()
-    {
-      $('#TagList')[this.checked ? "show" : "hide"]();
-    });
+    //$('.setTag').click(function()
+    //{
+    //  $('#TagList')[this.checked ? "show" : "hide"]();
+    //});
 
-    $('#TagList').change(function()
-    {
-      if ($('#TagList').val() == 'other')
-      {
-        $('#otherTag').show();
-      }
-      else
-      {
-        $('#otherTag').hide();
-      }
-    });
+    //$('#TagList').change(function()
+    //{
+    //  if ($('#TagList').val() == 'other')
+    //  {
+    //    $('#otherTag').show();
+    //  }
+    //  else
+    //  {
+    //    $('#otherTag').hide();
+    //  }
+    //});
 
-    $.get("/getTag",setTag);
+    //$.get("/getTag",setTag);
 }
 
 // Display all tags
-function setTag(result) {
+/*function setTag(result) {
   var tags = result[user];
   if (!tag) {
     for (var i=0;i<tags.length;i++) {
@@ -104,7 +104,7 @@ function setTag(result) {
         "'>" + tag + "</option>");
     }
   }
-}
+}*/
 
 // Add task to db
 function addTask() {
@@ -120,7 +120,7 @@ function addTask() {
   var etime = $('#setTimeEnd').val();
   var date = $('#setDateBox').val();
   if (document.getElementById("setRepeat").checked) {
-    var is_repeat = 1;
+    var is_repeat = true;
     for (var i=1;i<8;i++) {
       if (document.getElementById("repeated"+i).checked) {
         repeat.push(i);
@@ -128,18 +128,17 @@ function addTask() {
     }
   }
   else {
-    var is_repeat = 0;
-    stime = date + "T" + stime;
-    etime = date + "T" + etime;
+    var is_repeat = false;
   }
   // Add new tag to db
-  var newTag = $('#otherTag').val();
-  var tag = $('#TagList').val();
-  if ($('#TagList').val() == 'other' && newTag != "") {
-    $.post("/setTag", {user: user, tag: newTag}, function(){});
-    tag = newTag;
-  }
+  //var newTag = $('#otherTag').val();
+  //var tag = $('#TagList').val();
+  //if ($('#TagList').val() == 'other' && newTag != "") {
+  //  $.post("/setTag", {user: user, tag: newTag}, function(){});
+  //  tag = newTag;
+  //}
   var task = {
+      "user": user,
       "name": name,
       "priority": $('#setPriority').val(),
       "location": $('#setLocationBlank').val(),
@@ -147,22 +146,18 @@ function addTask() {
       "duration": duration,
       "start-time": stime,
       "end-time": etime,
-      "tag": tag,
+      //"tag": tag,
       "date": date,
       "is_repeat": is_repeat,
       "repeat": repeat
     };
-    $.post("/createTask", {user: user, task: task}, done);
+  $.post("/createTask", {task: task}, done);
 }
 
 // Go back to homepage
 function done(result) {
   window.location = "/";
 }
-
-
-
-
 
 // Didn't use below
 
@@ -178,7 +173,7 @@ function callback(result){
     "duration": $('#hour').val()+":"+$('#minute').val(),
     "start-time": $('#setTimeStart').val(),
     "end-time": $('#setTimeEnd').val(),
-    "tag": $('.setTagList').val(),
+    //"tag": $('.setTagList').val(),
     "date": "",
     "is_repeat": 0,
     "repeat": []

@@ -33,8 +33,8 @@
 		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 			<ul class="nav navbar-nav">
 				<li><a href="/">Home</a></li>
-				<li class="active"><a href="/addTask">Add Task<span class="sr-only">(current)</span></a></li>
-				<li><a href="/editSchedule">Edit Schedule</a></li>
+				<li><a href="/addTask">Add Task</a></li>
+				<li class="active"><a href="/editSchedule">Edit Schedule<span class="sr-only">(current)</span></a></li>
 				<li><a href="/blank">About Us</a></li>
 				<li><a href="/blank">Help</a></li>
 				<li><a href="/login">Log out</a></li>
@@ -45,7 +45,7 @@
 
 <div class = "container">
 	<div class = "header" style="margin-bottom:5%">
-		<h2 align="center" style="margin-top:5%" ><font color="#FFFFFF"> New Task </font></h2>
+		<h2 align="center" style="margin-top:5%" ><font color="#FFFFFF"> Edit Task </font></h2>
 	</div>
 	<div class = 'error' id="addError"></div>
 	<div class = "form" align="left">
@@ -145,14 +145,14 @@
 		</p>
 		<p><font color="#FFFFFF"> Type: </font> <br>
 		<select class="setTypeList" id="TypeList">
-			<option value="blank"> </option>
+			<!--<option value="blank"> </option>-->
+			<option value="other">Other</option>
 			<option value="class">Class</option>
 			<option value="homework">Homework</option>
 			<option value="programming">Programming Assignment</option>
 			<option value="exam">Midterm/Final</option>
 			<option value="reading">Reading</option>
 			<option value="fitness">Fitness</option>
-			<option value="other">Other</option>
 		</select>
 	</p>
 		<div id ="AdvancedButton">
@@ -214,7 +214,7 @@
 			<input style="width:100%" type="text" id="setDateBox" placeholder="YYYY-MM-DD (Not need if it repeats)"></input>
 			</p>
 		</div>
-		<p><font color="#FFFFFF"> Does this relate to any other task? </font>
+		<!--<p><font color="#FFFFFF"> Does this relate to any other task? </font>
 			<label>
 				<input type="checkbox" class="setTag" id="setTag">
 				</input>
@@ -225,7 +225,7 @@
 				<option value="other">Other</option>
 			</select>
 			<input style="margin-left:3%" type="text" id="otherTag" placeholder="Enter Tag"></input>
-		</p>
+		</p>-->
 		<br>
 	</div>
 

@@ -20,7 +20,7 @@ var blank = require('./routes/blank');
 var userinfo = require('./routes/user');
 var getTask = require('./routes/getTask');
 
-var local_database_name = 'tasks';
+var local_database_name = 'ischedule4u';
 var local_database_uri  = 'mongodb://localhost/' + local_database_name
 var database_uri = process.env.MONGOLAB_URI || local_database_uri
 mongoose.connect(database_uri);
@@ -60,13 +60,13 @@ app.get('/editTask/:id', editTask.view);
 app.get('/editSchedule', editSchedule.view);
 app.get('/blank', blank.view);
 app.post('/getTask', getTask.getTask);
-app.get('/getTag', getTask.getTag);
+//app.get('/getTag', getTask.getTag);
 app.post('/user_login', userinfo.loginCheck);
 app.post('/user_signup', userinfo.signupCheck);
 app.post('/updateTask', getTask.updateTask);
 app.post('/deleteTask', getTask.deleteTask);
 app.post('/createTask', getTask.createTask);
-app.post('/setTag', getTask.setTag);
+//app.post('/setTag', getTask.setTag);
 //app.get('/project/:name', project.viewProject);
 // Example route
 // app.get('/users', user.list);
