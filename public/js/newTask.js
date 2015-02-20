@@ -209,6 +209,40 @@ function done(result) {
   window.location = "/";
 }
 
+/* finds the intersection of 
+ * two arrays in a simple fashion.  
+ *
+ * PARAMS
+ *  a - first array, must already be sorted
+ *  b - second array, must already be sorted
+ *
+ * NOTES
+ *
+ *  Should have O(n) operations, where n is 
+ *    n = MIN(a.length(), b.length())
+ * from: http://stackoverflow.com/questions/1885557/simplest-code-for-array-intersection-in-javascript
+ */
+function intersect(a, b)
+{
+  var ai=0, bi=0;
+  //var result = new Array();
+
+  while( ai < a.length && bi < b.length )
+  {
+     if      (a[ai] < b[bi] ){ ai++; }
+     else if (a[ai] > b[bi] ){ bi++; }
+     else /* they're equal */
+     {
+		return true;
+       //result.push(a[ai]);
+       //ai++;
+       //bi++;
+     }
+  }
+  return false;
+  //return result;
+}
+
 //data => all the tasks binded to the account in list
 function findTime(data, currentTask){
 
@@ -232,27 +266,61 @@ function findTime(data, currentTask){
       minutes='0'+minutes;
     }
 	time = hours +":" +minutes;
-	if(day = 0){
+	if(day == 0){
 		day = 7;
 	}
 	var i = 0;
-	for(i = 0; i < data.length; i++){
-		if((data[i])['is_repeat'] == 1){
-			if((data[i])['repeat'].indexOf(day) != -1){
-				qualified.push(data[i]);
-				sameDate.push(data[i]);
+	
+	if(currentTask['is_repeat']==1){
+		time = "08:00"; // if repeating start time as 8 am
+		//collect schedule within those days
+		for(i = 0; i < data.length; i++){
+			
+			if((data[i])['is_repeat'] == 1){
+				if(intersect(currentTask['repeat'],(data[i])['repeat'])){
+					qualified.push(data[i]);
+					sameDate.push(data[i]);
+				}
+			}
+			else{
+				var tempDate = new Date((data[i])['date']);
+				var tempDay = tempDate.getDay();
+				if(tempDay == 0){
+					tempDay = 7;
+				}
+				if(currentTask['repeat'].indexOf(tempDay) != -1){
+					qualified.push(data[i]);
+					sameDate.push(data[i])
+				}
+				
+				/*
+				if(currentTask['date'].localeCompare((data[i])['date']) == 0 ){
+					sameDate.push(data[i]);
+					if(compare((data[i])['start-time'], time) == 1){ 
+						qualified.push(data[i]);
+					}
+				}*/	
 			}
 		}
-		else{
-			if(currentTask['date'].localeCompare((data[i])['date']) == 0 ){
-				sameDate.push(data[i]);
-				if(compare((data[i])['start-time'], time) == 1){ 
+	}
+	else{
+		for(i = 0; i < data.length; i++){
+			if((data[i])['is_repeat'] == 1){
+				if((data[i])['repeat'].indexOf(day) != -1){
 					qualified.push(data[i]);
+					sameDate.push(data[i]);
 				}
-			}	
+			}
+			else{
+				if(currentTask['date'].localeCompare((data[i])['date']) == 0 ){
+					sameDate.push(data[i]);
+					if(compare((data[i])['start-time'], time) == 1){ 
+						qualified.push(data[i]);
+					}
+				}	
+			}
 		}
 	}
-	
 	qualified.sort(function(a, b){ return compare(a['start-time'], b['start-time'])}); 
 	sameDate.sort(function(a, b){ return compare(a['start-time'], b['start-time'])});
 	//console.log("here is qualified");
@@ -279,11 +347,15 @@ function findTime(data, currentTask){
 			}
 			var flag = false;
 			for(var j = 0; j < sameDate.length; j++){
-				if(compare((sameDate[j])['end-time'], (diff(nearest['start-time'], currentTask['duration']))) == 1){
-					//problem occurred
-					console.log("case 1 continue");
-					flag = true;
-					break;
+				if(nearest != (sameDate[j]) && currentTask['is_repeat'] == 0){
+					if(compare((sameDate[j])['end-time'], (diff(nearest['start-time'], currentTask['duration']))) == 1){
+						//problem occurred
+						console.log((diff(nearest['start-time'], currentTask['duration'])));
+						console.log((sameDate[j])['end-time']);
+						console.log("case 1 continue");
+						flag = true;
+						break;
+					}
 				}
 			}
 			if(flag){
@@ -309,7 +381,7 @@ function findTime(data, currentTask){
 	//no qualified tasks to hook to
 	if(qualified.length == 0){
 		for(var j = 0; j < sameDate.length; j++){
-			if(compare((sameDate[j])['end-time'], time) == 1){
+			if(compare((sameDate[j])['end-time'], time) == 1 && currentTask['is_repeat'] == 0){
 				//problem occurred
 				if(j == (sameDate.length - 1)){
 					console.log("case2");
