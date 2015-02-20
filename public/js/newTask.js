@@ -338,10 +338,10 @@ function findTime(data, currentTask){
 		
 		console.log("duration: " +currentTask['duration']);
 		console.log(compare((diff(nearest['start-time'],time)), currentTask['duration']));
-		
+		//09:03 - 
 		if( compare((diff(nearest['start-time'],time)), currentTask['duration']) == 1){
 			if(i > 0){
-				if(compare(diff((qualified[i-1])['end-time'],nearest['start-time']), currentTask['duration']) != 1 ){
+				if(compare(diff(nearest['start-time'],(qualified[i-1])['end-time']), currentTask['duration']) != 1 ){
 					i++; continue;
 				}
 			}
@@ -352,14 +352,18 @@ function findTime(data, currentTask){
 						//problem occurred
 						console.log((diff(nearest['start-time'], currentTask['duration'])));
 						console.log((sameDate[j])['end-time']);
-						console.log("case 1 continue");
-						flag = true;
-						break;
+						if(compare((sameDate[j])['start-time'], (diff(nearest['start-time'], currentTask['duration']))) == -1){
+							console.log("case 1 continue");
+							flag = true;
+							break;
+						}
 					}
 				}
 			}
-			if(flag){
+			console.log("case 1.2 continue");
+			if(flag==true){
 				i++;
+				console.log("case 1.5 continue");
 				continue;
 			}
 			//console.log(currentTask['start-time']);
