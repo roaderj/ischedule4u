@@ -211,11 +211,15 @@ function done(result) {
 
 //data => all the tasks binded to the account in list
 function findTime(data, currentTask){
+
+	//TODO: check previous task before adding
+	
 	//console.log("inside function");
 	//console.log(typeof(currentTask.start-time));
 	//console.log(currentTask.start-time);
+	var sameDate = [];
+	
 	var qualified = [];
-	var repeatDay = [];
 	var today = new Date();
 	var day = today.getDay();
 	var time = "";
@@ -233,21 +237,28 @@ function findTime(data, currentTask){
 	}
 	var i = 0;
 	for(i = 0; i < data.length; i++){
-		if(data[i].is_repeat == 1){
-			if(data[i].repeat.has(day)){
+		if((data[i])['is_repeat'] == 1){
+			if((data[i])['repeat'].indexOf(day) != -1){
 				qualified.push(data[i]);
+				sameDate.push(data[i]);
 			}
 		}
 		else{
-			if(compare((data[i])['start-time'], time) == 1){ 
-				qualified.push(data[i]);
-			}
+			if(currentTask['date'].localeCompare((data[i])['date']) == 0 ){
+				sameDate.push(data[i]);
+				if(compare((data[i])['start-time'], time) == 1){ 
+					qualified.push(data[i]);
+				}
+			}	
 		}
 	}
 	
 	qualified.sort(function(a, b){ return compare(a['start-time'], b['start-time'])}); 
+	sameDate.sort(function(a, b){ return compare(a['start-time'], b['start-time'])});
 	//console.log("here is qualified");
 	//console.log(qualified);
+	
+	
 	i = 0;
 	while(i < qualified.length){
 		var nearest = qualified[i];
@@ -266,6 +277,19 @@ function findTime(data, currentTask){
 					i++; continue;
 				}
 			}
+			var flag = false;
+			for(var j = 0; j < sameDate.length; j++){
+				if(compare((sameDate[j])['end-time'], (diff(nearest['start-time'], currentTask['duration']))) == 1){
+					//problem occurred
+					console.log("case 1 continue");
+					flag = true;
+					break;
+				}
+			}
+			if(flag){
+				i++;
+				continue;
+			}
 			//console.log(currentTask['start-time']);
 			currentTask['start-time'] = diff(nearest['start-time'], currentTask['duration']);
 			currentTask['end-time'] = nearest['start-time'];
@@ -281,6 +305,38 @@ function findTime(data, currentTask){
 		i++;
 	}
 	i--;
+	//find previous
+	//no qualified tasks to hook to
+	if(qualified.length == 0){
+		for(var j = 0; j < sameDate.length; j++){
+			if(compare((sameDate[j])['end-time'], time) == 1){
+				//problem occurred
+				if(j == (sameDate.length - 1)){
+					console.log("case2");
+					var t = {
+						"start-time": (sameDate[j])['end-time'],
+						"end-time": addTime((sameDate[j])['end-time'], currentTask['duration'])
+					};
+					return t;
+				}
+				else{
+					console.log("case3");
+					var t = {
+						"start-time": (sameDate[j+1])['end-time'],
+						"end-time": addTime((sameDate[j+1])['end-time'], currentTask['duration'])
+					};
+					return t;
+				}
+			}
+		}
+		console.log("case4");
+		var t = {
+			"start-time": time,
+			"end-time": addTime(time, currentTask['duration'])
+		};
+		return t;
+	}
+	console.log("case 5");
 	var t = {
 		"start-time": (qualified[i])['end-time'],
 		"end-time": addTime((qualified[i])['end-time'], currentTask['duration'])
