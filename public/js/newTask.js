@@ -182,12 +182,167 @@ function addTask() {
       "is_repeat": is_repeat,
       "repeat": repeat
     };
-  $.post("/createTask", {task: task}, done);
+  console.log(!(document.getElementById("setTimeCheck").checked));
+  if(!(document.getElementById("setTimeCheck").checked)){
+	var blank = "";
+	//console.log("start-time: " + stime);
+	//console.log("start-time actual: " + task['start-time']);
+	var callbackFunction = function(data) {
+		var time = findTime(data, task);
+		//console.log(time);
+		task['start-time'] = time['start-time'];
+		task['end-time'] = time['end-time'];
+		//console.log(time['start-time']);
+		//console.log(task['start-time']);
+		$.post("/createTask", {task: task}, done);
+	};
+	//wait until findTime finish
+	$.post("/getTask", {user: user, taskID: blank}, callbackFunction);
+  }
+  else{
+	$.post("/createTask", {task: task}, done);
+  }
 }
 
 // Go back to homepage
 function done(result) {
   window.location = "/";
+}
+
+//data => all the tasks binded to the account in list
+function findTime(data, currentTask){
+	//console.log("inside function");
+	//console.log(typeof(currentTask.start-time));
+	//console.log(currentTask.start-time);
+	var qualified = [];
+	var repeatDay = [];
+	var today = new Date();
+	var day = today.getDay();
+	var time = "";
+	var hours = today.getHours();
+	var minutes = today.getMinutes();
+	if (hours<10) {
+      hours='0'+hours;
+    }
+    if (minutes<10) {
+      minutes='0'+minutes;
+    }
+	time = hours +":" +minutes;
+	if(day = 0){
+		day = 7;
+	}
+	var i = 0;
+	for(i = 0; i < data.length; i++){
+		if(data[i].is_repeat == 1){
+			if(data[i].repeat.has(day)){
+				qualified.push(data[i]);
+			}
+		}
+		else{
+			if(compare((data[i])['start-time'], time) == 1){ 
+				qualified.push(data[i]);
+			}
+		}
+	}
+	
+	qualified.sort(function(a, b){ return compare(a['start-time'], b['start-time'])}); 
+	//console.log("here is qualified");
+	//console.log(qualified);
+	i = 0;
+	while(i < qualified.length){
+		var nearest = qualified[i];
+		console.log("here is nearest");
+		//console.log(nearest);
+		console.log("currentTime: " + time);
+		console.log("nearest Time: " + nearest['start-time']);
+		console.log((diff(nearest['start-time'],time)));
+		
+		console.log("duration: " +currentTask['duration']);
+		console.log(compare((diff(nearest['start-time'],time)), currentTask['duration']));
+		
+		if( compare((diff(nearest['start-time'],time)), currentTask['duration']) == 1){
+			if(i > 0){
+				if(compare(diff((qualified[i-1])['end-time'],nearest['start-time']), currentTask['duration']) != 1 ){
+					i++; continue;
+				}
+			}
+			//console.log(currentTask['start-time']);
+			currentTask['start-time'] = diff(nearest['start-time'], currentTask['duration']);
+			currentTask['end-time'] = nearest['start-time'];
+			console.log("new startTime: " + currentTask['start-time']);
+			console.log("new endTime: " + currentTask['end-time']);
+			//console.log("current Time: " + time);
+			var t = {
+				"start-time": currentTask['start-time'],
+				"end-time": currentTask['end-time']
+			};
+			return t;
+		}
+		i++;
+	}
+	i--;
+	var t = {
+		"start-time": (qualified[i])['end-time'],
+		"end-time": addTime((qualified[i])['end-time'], currentTask['duration'])
+	};
+	return t;
+}
+function addTime(str0, str1){
+	var h = parseInt(str0.substring(0,2),10) + parseInt(str1.substring(0,2),10);
+	var m = parseInt(str0.substring(3,5),10) + parseInt(str1.substring(3,5),10);
+	
+    if (m>60) {
+      m=m-60;
+      h+=1;
+    }
+	if (m<10) {
+      m='0'+m;
+    }
+    if (h>24) {
+	  //TODO: make go over extra day
+      h=h-24;
+    }
+    if (h<10) {
+      h='0'+h;
+    }
+    var t = (h + ":" + m);
+    return t;
+}
+function diff(str0, str1){
+	var h = parseInt(str0.substring(0,2),10) - parseInt(str1.substring(0,2),10);
+	var m = parseInt(str0.substring(3,5),10) - parseInt(str1.substring(3,5),10);
+	if(m < 0){
+		m = 60 + m;
+		h--;
+	}
+	if (h<10) {
+      h='0'+h;
+    }
+    if (m<10) {
+      m='0'+m;
+    }
+	var r = h+":"+m;
+	return r;
+}
+
+function compare(str0, str1){
+	if(parseInt(str0.substring(0,2),10) < parseInt(str1.substring(0,2),10)){
+		return -1;
+	}
+	else if(parseInt(str0.substring(0,2),10) > parseInt(str1.substring(0,2),10)){
+		return 1;
+	}
+	else{
+		if(parseInt(str0.substring(3,5),10) < parseInt(str1.substring(3,5),10)){
+			return -1;
+		}
+		else if(parseInt(str0.substring(3,5),10) > parseInt(str1.substring(3,5),10)){
+			return 1;
+		}
+		else{
+			return 0;
+		}
+	}
 }
 
 // Didn't use below
