@@ -159,7 +159,10 @@
 		</div>
 		<div id = "Advanced">
 		<p><font color="#FFFFFF"> Set Time: </font>
-			<input type="checkbox" name="setTimeCheck" id="setTimeCheck"></input>
+			<label class="ios7-switch">
+				<input type="checkbox" name="setTimeCheck" id="setTimeCheck"></input>
+				<span></span>
+			</label>
 			<div id="setTimeCheckBox" style="margin-left:5%">
 				<font color='#FFFFFF'>Start Time:</font><br>
 				<input type="time" id="setTimeStart" value="08:00"></input><br>
@@ -168,9 +171,9 @@
 			</div>
 		</p>
 		<p><font color="#FFFFFF"> Do you know location? </font>
-			<label>
+			<label class="ios7-switch">
 				<input type="checkbox" name="setLocation" id="setLocation">
-				</input>
+				</input><span></span>
 			</label>
 			<br>
 			<input style="width:100%" type="text" class="setLocationCheckBox" id="setLocationBlank"  placeholder="type specific location for job if exist"></input>
@@ -183,7 +186,10 @@
 		</select>
 		</p>
 		<p style="margin-top:1%"><font color="#FFFFFF">Does it Repeat? </font>
-			<input type="checkbox" class="repeated" id="setRepeat" name="repeated">
+			<label class="ios7-switch">
+				<input type="checkbox" class="repeated" id="setRepeat" name="repeated">
+			</input><span></span>
+			</label>
 		</p>
 		<ul id="dateRepeatChecked" class="dateRepeatChecked">
 			<font color="#FFFFFF"  style="font-size:12px;margin-right:2%">Mon</font>

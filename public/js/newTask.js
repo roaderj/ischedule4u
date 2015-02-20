@@ -68,7 +68,7 @@ function hide() {
       $('.setLocationCheckBox')[this.checked ? "show" : "hide"]();
     });
 
-    $('.repeated').click(function()
+    $('#setRepeat').click(function()
     {
       $('.dateRepeatChecked')[this.checked ? "show" : "hide"]();
       $('#setDate')[this.checked ? "hide" : "show"]();
@@ -210,7 +210,7 @@ function callback(result){
     "repeat": []
   };
 
-  if($('.repeated').prop('checked')){
+  if($('#setRepeat').prop('checked')){
     taskJson.is_repeat = 1;
     taskJson.date = "Repetitive Task";
     console.log("repeate checked");

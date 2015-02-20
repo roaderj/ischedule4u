@@ -191,7 +191,7 @@ function hide() {
   	$('#setLocation').click(function() {
 		$('.setLocationCheckBox')[this.checked ? "show" : "hide"]();
   	});
-  	$('.repeated').click(function() {
+  	$('#setRepeat').click(function() {
 		$('.dateRepeatChecked')[this.checked ? "show" : "hide"]();
 		$('#setDate')[this.checked ? "hide" : "show"]();
   	});
