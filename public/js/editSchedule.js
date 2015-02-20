@@ -23,7 +23,9 @@ function displayTask(tasks) {
 	// Get current user
 	//var user = getCookie("email");
 	// There is no task associated
+
 	if (tasks.length < 1) {
+		//console.log(tasks.length);
 		var text = "<p style='margin-top:0.5%''><font  " +
 			"color='#FFFFFF'> There is no task right now </font> </p>" +
 			"<a href='/addTask' >Add task?</a>";
@@ -37,6 +39,7 @@ function displayTask(tasks) {
 	// Display each task
 	for (var i=0; i<tasks.length; i++) {
 		var task = tasks[i];
+		//console.log(task['dateModified']);
 		var repeat = "";
 		var stime = task['start-time'];
 		var etime = task['end-time'];

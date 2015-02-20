@@ -14,7 +14,7 @@ var TaskSchema = new Mongoose.Schema({
     "end-time": String,
     "is_repeat": { type: Boolean, default: false },
     "repeat": [Number],
-    "dateModified": { type: Date, defualt: Date.now}
+    "dateModified": { type: Date, default: Date.now}
   // fields are defined here
 });
 

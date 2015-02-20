@@ -5,13 +5,13 @@ var models = require('../models');
 exports.getTask = function(req, res) {
 	var user = req.body.user;
 	var taskID = req.body.taskID;
-	console.log(taskID);
+	//console.log(taskID);
 	if (taskID == "") {
 	//console.log(user);
 		models.Task
      		.find({"user":user})
      		.sort('-dateModified')
-      		.exec(afterQuery);
+      	.exec(afterQuery);
     } else {
     	models.Task
     		.find({"user":user, "_id":taskID})
@@ -19,7 +19,7 @@ exports.getTask = function(req, res) {
     }
 
     function afterQuery(err, tasks) {
-    	console.log(tasks);
+    	//console.log(tasks);
     	if(err) console.log(err);
     	res.json(tasks);
   	}
