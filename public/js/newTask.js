@@ -272,8 +272,10 @@ function findTime(data, currentTask){
 	var i = 0;
 	
 	if(currentTask['is_repeat']==1){
+		time = "08:00"; // if repeating start time as 8 am
 		//collect schedule within those days
 		for(i = 0; i < data.length; i++){
+			
 			if((data[i])['is_repeat'] == 1){
 				if(intersect(currentTask['repeat'],(data[i])['repeat'])){
 					qualified.push(data[i]);
@@ -284,7 +286,11 @@ function findTime(data, currentTask){
 				var tempDate = new Date((data[i])['date']);
 				var tempDay = tempDate.getDay();
 				if(tempDay == 0){
-					day = 7;
+					tempDay = 7;
+				}
+				if(currentTask['repeat'].indexOf(tempDay) != -1){
+					qualified.push(data[i]);
+					sameDate.push(data[i])
 				}
 				
 				/*
@@ -341,11 +347,15 @@ function findTime(data, currentTask){
 			}
 			var flag = false;
 			for(var j = 0; j < sameDate.length; j++){
-				if(compare((sameDate[j])['end-time'], (diff(nearest['start-time'], currentTask['duration']))) == 1){
-					//problem occurred
-					console.log("case 1 continue");
-					flag = true;
-					break;
+				if(nearest != (sameDate[j]) && currentTask['is_repeat'] == 0){
+					if(compare((sameDate[j])['end-time'], (diff(nearest['start-time'], currentTask['duration']))) == 1){
+						//problem occurred
+						console.log((diff(nearest['start-time'], currentTask['duration'])));
+						console.log((sameDate[j])['end-time']);
+						console.log("case 1 continue");
+						flag = true;
+						break;
+					}
 				}
 			}
 			if(flag){
@@ -371,7 +381,7 @@ function findTime(data, currentTask){
 	//no qualified tasks to hook to
 	if(qualified.length == 0){
 		for(var j = 0; j < sameDate.length; j++){
-			if(compare((sameDate[j])['end-time'], time) == 1){
+			if(compare((sameDate[j])['end-time'], time) == 1 && currentTask['is_repeat'] == 0){
 				//problem occurred
 				if(j == (sameDate.length - 1)){
 					console.log("case2");
