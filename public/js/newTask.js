@@ -209,8 +209,8 @@ function done(result) {
   window.location = "/";
 }
 
-/* finds the intersection of 
- * two arrays in a simple fashion.  
+/* finds the intersection of
+ * two arrays in a simple fashion.
  *
  * PARAMS
  *  a - first array, must already be sorted
@@ -218,7 +218,7 @@ function done(result) {
  *
  * NOTES
  *
- *  Should have O(n) operations, where n is 
+ *  Should have O(n) operations, where n is
  *    n = MIN(a.length(), b.length())
  * from: http://stackoverflow.com/questions/1885557/simplest-code-for-array-intersection-in-javascript
  */
@@ -247,12 +247,12 @@ function intersect(a, b)
 function findTime(data, currentTask){
 
 	//TODO: check previous task before adding
-	
+
 	//console.log("inside function");
 	//console.log(typeof(currentTask.start-time));
 	//console.log(currentTask.start-time);
 	var sameDate = [];
-	
+
 	var qualified = [];
 	var today = new Date();
 	var day = today.getDay();
@@ -270,12 +270,12 @@ function findTime(data, currentTask){
 		day = 7;
 	}
 	var i = 0;
-	
+
 	if(currentTask['is_repeat']==1){
 		time = "08:00"; // if repeating start time as 8 am
 		//collect schedule within those days
 		for(i = 0; i < data.length; i++){
-			
+
 			if((data[i])['is_repeat'] == 1){
 				if(intersect(currentTask['repeat'],(data[i])['repeat'])){
 					qualified.push(data[i]);
@@ -292,14 +292,14 @@ function findTime(data, currentTask){
 					qualified.push(data[i]);
 					sameDate.push(data[i])
 				}
-				
+
 				/*
 				if(currentTask['date'].localeCompare((data[i])['date']) == 0 ){
 					sameDate.push(data[i]);
-					if(compare((data[i])['start-time'], time) == 1){ 
+					if(compare((data[i])['start-time'], time) == 1){
 						qualified.push(data[i]);
 					}
-				}*/	
+				}*/
 			}
 		}
 	}
@@ -314,19 +314,19 @@ function findTime(data, currentTask){
 			else{
 				if(currentTask['date'].localeCompare((data[i])['date']) == 0 ){
 					sameDate.push(data[i]);
-					if(compare((data[i])['start-time'], time) == 1){ 
+					if(compare((data[i])['start-time'], time) == 1){
 						qualified.push(data[i]);
 					}
-				}	
+				}
 			}
 		}
 	}
-	qualified.sort(function(a, b){ return compare(a['start-time'], b['start-time'])}); 
+	qualified.sort(function(a, b){ return compare(a['start-time'], b['start-time'])});
 	sameDate.sort(function(a, b){ return compare(a['start-time'], b['start-time'])});
 	//console.log("here is qualified");
 	//console.log(qualified);
-	
-	
+
+
 	i = 0;
 	while(i < qualified.length){
 		var nearest = qualified[i];
@@ -335,10 +335,10 @@ function findTime(data, currentTask){
 		console.log("currentTime: " + time);
 		console.log("nearest Time: " + nearest['start-time']);
 		console.log((diff(nearest['start-time'],time)));
-		
+
 		console.log("duration: " +currentTask['duration']);
 		console.log(compare((diff(nearest['start-time'],time)), currentTask['duration']));
-		//09:03 - 
+		//09:03 -
 		if( compare((diff(nearest['start-time'],time)), currentTask['duration']) == 1){
 			if(i > 0){
 				if(compare(diff(nearest['start-time'],(qualified[i-1])['end-time']), currentTask['duration']) != 1 ){
@@ -422,7 +422,7 @@ function findTime(data, currentTask){
 function addTime(str0, str1){
 	var h = parseInt(str0.substring(0,2),10) + parseInt(str1.substring(0,2),10);
 	var m = parseInt(str0.substring(3,5),10) + parseInt(str1.substring(3,5),10);
-	
+
     if (m>60) {
       m=m-60;
       h+=1;
