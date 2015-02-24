@@ -12,6 +12,7 @@ function initializePage() {
 // Submit signup info
 function signupSubmit(e) {
 	e.preventDefault();
+	var mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;  
 	// email
 	var email = document.getElementById("email").value;
 	// password
@@ -24,6 +25,10 @@ function signupSubmit(e) {
 		$('.signup-error').html(err);
 	} 
 	// Password is empty
+	else if (!(email.match(mailformat))) {
+		var err = "<p style='color:red;'>You have entered an invalid email address.</p>";
+		$('.signup-error').html(err);
+	}
 	else if (password == "") {
 		var err = "<p style='color:red;'>Please enter a password.</p>";
 		$('.signup-error').html(err);
