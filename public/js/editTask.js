@@ -66,8 +66,8 @@ function updateTask() {
 		var is_repeat = true;
 		date = "";
 		for (var i=1;i<8;i++) {
-			if (document.getElementById("repeated"+i).checked) {
-				repeat.push(i);
+			if ((document.getElementById("repeated0").checked)||(document.getElementById("repeated"+i).checked)) {
+        		repeat.push(i);
 			}
 		}
 	}
@@ -136,8 +136,13 @@ function displayTask(result) {
 		document.getElementById("setRepeat").checked = true;
 		$('.dateRepeatChecked').show();
 		$('#setDate').hide();
-		for (var i=0;i<task['repeat'].length;i++) {
-			document.getElementById("repeated"+task['repeat'][i]).checked = true;
+		if (task['repeat'].length == 7) {
+			document.getElementById("repeated0").checked = true;
+		}
+		else {
+			for (var i=0;i<task['repeat'].length;i++) {
+				document.getElementById("repeated"+task['repeat'][i]).checked = true;
+			}
 		}
 	}
 	// One time task

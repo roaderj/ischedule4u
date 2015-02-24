@@ -153,7 +153,7 @@ function addTask() {
   if (document.getElementById("setRepeat").checked) {
     var is_repeat = true;
     for (var i=1;i<8;i++) {
-      if (document.getElementById("repeated"+i).checked) {
+      if ((document.getElementById("repeated0").checked)||(document.getElementById("repeated"+i).checked)) {
         repeat.push(i);
       }
     }
@@ -501,6 +501,7 @@ function callback(result){
     taskJson.is_repeat = 1;
     taskJson.date = "Repetitive Task";
     console.log("repeate checked");
+    if($('#repeat'))
     if($('#repeatedMonday').prop('checked')){
       taskJson.repeat.push(1);
     }
