@@ -171,14 +171,20 @@ function displayTask(result) {
 	}
 	var duration = task['duration'];
 	var vars = duration.split(':');
+	var durationHour = vars[0];
+	var durationMinutes = vars[1];
+	if (durationHour.length < 2)
+		durationHour = "0" + durationHour;
+	if (durationMinutes.length < 2)
+		durationMinutes = "0" + durationMinutes;
 	//console.log(parseInt(vars[1]));
 	// Show name
 	$('#taskName').val(task['name']);
 	// Show Type
 	$('#TypeList').val(task['type']);
 	// Show duration
-	$('#durationHour').val(vars[0]);
-	$('#durationMinutes').val(vars[1]);
+	$('#durationHour').val(durationHour);
+	$('#durationMinutes').val(durationMinutes);
 	// Show set time
 	$('#setTimeStart').val(stime);
 	$('#setTimeEnd').val(etime);
