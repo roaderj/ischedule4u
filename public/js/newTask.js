@@ -27,7 +27,13 @@ function initializePage() {
       orientation: 'auto left',
         format: 'yyyy-mm-dd'
       });
-  $('#submitBtn').click(addTask);
+  $('#submitBtn').click(addTask); 
+  $('#cancelBtn').click(goBack);
+}
+
+function goBack(e) {
+    e.preventDefault();
+    window.history.go(-1);
 }
 
 // Default setting
