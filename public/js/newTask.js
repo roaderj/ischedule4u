@@ -13,12 +13,6 @@ function initializePage() {
   $(".v_b_page_switch").click(function(){
     woopra.track("b_version_page_change");
   });
-  $(".v_a_task_create").click(function(){
-    woopra.track("a_version_task_create");
-  });
-  $(".v_b_task_create").click(function(){
-    woopra.track("b_version_task_create");
-  });
   //console.log("Javascript connected!");
   user = getCookie("email");
   defaultSetting()
@@ -27,7 +21,7 @@ function initializePage() {
       orientation: 'auto left',
         format: 'yyyy-mm-dd'
       });
-  $('#submitBtn').click(addTask); 
+  $('.createBtn').click(addTask); 
   $('#cancelBtn').click(goBack);
 }
 
@@ -129,7 +123,9 @@ function hide() {
 }*/
 
 // Add task to db
-function addTask() {
+function addTask(e) {
+  e.preventDefault();
+  var version = getCookie("version");
   var name = $('#taskName').val();
   if (name == "") {
     $('#addError').html("<p style='color:red'>Please enter a name for the Task.</p>");
@@ -216,12 +212,14 @@ function addTask() {
 		task['end-time'] = time['end-time'];
 		//console.log(time['start-time']);
 		//console.log(task['start-time']);
+    woopra.track(version+"_version_task_create");
 		$.post("/createTask", {task: task}, done);
 	};
 	//wait until findTime finish
 	$.post("/getTask", {user: user, taskID: blank}, callbackFunction);
   }
   else{
+  woopra.track(version+"_version_task_create");
 	$.post("/createTask", {task: task}, done);
   }
 }
