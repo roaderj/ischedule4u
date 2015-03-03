@@ -45,16 +45,16 @@ function check(result) {
 		var index = Math.random();
   		if (index < 0.5) {
   			cookie_string += "|| version=a";
-  			//woopra.track("a_version_login");
+  			woopra.track("a_version_login");
   			if (detectmob()) {
-  				//woopra.track("a_version_mobile");
+  				woopra.track("a_version_mobile");
   			}
   		}
   		else {
   			cookie_string += "|| version=b";
-  			//woopra.track("b_version_login");
+  			woopra.track("b_version_login");
   			if (detectmob()) {
-  				//woopra.track("b_version_mobile");
+  				woopra.track("b_version_mobile");
   			}
   		}
 		if (checkbox) {
@@ -64,7 +64,7 @@ function check(result) {
 		}
 		document.cookie = cookie_string;
 		// Go to homepage
-		//window.location = "/";
+		window.location = "/";
 	}
 	// Login fail
 	else {
