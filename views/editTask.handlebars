@@ -3,6 +3,7 @@
 	<script src="https://code.jquery.com/jquery.js"></script>
 	<script src="../js/bootstrap.min.js"></script>
 	<script src='../js/moment.min.js'></script>
+	<script src="../js/bootstrap-datepicker.js"></script>
 	<script src='../js/bootbox.min.js'></script>
 	<script src='../js/cookie.js'></script>
 	<script src='../js/editTask.js'></script>
@@ -12,6 +13,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link href="../css/bootstrap.min.css" rel="stylesheet">
 	<link href="../css/bootstrap-theme.min.css" rel="stylesheet">
+	<link href="../css/datepicker.css" rel="stylesheet">
 	<link href="../css/project.css" rel="stylesheet">
 	{{> headerPartials home}}
 </head>
@@ -209,22 +211,10 @@
 			<br>
 		</ul>
 		<div id='setDate'>
-			<p><font color="#FFFFFF">Date:
-			<input style="width:100%" type="text" id="setDateBox" placeholder="YYYY-MM-DD (Not need if it repeats)"></input>
+			<p><font color="#FFFFFF">Date: 
+				<input class="span2" id="setDateBox" size="16" type="text">
 			</p>
 		</div>
-		<!--<p><font color="#FFFFFF"> Does this relate to any other task? </font>
-			<label>
-				<input type="checkbox" class="setTag" id="setTag">
-				</input>
-			</label>
-			<br>
-			<select class="setTagList" id="TagList">
-				<option value="blank"> </option>
-				<option value="other">Other</option>
-			</select>
-			<input style="margin-left:3%" type="text" id="otherTag" placeholder="Enter Tag"></input>
-		</p>-->
 		<br>
 	</div>
 	<button class="btn btn-primary" id="updateEdit" style="width:100%;height:10%" type="button">Update Task</button>

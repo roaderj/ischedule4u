@@ -11,7 +11,11 @@ function initializePage() {
   user = getCookie("email");
   defaultSetting()
   hide();
-    $('#submitBtn').click(addTask);
+  $('#setDateBox').datepicker({
+      orientation: 'auto left',
+        format: 'yyyy-mm-dd'
+      });
+  $('#submitBtn').click(addTask);
 }
 
 // Default setting

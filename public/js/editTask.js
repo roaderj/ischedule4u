@@ -183,6 +183,10 @@ function displayTask(result) {
 	// One time task
 	else {
 		$('#setDateBox').val(date);
+		$('#setDateBox').datepicker({
+			orientation: 'auto left',
+    		format: 'yyyy-mm-dd'
+  		});
 		$('#setDate').show();
 		$('.dateRepeatChecked').hide();
 	}
