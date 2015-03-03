@@ -13,24 +13,35 @@
 	<link href="css/bootstrap-theme.min.css" rel="stylesheet">
 	<link href="css/datepicker.css" rel="stylesheet">
 	<link href="css/project.css" rel="stylesheet">
-	<!-- Check if there is an user logged in -->
 	<script>
+		//checkCookie();
 		var version = checkVersion();
-		if (version == "b")
-			window.location = "/addTaskAlt";
+		if (version == "a")
+			window.location = "/addTask";
 	</script>
-	{{> headerPartials home}}
 </head>
 
 <body>
+<nav class="navbar" role="navigation">
+<div>
+  <div class="col-xs-12 navbar-default navbar-fixed-top">
+  <div class="row" id="topNav">
+    <div class="col-xs-3 text-center" id="cancelBtn"><a href="#"><h4>Cancel</h4></a></div>
+    <div class="col-xs-6 text-center"><a href="#"></a><font style="color:black"><h4>I Schedule 4 U</h4></font></div>
+    <div class="col-xs-3 text-center" id="submitBtn"><a href="#"><h4>Create</h4></a></div>
+  </div>
+  </div>
+</div>
+</nav>
+	
 <div class = "container">
 	<div class = "header" style="margin-bottom:5%">
 		<h2 align="center" style="margin-top:5%" ><font color="#FFFFFF"> New Task </font></h2>
 	</div>
-	<div class = 'error' id="addError"></div>
+	<div class = 'error' id="addError"><br></div>
 	<div class = "form" align="left">
 		<form id ='taskForm' method = "POST" name = "taskForm">
-		<p><font color="#FFFFFF" > Name: </font> <br> <input type="text" name="taskName" id = "taskName"></input> </p>
+		<p><font color="#FFFFFF" > Name: </font><br><input type="text" name="taskName" id = "taskName"></input> </p>
 		<p><font color="#FFFFFF"> Duration: </font> <br>
 			<!-- hour selector -->
 			<select id = 'durationHour'>
@@ -219,6 +230,7 @@
 				<input class="span2" id="setDateBox" size="16" type="text">
 			</p>
 		</div>
+		
 		<!--<p><font color="#FFFFFF"> Does this relate to any other task? </font>
 			<label>
 				<input type="checkbox" class="setTag" id="setTag">
@@ -232,16 +244,8 @@
 			<input style="margin-left:3%" type="text" id="otherTag" placeholder="Enter Tag"></input>
 		</p>
 		<br>-->
-	</div>
 
-			<button class="btn btn-primary" style="width:100%;height:10%" type="button" id="submitBtn">
-			Create Task </button>
-		</form>
-		<br>
-		<br>
-		<br>
-	</div>
 </div>
-
+{{>botNav}}
 </body>
 </html>

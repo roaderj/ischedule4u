@@ -1,31 +1,47 @@
 <!doctype html>
 <html>
 	<script src="https://code.jquery.com/jquery.js"></script>
-	<script src="js/bootstrap.min.js"></script>
-	<script src="js/bootstrap-datepicker.js"></script>
-	<script src='js/cookie.js'></script>
-	<script src="js/newTask.js"></script>
+	<script src="../js/bootstrap.min.js"></script>
+	<script src='../js/moment.min.js'></script>
+	<script src="../js/bootstrap-datepicker.js"></script>
+	<script src='../js/bootbox.min.js'></script>
+	<script src='../js/cookie.js'></script>
+	<script src='../js/editTask.js'></script>
 <head>
 	<meta charset="utf-8">
 	<title>I Schedule 4 U</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link href="css/bootstrap.min.css" rel="stylesheet">
-	<link href="css/bootstrap-theme.min.css" rel="stylesheet">
-	<link href="css/datepicker.css" rel="stylesheet">
-	<link href="css/project.css" rel="stylesheet">
-	<!-- Check if there is an user logged in -->
+	<link href="../css/bootstrap.min.css" rel="stylesheet">
+	<link href="../css/bootstrap-theme.min.css" rel="stylesheet">
+	<link href="../css/datepicker.css" rel="stylesheet">
+	<link href="../css/project.css" rel="stylesheet">
 	<script>
 		var version = checkVersion();
-		if (version == "b")
-			window.location = "/addTaskAlt";
+		if (version == "a") {
+			var query = window.location.pathname;
+			var vars = query.split('/');
+			taskID = vars[vars.length-1];
+			window.location = "/editTask/" + taskID;
+		}
 	</script>
-	{{> headerPartials home}}
 </head>
 
 <body>
+<nav class="navbar" role="navigation">
+<div>
+  <div class="col-xs-12 navbar-default navbar-fixed-top">
+  <div class="row" id="topNav">
+    <div class="col-xs-3 text-center"><a href="/editSchedule"><h4>Cancel</h4></a></div>
+    <div class="col-xs-6 text-center"><a href="#"></a><font style="color:black"><h4>I Schedule 4 U</h4></font></div>
+    <div class="col-xs-3 text-center" id="updateEdit"><a href="#"><h4>Update</h4></a></div>
+  </div>
+  </div>
+</div>
+</nav>
+
 <div class = "container">
 	<div class = "header" style="margin-bottom:5%">
-		<h2 align="center" style="margin-top:5%" ><font color="#FFFFFF"> New Task </font></h2>
+		<h2 align="center" style="margin-top:5%" ><font color="#FFFFFF"> Edit Task </font></h2>
 	</div>
 	<div class = 'error' id="addError"></div>
 	<div class = "form" align="left">
@@ -123,12 +139,12 @@
 				<option value="59">59 minutes</option>
 			</select>
 		</p>
-		<p><font color="#FFFFFF"> Type: </font> <br> 
+		<p><font color="#FFFFFF"> Type: </font> <br>
 		<select class="setTypeList" id="TypeList">
 			<!--<option value="blank"> </option>-->
 			<option value="Other">Other</option>
 			<option value="Class">Class</option>
-			<option value="Homework">Homework</option>
+			<option value="homework">Homework</option>
 			<option value="Programming">Programming Assignment</option>
 			<option value="Exam">Midterm/Final</option>
 			<option value="Reading">Reading</option>
@@ -169,7 +185,7 @@
 		<p style="margin-top:1%"><font color="#FFFFFF">Does it Repeat? </font>
 			<label class="ios7-switch">
 				<input type="checkbox" class="repeated" id="setRepeat" name="repeated">
-				</input><span></span>
+			</input><span></span>
 			</label>
 		</p>
 		<ul id="dateRepeatChecked" class="dateRepeatChecked">
@@ -212,36 +228,18 @@
 			<label class="ios7-switch">
 				<input type="checkbox" id="repeated7"></input><span></span>
 			</label>
-			<br>
 		</ul>
 		<div id='setDate'>
 			<p><font color="#FFFFFF">Date: 
 				<input class="span2" id="setDateBox" size="16" type="text">
 			</p>
 		</div>
-		<!--<p><font color="#FFFFFF"> Does this relate to any other task? </font>
-			<label>
-				<input type="checkbox" class="setTag" id="setTag">
-				</input>
-			</label>
-			<br>
-			<select class="setTagList" id="TagList">
-				<option value="blank"> </option>
-				<option value="other">Other</option>
-			</select>
-			<input style="margin-left:3%" type="text" id="otherTag" placeholder="Enter Tag"></input>
-		</p>
-		<br>-->
 	</div>
 
-			<button class="btn btn-primary" style="width:100%;height:10%" type="button" id="submitBtn">
-			Create Task </button>
-		</form>
-		<br>
-		<br>
-		<br>
+	<button class="btn btn-danger" id="deleteTask" style="margin-top:10px;width:50%" type="button">Delete Task</button>
+	</form>
 	</div>
 </div>
-
+{{>botNav}}
 </body>
 </html>

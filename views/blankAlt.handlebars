@@ -12,16 +12,16 @@
 	<link href="css/project.css" rel="stylesheet">
 	<script>
 		var version = checkVersion();
-		if (version == "b")
-			window.location = "/blankAlt";
+		if (version == "a")
+			window.location = "/blank";
 	</script>
-	{{> headerPartials home}}
 </head>
 
 <body>
- 	<div class = "container">
+{{>topNav}}
+<div class = "container">
 
-	</div>
+</div>
+{{>botNav}}
 </body>
-	
 </html>

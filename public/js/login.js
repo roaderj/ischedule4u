@@ -34,6 +34,11 @@ function check(result) {
 	if (result) {
 		var cookie_string = "email=" + email;
 		// Cookie will be remain for a year
+		var index = Math.random();
+  		if (index < 0.5) 
+  			cookie_string += "|| version=a";
+  		else
+  			cookie_string += "|| version=b"
 		if (checkbox) {
 			var expiration_date = new Date();
 			expiration_date.setFullYear(expiration_date.getFullYear() + 1);
