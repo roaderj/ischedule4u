@@ -3,6 +3,7 @@
 	<script src="https://code.jquery.com/jquery.js"></script>
 	<script src="../js/bootstrap.min.js"></script>
 	<script src='../js/moment.min.js'></script>
+	<script src='../js/bootbox.min.js'></script>
 	<script src='../js/cookie.js'></script>
 	<script src='../js/editTask.js'></script>
 <head>
@@ -226,11 +227,10 @@
 		</p>-->
 		<br>
 	</div>
-
-	<button id="updateEdit" style="width:100%;height:10%" type="button">Update Task</button>
+	<button class="btn btn-primary" id="updateEdit" style="width:100%;height:10%" type="button">Update Task</button>
 	<div style='height:5px;clear:both;display:block'></div>
-	<button id="deleteTask" style="width:49.25%;height:10%" type="button">Delete Task</button>
-	<button style="width:49.25%;height:10%" type="button" onclick="location.href='/editSchedule'">Cancel</button>
+	<button class="btn btn-danger" id="deleteTask" style="width:49.25%;height:10%" type="button">Delete Task</button>
+	<button class="btn" style="width:49.25%;height:10%" type="button" onclick="location.href='/editSchedule'">Cancel</button>
 		</form>
 		<br>
 		<br>

@@ -124,9 +124,26 @@ function done(result) {
 
 // Delete task
 function deleteTask() {
-	$.post("/deleteTask", {user: user, taskID: taskID}, function(result){
-    	window.location = "/editSchedule";
-    });
+	bootbox.dialog({
+		message: "Do you really want to delete it?",
+		title: "Delete Confirm",
+		buttons: {
+			main: {
+				label: "Cancel",
+      			className: "btn-primary"
+			},
+			danger: {
+      			label: "Delete",
+      			className: "btn-danger",
+      			callback: function() {
+        			$.post("/deleteTask", {user: user, taskID: taskID}, function(result){
+    					window.location = "/editSchedule";
+    				});
+      			}
+    		}
+		}
+	});
+	
 }
 
 // Callback of the get tasks
