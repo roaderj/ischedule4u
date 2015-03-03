@@ -11,6 +11,14 @@ function initializePage() {
 	$('#submitBtn').click(loginSubmit);
 }
 
+function detectmob() {
+   if(window.innerWidth <= 800 && window.innerHeight <= 600) {
+     return true;
+   } else {
+     return false;
+   }
+}
+
 var email = "#"
 var checkbox = false;
 
@@ -38,10 +46,16 @@ function check(result) {
   		if (index < 0.5) {
   			cookie_string += "|| version=a";
   			//woopra.track("a_version_login");
+  			if (detectmob()) {
+  				//woopra.track("a_version_mobile");
+  			}
   		}
   		else {
   			cookie_string += "|| version=b";
   			//woopra.track("b_version_login");
+  			if (detectmob()) {
+  				//woopra.track("b_version_mobile");
+  			}
   		}
 		if (checkbox) {
 			var expiration_date = new Date();
@@ -50,7 +64,7 @@ function check(result) {
 		}
 		document.cookie = cookie_string;
 		// Go to homepage
-		window.location = "/";
+		//window.location = "/";
 	}
 	// Login fail
 	else {
