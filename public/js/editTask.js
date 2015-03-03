@@ -9,6 +9,14 @@ var taskID = "";
 var user = "";
 
 function initializePage() {
+	/*
+	$(".v_a_page_switch").click(function(){
+		woopra.track("a_version_page_change");
+	});
+	$(".v_b_page_switch").click(function(){
+		woopra.track("b_version_page_change");
+	});
+	*/
 	// Get tasks from database
 	user = getCookie("email"); // Get the current user
 	hide();
@@ -124,6 +132,7 @@ function done(result) {
 
 // Delete task
 function deleteTask() {
+	var version = getCookie("version");
 	bootbox.dialog({
 		message: "Do you really want to delete it?",
 		title: "Delete Confirm",
@@ -131,11 +140,15 @@ function deleteTask() {
 			main: {
 				label: "Cancel",
       			className: "btn-primary"
+      			callback: function() {
+      				//woopra.track(version+"_version_delete_cancel");
+      			}
 			},
 			danger: {
       			label: "Delete",
       			className: "btn-danger",
       			callback: function() {
+      				//woopra.track(version+"_version_task_delete");
         			$.post("/deleteTask", {user: user, taskID: taskID}, function(result){
     					window.location = "/editSchedule";
     				});

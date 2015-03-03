@@ -7,6 +7,20 @@
 var user = "";
 
 function initializePage() {
+  /*
+  $(".v_a_page_switch").click(function(){
+    woopra.track("a_version_page_change");
+  });
+  $(".v_b_page_switch").click(function(){
+    woopra.track("b_version_page_change");
+  });
+  $(".v_a_task_create").click(function(){
+    woopra.track("a_version_task_create");
+  });
+  $(".v_b_task_create").click(function(){
+    woopra.track("b_version_task_create");
+  });
+  */
   //console.log("Javascript connected!");
   user = getCookie("email");
   defaultSetting()
