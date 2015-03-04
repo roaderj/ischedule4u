@@ -43,6 +43,14 @@ function check(result) {
 		var cookie_string = "email=" + email;
 		// Cookie will be remain for a year
 		var index = Math.random();
+		
+		//Identify user by email
+		woopra.identify({
+			email: (""+email)
+			//name: "<<YOUR CUSTOMER NAME HERE>>",
+			//company: "<<YOUR CUSTOMER COMPANY HERE>>"
+		});
+		
   		if (index < 0.5) {
   			cookie_string += "|| version=a";
   			woopra.track("a_version_login");
