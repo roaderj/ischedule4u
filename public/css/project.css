@@ -1,6 +1,7 @@
 .header h1{
 	font-size: 45px;
 	color:black;
+	text-shadow: 1px 1px #DDDDDD;
 }
 
 .main button {
@@ -23,12 +24,12 @@ body{
 
 .word1 {
     color:black;
-	text-shadow: 1px 1px #FFFFFF;
+	text-shadow: 1px 1px #DDDDDD;
 }
 
 .images h2{
 	color:black;
-	text-shadow: 1px 1px #FFFFFF;
+	text-shadow: 1px 1px #DDDDDD;
 }
 
 
