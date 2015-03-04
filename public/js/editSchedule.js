@@ -68,7 +68,7 @@ function displayTask(tasks) {
 		// Display the task info
 		post += "<a href='/editTask/" + task["_id"] + "'>";
 		post += "<div class = 'userTask' id = 'task" + i + "'>"
-		post += "<p style='background-color:#222222;padding:0.5%'>";
+		post += "<p style='background-color:#222222;padding:0.5%;opacity: 0.7;filter: alpha(opacity=70);'>";
 		post += "<font color='#FFFFFF'>" + task['name'] + "</font><br>";
 		post += "<font style='margin-left:0.5%' color='#FFFFFF'>Duration: " +
 			task['duration'] + "</font><br>";
