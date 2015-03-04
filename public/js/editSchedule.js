@@ -33,8 +33,8 @@ function displayTask(tasks) {
 	if (tasks.length < 1) {
 		//console.log(tasks.length);
 		var text = "<p style='margin-top:0.5%''><font  " +
-			"color='#FFFFFF'> There is no task right now </font> </p>" +
-			"<a href='/addTask' >Add task?</a>";
+			"class='word1'> There is no task right now </font> </p>" +
+			"<a href='/addTask' class='linkcolor'>Add task?</a>";
 		$('#clicktoedit').html(text);
 		return -1;
 	}

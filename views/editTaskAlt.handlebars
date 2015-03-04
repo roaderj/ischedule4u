@@ -33,7 +33,7 @@
   <div class="col-xs-12 navbar-default navbar-fixed-top">
   <div class="row" id="topNav">
     <div class="col-xs-3 text-center"><a href="/editSchedule"><h4>Cancel</h4></a></div>
-    <div class="col-xs-6 text-center"><a href="#"></a><font style="color:black"><h4>I Schedule 4 U</h4></font></div>
+    <div class="col-xs-6 text-center"><a href="#"></a><font class="word1"><h4>I Schedule 4 U</h4></font></div>
     <div class="col-xs-3 text-center" id="updateEdit"><a href="#"><h4>Update</h4></a></div>
   </div>
   </div>
@@ -42,13 +42,13 @@
 
 <div class = "container">
 	<div class = "header" style="margin-bottom:5%">
-		<h2 align="center" style="margin-top:5%" ><font color="#FFFFFF"> Edit Task </font></h2>
+		<h2 align="center" style="margin-top:5%" ><font class="word1"> Edit Task </font></h2>
 	</div>
 	<div class = 'error' id="addError"></div>
 	<div class = "form" align="left">
 		<form id ='taskForm' method = "POST" name = "taskForm">
-		<p><font color="#FFFFFF" > Name: </font> <br> <input type="text" name="taskName" id = "taskName"></input> </p>
-		<p><font color="#FFFFFF"> Duration: </font> <br>
+		<p><font class="word1" > Name: </font> <br> <input type="text" name="taskName" id = "taskName"></input> </p>
+		<p><font class="word1"> Duration: </font> <br>
 			<!-- hour selector -->
 			<select id = 'durationHour'>
 				<option value="00">0 hours</option>
@@ -140,7 +140,7 @@
 				<option value="59">59 minutes</option>
 			</select>
 		</p>
-		<p><font color="#FFFFFF"> Type: </font> <br>
+		<p><font class="word1"> Type: </font> <br>
 		<select class="setTypeList" id="TypeList">
 			<!--<option value="blank"> </option>-->
 			<option value="Other">Other</option>
@@ -153,22 +153,22 @@
 		</select>
 	</p>
 		<div id ="AdvancedButton">
-			<p style="color:#FFFFFF"> <u>Advanced Settings</u> </p>
+			<p class="word1"> <u>Advanced Settings</u> </p>
 		</div>
 		<div id = "Advanced">
-		<p><font color="#FFFFFF"> Set Time: </font>
+		<p><font class="word1"> Set Time: </font>
 			<label class="ios7-switch">
 				<input type="checkbox" name="setTimeCheck" id="setTimeCheck"></input>
 				<span></span>
 			</label>
 			<div id="setTimeCheckBox" style="margin-left:5%">
-				<font color='#FFFFFF'>Start Time:</font><br>
+				<font class="word1">Start Time:</font><br>
 				<input type="time" id="setTimeStart" value="08:00"></input><br>
-				<font color='#FFFFFF'>End Time:</font><br>
+				<font class="word1">End Time:</font><br>
 				<input type="time" id="setTimeEnd" value="08:00"></input>
 			</div>
 		</p>
-		<p><font color="#FFFFFF"> Do you know location? </font>
+		<p><font class="word1"> Do you know location? </font>
 			<label class="ios7-switch">
 				<input type="checkbox" name="setLocation" id="setLocation">
 				</input><span></span>
@@ -176,62 +176,62 @@
 			<br>
 			<input style="width:100%" type="text" class="setLocationCheckBox" id="setLocationBlank"  placeholder="type specific location for job if exist"></input>
 		</p>
-		<p style="margin-top:1.5%"><font color="#FFFFFF">Priority: </font>
+		<p style="margin-top:1.5%"><font class="word1">Priority: </font>
 		<select id="setPriority">
 			<option value="High">High</option>
 			<option value="Medium">Medium</option>
 			<option value="Low">Low</option>
 		</select>
 		</p>
-		<p style="margin-top:1%"><font color="#FFFFFF">Does it Repeat? </font>
+		<p style="margin-top:1%"><font class="word1">Does it Repeat? </font>
 			<label class="ios7-switch">
 				<input type="checkbox" class="repeated" id="setRepeat" name="repeated">
 			</input><span></span>
 			</label>
 		</p>
 		<ul id="dateRepeatChecked" class="dateRepeatChecked">
-			<font color="#FFFFFF"  style="font-size:12px;margin-right:2%">Everyday</font>
+			<font class="word1"  style="font-size:12px;margin-right:2%">Everyday</font>
 			<label class="ios7-switch">
 				<input type="checkbox" id="repeated0"></input><span></span>
 			</label>
 			<br>
-			<font color="#FFFFFF"  style="font-size:12px;margin-right:2%">Mon</font>
+			<font class="word1"  style="font-size:12px;margin-right:2%">Mon</font>
 			<label class="ios7-switch">
 				<input type="checkbox" id="repeated1"></input><span></span>
 			</label>
 			<br>
-			<font color="#FFFFFF"  style="font-size:12px;margin-right:2.2%">Tue</font>
+			<font class="word1"  style="font-size:12px;margin-right:2.2%">Tue</font>
 			<label class="ios7-switch">
 				<input type="checkbox" id="repeated2"></input><span></span>
 			</label>
 			<br>
-			<font color="#FFFFFF"  style="font-size:12px;margin-right:1.9%">Wed</font>
+			<font class="word1"  style="font-size:12px;margin-right:1.9%">Wed</font>
 			<label class="ios7-switch">
 				<input type="checkbox" id="repeated3"></input><span></span>
 			</label>
 			<br>
-			<font color="#FFFFFF"  style="font-size:12px;margin-right:2.2%">Thu</font>
+			<font class="word1"  style="font-size:12px;margin-right:2.2%">Thu</font>
 			<label class="ios7-switch">
 				<input type="checkbox" id="repeated4"></input><span></span>
 			</label>
 			<br>
-			<font color="#FFFFFF"  style="font-size:12px;margin-right:2.8%">Fri</font>
+			<font class="word1" style="font-size:12px;margin-right:2.8%">Fri</font>
 			<label class="ios7-switch">
 				<input type="checkbox" id="repeated5"></input><span></span>
 			</label>
 			<br>
-			<font color="#FFFFFF"  style="font-size:12px;margin-right:2.5%">Sat</font>
+			<font class="word1"  style="font-size:12px;margin-right:2.5%">Sat</font>
 			<label class="ios7-switch">
 				<input type="checkbox" id="repeated6"></input><span></span>
 			</label>
 			<br>
-			<font color="#FFFFFF"  style="font-size:12px;margin-right:2.1%">Sun</font>
+			<font class="word1"  style="font-size:12px;margin-right:2.1%">Sun</font>
 			<label class="ios7-switch">
 				<input type="checkbox" id="repeated7"></input><span></span>
 			</label>
 		</ul>
 		<div id='setDate'>
-			<p><font color="#FFFFFF">Date: 
+			<p><font class="word1">Date: 
 				<input class="span2" id="setDateBox" size="16" type="text">
 			</p>
 		</div>
