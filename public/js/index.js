@@ -8,12 +8,6 @@ $(document).ready(function() {
 var user = "";
 
 function initializePage() {
-	$(".v_a_page_switch").click(function(){
-		woopra.track("a_version_page_change");
-	});
-	$(".v_b_page_switch").click(function(){
-		woopra.track("b_version_page_change");
-	});
 	user = getCookie("email");
 	getEvents();
 }

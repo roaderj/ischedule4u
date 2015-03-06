@@ -7,12 +7,6 @@ $(document).ready(function() {
 var user = "";
 
 function initializePage() {
-	$(".v_a_page_switch").click(function(){
-		woopra.track("a_version_page_change");
-	});
-	$(".v_b_page_switch").click(function(){
-		woopra.track("b_version_page_change");
-	});
 	user = getCookie("email");
 	getTasks();
 }
@@ -31,7 +25,6 @@ function displayTask(tasks) {
 	// There is no task associated
 
 	if (tasks.length < 1) {
-		//console.log(tasks.length);
 		var text = "<p style='margin-top:0.5%''><font  " +
 			"class='word1'> There is no task right now </font> </p>" +
 			"<a href='/addTask' class='linkcolor'>Add task?</a>";
@@ -45,7 +38,6 @@ function displayTask(tasks) {
 	// Display each task
 	for (var i=0; i<tasks.length; i++) {
 		var task = tasks[i];
-		//console.log(task['dateModified']);
 		var repeat = "";
 		var stime = task['start-time'];
 		var etime = task['end-time'];

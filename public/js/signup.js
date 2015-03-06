@@ -54,6 +54,7 @@ function check(result) {
 	}
 	// Signup success
 	else {
+		alert("Success!");
 		// Go back to login page
 		window.location="/login";
 	}

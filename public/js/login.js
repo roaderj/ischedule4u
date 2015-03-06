@@ -43,28 +43,6 @@ function check(result) {
 		var cookie_string = "email=" + email;
 		// Cookie will be remain for a year
 		var index = Math.random();
-		
-		//Identify user by email
-		woopra.identify({
-			email: (""+email)
-			//name: "<<YOUR CUSTOMER NAME HERE>>",
-			//company: "<<YOUR CUSTOMER COMPANY HERE>>"
-		});
-		
-  		if (index < 0.5) {
-  			cookie_string += "|| version=a";
-  			woopra.track("a_version_login");
-  			if (detectmob()) {
-  				woopra.track("a_version_mobile");
-  			}
-  		}
-  		else {
-  			cookie_string += "|| version=b";
-  			woopra.track("b_version_login");
-  			if (detectmob()) {
-  				woopra.track("b_version_mobile");
-  			}
-  		}
 		if (checkbox) {
 			var expiration_date = new Date();
 			expiration_date.setFullYear(expiration_date.getFullYear() + 1);

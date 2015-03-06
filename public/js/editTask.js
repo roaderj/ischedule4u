@@ -9,21 +9,13 @@ var taskID = "";
 var user = "";
 
 function initializePage() {
-	$(".v_a_page_switch").click(function(){
-		woopra.track("a_version_page_change");
-	});
-	$(".v_b_page_switch").click(function(){
-		woopra.track("b_version_page_change");
-	});
 	// Get tasks from database
 	user = getCookie("email"); // Get the current user
 	hide();
 	var query = window.location.pathname;
-	//console.log(query);
 	var vars = query.split('/');
 	// Get the select task id
 	taskID = vars[vars.length-1];
-	//console.log(taskID);
 	$.post("/getTask", {user: user, taskID: taskID},displayTask);
 	$('#updateEdit').click(updateTask);
 	$('#deleteTask').click(deleteTask);
@@ -104,15 +96,10 @@ function updateTask() {
     };
 	if(!(document.getElementById("setTimeCheck").checked)){
 		var blank = "";
-		//console.log("start-time: " + stime);
-		//console.log("start-time actual: " + task['start-time']);
 		var callbackFunction = function(data) {
 			var time = findTime(data, task);
-			//console.log(time);
 			task['start-time'] = time['start-time'];
 			task['end-time'] = time['end-time'];
-			//console.log(time['start-time']);
-			//console.log(task['start-time']);
 			$.post("/updateTask", {user: user, taskID: taskID, task: task}, done);
 		};
 		//wait until findTime finish
@@ -137,16 +124,12 @@ function deleteTask() {
 		buttons: {
 			main: {
 				label: "Cancel",
-      			className: "btn-primary",
-      			callback: function() {
-      				woopra.track(version+"_version_delete_cancel");
-      			}
+      			className: "btn-primary"
 			},
 			danger: {
       			label: "Delete",
       			className: "btn-danger",
       			callback: function() {
-      				woopra.track(version+"_version_task_delete");
         			$.post("/deleteTask", {user: user, taskID: taskID}, function(result){
     					window.location = "/editSchedule";
     				});
@@ -170,13 +153,11 @@ function displayTask(result) {
 		window.location = "/editSchedule";
 	}
 	var task = result[0];
-	//console.log(task);
 	var stime = task['start-time'];
 	var etime = task['end-time'];
 	document.getElementById("setTimeCheck").checked = true;
 	document.getElementById("setLocation").checked = true;
 	var date = task['date'];
-	console.log(task['is_repeat']);
 	// Repeat task
 	if (task['is_repeat'] == true) {
 		document.getElementById("setRepeat").checked = true;
@@ -209,7 +190,6 @@ function displayTask(result) {
 		durationHour = "0" + durationHour;
 	if (durationMinutes.length < 2)
 		durationMinutes = "0" + durationMinutes;
-	//console.log(parseInt(vars[1]));
 	// Show name
 	$('#taskName').val(task['name']);
 	// Show Type
@@ -324,10 +304,6 @@ function intersect(a, b)
 function findTime(data, currentTask){
 
 	//TODO: check previous task before adding
-
-	//console.log("inside function");
-	//console.log(typeof(currentTask.start-time));
-	//console.log(currentTask.start-time);
 	var sameDate = [];
 
 	var qualified = [];
@@ -400,21 +376,20 @@ function findTime(data, currentTask){
 	}
 	qualified.sort(function(a, b){ return compare(a['start-time'], b['start-time'])});
 	sameDate.sort(function(a, b){ return compare(a['start-time'], b['start-time'])});
-	//console.log("here is qualified");
-	//console.log(qualified);
 
 
 	i = 0;
 	while(i < qualified.length){
 		var nearest = qualified[i];
+		/*
 		console.log("here is nearest");
-		//console.log(nearest);
 		console.log("currentTime: " + time);
 		console.log("nearest Time: " + nearest['start-time']);
 		console.log((diff(nearest['start-time'],time)));
 
 		console.log("duration: " +currentTask['duration']);
 		console.log(compare((diff(nearest['start-time'],time)), currentTask['duration']));
+		*/
 		//09:03 -
 		if( compare((diff(nearest['start-time'],time)), currentTask['duration']) == 1){
 			if(i > 0){
@@ -427,27 +402,27 @@ function findTime(data, currentTask){
 				if(nearest != (sameDate[j]) && currentTask['is_repeat'] == 0){
 					if(compare((sameDate[j])['end-time'], (diff(nearest['start-time'], currentTask['duration']))) == 1){
 						//problem occurred
-						console.log((diff(nearest['start-time'], currentTask['duration'])));
-						console.log((sameDate[j])['end-time']);
+						//console.log((diff(nearest['start-time'], currentTask['duration'])));
+						//console.log((sameDate[j])['end-time']);
 						if(compare((sameDate[j])['start-time'], (diff(nearest['start-time'], currentTask['duration']))) == -1){
-							console.log("case 1 continue");
+							//console.log("case 1 continue");
 							flag = true;
 							break;
 						}
 					}
 				}
 			}
-			console.log("case 1.2 continue");
+			//console.log("case 1.2 continue");
 			if(flag==true){
 				i++;
-				console.log("case 1.5 continue");
+				//console.log("case 1.5 continue");
 				continue;
 			}
 			//console.log(currentTask['start-time']);
 			currentTask['start-time'] = diff(nearest['start-time'], currentTask['duration']);
 			currentTask['end-time'] = nearest['start-time'];
-			console.log("new startTime: " + currentTask['start-time']);
-			console.log("new endTime: " + currentTask['end-time']);
+			//console.log("new startTime: " + currentTask['start-time']);
+			//console.log("new endTime: " + currentTask['end-time']);
 			//console.log("current Time: " + time);
 			var t = {
 				"start-time": currentTask['start-time'],
@@ -465,7 +440,7 @@ function findTime(data, currentTask){
 			if(compare((sameDate[j])['end-time'], time) == 1 && currentTask['is_repeat'] == 0){
 				//problem occurred
 				if(j == (sameDate.length - 1)){
-					console.log("case2");
+					//console.log("case2");
 					var t = {
 						"start-time": (sameDate[j])['end-time'],
 						"end-time": addTime((sameDate[j])['end-time'], currentTask['duration'])
@@ -473,7 +448,7 @@ function findTime(data, currentTask){
 					return t;
 				}
 				else{
-					console.log("case3");
+					//console.log("case3");
 					var t = {
 						"start-time": (sameDate[j+1])['end-time'],
 						"end-time": addTime((sameDate[j+1])['end-time'], currentTask['duration'])
@@ -482,14 +457,14 @@ function findTime(data, currentTask){
 				}
 			}
 		}
-		console.log("case4");
+		//console.log("case4");
 		var t = {
 			"start-time": time,
 			"end-time": addTime(time, currentTask['duration'])
 		};
 		return t;
 	}
-	console.log("case 5");
+	//console.log("case 5");
 	var t = {
 		"start-time": (qualified[i])['end-time'],
 		"end-time": addTime((qualified[i])['end-time'], currentTask['duration'])

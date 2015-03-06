@@ -13,25 +13,20 @@
 	<link href="css/bootstrap-theme.min.css" rel="stylesheet">
 	<link href="css/project.css" rel="stylesheet">
 	<script>
-		var version = checkVersion();
-		if (version == "b")
-			window.location = "/editScheduleAlt";
+		checkCookie();
 	</script>
-	{{> tracking_code_script}}
-	{{> headerPartials home}}
 </head>
 
 <body>
+{{>topNav}}
 <div class = "container">
 	<div class = "header" style="margin-bottom:5%">
-		<h2 align="center" style="margin-top:5%" ><font class="word1"> Edit Schedule </font></h2>
+		<h2 align="center" style="margin-top:5%" ><font class="word1">Current Tasks</font></h2>
 	</div>
 	<div class = "list" align="left">
-		<h3><font class="word1">Current Tasks</font></h3>
 		<div class = "clicktoedit" id = "clicktoedit">
 			<p style="margin-top:0.5%">
-				<font  class="word1"> Click a task below to edit</font> 	
-				<a href='/addTask' class="linkcolor" style="margin-left:1%">Add task?</a>
+				<font class="word1"> Click a task below to edit</font> 	
 			</p>
 		</div>
 		
@@ -41,6 +36,6 @@
 		</div>
 	</div>
 </div>
-
+{{>botNav}}
 </body>
 </html>

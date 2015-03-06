@@ -16,19 +16,23 @@
 	<link href="../css/datepicker.css" rel="stylesheet">
 	<link href="../css/project.css" rel="stylesheet">
 	<script>
-		var version = checkVersion();
-		if (version == "b") {
-			var query = window.location.pathname;
-			var vars = query.split('/');
-			taskID = vars[vars.length-1];
-			window.location = "/editTaskAlt/" + taskID;
-		}
+		checkCookie();
 	</script>
-	{{> tracking_code_script}}
-	{{> headerPartials home}}
 </head>
 
 <body>
+<nav class="navbar" role="navigation">
+<div>
+  <div class="col-xs-12 navbar-default navbar-fixed-top">
+  <div class="row" id="topNav">
+    <div class="col-xs-3 text-center"><a href="/editSchedule"><h4>Cancel</h4></a></div>
+    <div class="col-xs-6 text-center"><a href="#"></a><font class="word1"><h4>I Schedule 4 U</h4></font></div>
+    <div class="col-xs-3 text-center" id="updateEdit"><a href="#"><h4>Update</h4></a></div>
+  </div>
+  </div>
+</div>
+</nav>
+
 <div class = "container">
 	<div class = "header" style="margin-bottom:5%">
 		<h2 align="center" style="margin-top:5%" ><font class="word1"> Edit Task </font></h2>
@@ -36,7 +40,7 @@
 	<div class = 'error' id="addError"></div>
 	<div class = "form" align="left">
 		<form id ='taskForm' method = "POST" name = "taskForm">
-		<p><font class="word1"> Name: </font> <br> <input type="text" name="taskName" id = "taskName"></input> </p>
+		<p><font class="word1" > Name: </font> <br> <input type="text" name="taskName" id = "taskName"></input> </p>
 		<p><font class="word1"> Duration: </font> <br>
 			<!-- hour selector -->
 			<select id = 'durationHour'>
@@ -204,7 +208,7 @@
 				<input type="checkbox" id="repeated4"></input><span></span>
 			</label>
 			<br>
-			<font class="word1"  style="font-size:12px;margin-right:2.8%">Fri</font>
+			<font class="word1" style="font-size:12px;margin-right:2.8%">Fri</font>
 			<label class="ios7-switch">
 				<input type="checkbox" id="repeated5"></input><span></span>
 			</label>
@@ -218,25 +222,18 @@
 			<label class="ios7-switch">
 				<input type="checkbox" id="repeated7"></input><span></span>
 			</label>
-			<br>
 		</ul>
 		<div id='setDate'>
 			<p><font class="word1">Date: 
 				<input class="span2" id="setDateBox" size="16" type="text">
 			</p>
 		</div>
-		<br>
 	</div>
-	<button class="btn btn-primary" id="updateEdit" style="width:100%;height:10%" type="button">Update Task</button>
-	<div style='height:5px;clear:both;display:block'></div>
-	<button class="btn btn-danger" id="deleteTask" style="width:49.25%;height:10%" type="button">Delete Task</button>
-	<button class="btn" style="width:49.25%;height:10%" type="button" onclick="location.href='/editSchedule'">Cancel</button>
-		</form>
-		<br>
-		<br>
-		<br>
+
+	<button class="btn btn-danger" id="deleteTask" style="margin-top:10px;width:50%" type="button">Delete Task</button>
+	</form>
 	</div>
 </div>
-
+{{>botNav}}
 </body>
 </html>

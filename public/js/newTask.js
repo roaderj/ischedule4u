@@ -7,12 +7,6 @@
 var user = "";
 
 function initializePage() {
-  $(".v_a_page_switch").click(function(){
-    woopra.track("a_version_page_change");
-  });
-  $(".v_b_page_switch").click(function(){
-    woopra.track("b_version_page_change");
-  });
   //console.log("Javascript connected!");
   user = getCookie("email");
   defaultSetting()
@@ -200,7 +194,7 @@ function addTask(e) {
       "is_repeat": is_repeat,
       "repeat": repeat
     };
-  console.log(!(document.getElementById("setTimeCheck").checked));
+  //console.log(!(document.getElementById("setTimeCheck").checked));
   if(!(document.getElementById("setTimeCheck").checked)){
 	var blank = "";
 	//console.log("start-time: " + stime);
@@ -212,14 +206,12 @@ function addTask(e) {
 		task['end-time'] = time['end-time'];
 		//console.log(time['start-time']);
 		//console.log(task['start-time']);
-    woopra.track(version+"_version_task_create");
 		$.post("/createTask", {task: task}, done);
 	};
 	//wait until findTime finish
 	$.post("/getTask", {user: user, taskID: blank}, callbackFunction);
   }
   else{
-  woopra.track(version+"_version_task_create");
 	$.post("/createTask", {task: task}, done);
   }
 }
@@ -350,6 +342,7 @@ function findTime(data, currentTask){
 	i = 0;
 	while(i < qualified.length){
 		var nearest = qualified[i];
+    /*
 		console.log("here is nearest");
 		//console.log(nearest);
 		console.log("currentTime: " + time);
@@ -358,6 +351,7 @@ function findTime(data, currentTask){
 
 		console.log("duration: " +currentTask['duration']);
 		console.log(compare((diff(nearest['start-time'],time)), currentTask['duration']));
+    */
 		//09:03 -
 		if( compare((diff(nearest['start-time'],time)), currentTask['duration']) == 1){
 			if(i > 0){
@@ -370,27 +364,27 @@ function findTime(data, currentTask){
 				if(nearest != (sameDate[j]) && currentTask['is_repeat'] == 0){
 					if(compare((sameDate[j])['end-time'], (diff(nearest['start-time'], currentTask['duration']))) == 1){
 						//problem occurred
-						console.log((diff(nearest['start-time'], currentTask['duration'])));
-						console.log((sameDate[j])['end-time']);
+						//console.log((diff(nearest['start-time'], currentTask['duration'])));
+						//console.log((sameDate[j])['end-time']);
 						if(compare((sameDate[j])['start-time'], (diff(nearest['start-time'], currentTask['duration']))) == -1){
-							console.log("case 1 continue");
+							//console.log("case 1 continue");
 							flag = true;
 							break;
 						}
 					}
 				}
 			}
-			console.log("case 1.2 continue");
+			//console.log("case 1.2 continue");
 			if(flag==true){
 				i++;
-				console.log("case 1.5 continue");
+				//console.log("case 1.5 continue");
 				continue;
 			}
 			//console.log(currentTask['start-time']);
 			currentTask['start-time'] = diff(nearest['start-time'], currentTask['duration']);
 			currentTask['end-time'] = nearest['start-time'];
-			console.log("new startTime: " + currentTask['start-time']);
-			console.log("new endTime: " + currentTask['end-time']);
+			//console.log("new startTime: " + currentTask['start-time']);
+			//console.log("new endTime: " + currentTask['end-time']);
 			//console.log("current Time: " + time);
 			var t = {
 				"start-time": currentTask['start-time'],
@@ -408,7 +402,7 @@ function findTime(data, currentTask){
 			if(compare((sameDate[j])['end-time'], time) == 1 && currentTask['is_repeat'] == 0){
 				//problem occurred
 				if(j == (sameDate.length - 1)){
-					console.log("case2");
+					//console.log("case2");
 					var t = {
 						"start-time": (sameDate[j])['end-time'],
 						"end-time": addTime((sameDate[j])['end-time'], currentTask['duration'])
@@ -416,7 +410,7 @@ function findTime(data, currentTask){
 					return t;
 				}
 				else{
-					console.log("case3");
+					//console.log("case3");
 					var t = {
 						"start-time": (sameDate[j+1])['end-time'],
 						"end-time": addTime((sameDate[j+1])['end-time'], currentTask['duration'])
@@ -425,14 +419,14 @@ function findTime(data, currentTask){
 				}
 			}
 		}
-		console.log("case4");
+		//console.log("case4");
 		var t = {
 			"start-time": time,
 			"end-time": addTime(time, currentTask['duration'])
 		};
 		return t;
 	}
-	console.log("case 5");
+	//console.log("case 5");
 	var t = {
 		"start-time": (qualified[i])['end-time'],
 		"end-time": addTime((qualified[i])['end-time'], currentTask['duration'])
@@ -503,7 +497,7 @@ function compare(str0, str1){
 
 function callback(result){
   var user = result[getCookie("email")];
-  console.log(user);
+  //console.log(user);
   var taskJson = {
     "name": $('#taskName').val(),
     "priority": $('#prioritySelect').val(),
@@ -520,7 +514,7 @@ function callback(result){
   if($('#setRepeat').prop('checked')){
     taskJson.is_repeat = 1;
     taskJson.date = "Repetitive Task";
-    console.log("repeate checked");
+    //console.log("repeate checked");
     if($('#repeat'))
     if($('#repeatedMonday').prop('checked')){
       taskJson.repeat.push(1);
@@ -562,7 +556,7 @@ function callback(result){
     taskJson.date = "One Time Task: " + today;
   }
   user.push(taskJson);
-  console.log(user);
+  //console.log(user);
 }
 
 function submit(){

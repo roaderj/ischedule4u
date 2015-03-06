@@ -11,7 +11,6 @@ function checkCookie() {
 function getCookie(cname) {
     var name = cname + "=";
     var cookie = document.cookie;
-    cookie = cookie.replace("||", ";");
     var ca = cookie.split(';');
     for(var i=0; i<ca.length; i++) {
         var c = ca[i];
@@ -19,18 +18,4 @@ function getCookie(cname) {
         if (c.indexOf(name) == 0) return c.substring(name.length, c.length);
     }
     return "";
-}
-
-function checkVersion() {
-    checkCookie();
-    var version=getCookie("version");
-    return version;
-}
-
-function detectmob() {
-   if(window.innerWidth <= 800 && window.innerHeight <= 600) {
-     return true;
-   } else {
-     return false;
-   }
 }

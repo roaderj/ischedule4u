@@ -54,19 +54,13 @@ if ('development' == app.get('env')) {
 
 // Add routes here
 app.get('/', index.view);
-app.get('/alt', index.altView);
 app.get('/login', login.view);
 app.get('/signup', signup.view);
 app.get('/addTask', addTask.view);
-app.get('/addTaskAlt', addTask.altView);
 app.get('/editTask/:id', editTask.view);
-app.get('/editTaskAlt/:id', editTask.altView);
 app.get('/editSchedule', editSchedule.view);
-app.get('/editScheduleAlt', editSchedule.altView);
 app.get('/blank', blank.view);
-app.get('/blankAlt', blank.altView);
 app.post('/getTask', getTask.getTask);
-//app.get('/getTag', getTask.getTag);
 app.post('/user_login', userinfo.loginCheck);
 app.post('/user_signup', userinfo.signupCheck);
 app.post('/updateTask', getTask.updateTask);

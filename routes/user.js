@@ -14,9 +14,10 @@ exports.loginCheck = function(req, res) {
 		.exec(afterQuery);
 	// Return result
 	function afterQuery(err, user) {
-    	console.log(user);
+    	//console.log(user);
     	var checkRes = false;
-    	if (err) console.log(err);
+    	if (err) 
+        console.log(err);
     	if (user.length < 1)
     		checkRes = false;
     	else {
@@ -40,9 +41,10 @@ exports.signupCheck = function(req, res) {
 		.exec(afterQuery);
 	// Return result
 	function afterQuery(err, user) {
-    	console.log(user);
+    	//console.log(user);
     	var checkRes = false;
-    	if (err) console.log(err);
+    	if (err) 
+        console.log(err);
     	if (user.length > 0)
     		checkRes = false;
     	else {
