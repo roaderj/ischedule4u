@@ -16,7 +16,7 @@ var signup = require('./routes/signup');
 var editSchedule = require('./routes/editSchedule');
 var addTask = require('./routes/addTask');
 var editTask = require('./routes/editTask');
-var blank = require('./routes/blank');
+var info = require('./routes/info');
 var userinfo = require('./routes/user');
 var getTask = require('./routes/getTask');
 
@@ -59,7 +59,7 @@ app.get('/signup', signup.view);
 app.get('/addTask', addTask.view);
 app.get('/editTask/:id', editTask.view);
 app.get('/editSchedule', editSchedule.view);
-app.get('/blank', blank.view);
+app.get('/info', info.view);
 app.post('/getTask', getTask.getTask);
 app.post('/user_login', userinfo.loginCheck);
 app.post('/user_signup', userinfo.signupCheck);
