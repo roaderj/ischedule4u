@@ -6,7 +6,6 @@
 
 .main button {
 	/* Colors are in hexadecimal: http://www.colorpicker.com/ */
-
 	font-size: 24px;
 	color:#333333;
 	background-color: #FFFFFF;
@@ -17,10 +16,11 @@
 }
 
 body{
-	background-image: url('../images/10.jpg');
-    //background-size: 100%;
+	background-image: url('../images/bg.jpg');
+    background-size: 350%;
 	height: 300px;
 }
+
 
 .linkcolor {
     color:#8B008B;
