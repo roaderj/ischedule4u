@@ -31,7 +31,11 @@ body{
 
 .word1 {
     color:black;
-	text-shadow: 1px 1px #DDDDDD;
+    font-weight: bold;
+}
+
+.word2 {
+    color:black;
 }
 
 .images h2{
