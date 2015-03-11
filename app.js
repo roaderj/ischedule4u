@@ -25,10 +25,6 @@ var local_database_uri  = 'mongodb://localhost/' + local_database_name
 var database_uri = process.env.MONGOLAB_URI || local_database_uri
 mongoose.connect(database_uri);
 
-//var project = require('./routes/project');
-// Example route
-// var user = require('./routes/user');
-
 var app = express();
 
 
@@ -66,10 +62,6 @@ app.post('/user_signup', userinfo.signupCheck);
 app.post('/updateTask', getTask.updateTask);
 app.post('/deleteTask', getTask.deleteTask);
 app.post('/createTask', getTask.createTask);
-//app.post('/setTag', getTask.setTag);
-//app.get('/project/:name', project.viewProject);
-// Example route
-// app.get('/users', user.list);
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));

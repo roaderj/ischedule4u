@@ -7,7 +7,6 @@
 var user = "";
 
 function initializePage() {
-  //console.log("Javascript connected!");
   user = getCookie("email");
   defaultSetting()
   hide();
@@ -45,7 +44,6 @@ function defaultSetting() {
   if(month<10) {
       month='0'+month;
   }
-  //$('#TagList').val("blank");
   $('#TypeList').val("Other");
   $('#setDateBox').val(year + "-" + month + "-" + day);
   $('#setTimeStart').val(time);
@@ -58,9 +56,7 @@ function hide() {
   $('#setTimeCheckBox').hide();
   $('.setLocationCheckBox').hide();
   $('.dateRepeatChecked').hide();
-  //$('#TagList').hide();
   $('#Advanced').hide();
-  //$('#otherTag').hide();
   $('#setDate').show();
 
     $('#setTimeCheck').click(function()
@@ -83,38 +79,7 @@ function hide() {
       $('.dateRepeatChecked')[this.checked ? "show" : "hide"]();
       $('#setDate')[this.checked ? "hide" : "show"]();
     });
-
-    //$('.setTag').click(function()
-    //{
-    //  $('#TagList')[this.checked ? "show" : "hide"]();
-    //});
-
-    //$('#TagList').change(function()
-    //{
-    //  if ($('#TagList').val() == 'other')
-    //  {
-    //    $('#otherTag').show();
-    //  }
-    //  else
-    //  {
-    //    $('#otherTag').hide();
-    //  }
-    //});
-
-    //$.get("/getTag",setTag);
 }
-
-// Display all tags
-/*function setTag(result) {
-  var tags = result[user];
-  if (!tag) {
-    for (var i=0;i<tags.length;i++) {
-      var tag = tags[i];
-      $('#TagList').append("<option value='" + tag +
-        "'>" + tag + "</option>");
-    }
-  }
-}*/
 
 // Add task to db
 function addTask(e) {
@@ -173,13 +138,6 @@ function addTask(e) {
   else {
     var is_repeat = false;
   }
-  // Add new tag to db
-  //var newTag = $('#otherTag').val();
-  //var tag = $('#TagList').val();
-  //if ($('#TagList').val() == 'other' && newTag != "") {
-  //  $.post("/setTag", {user: user, tag: newTag}, function(){});
-  //  tag = newTag;
-  //}
   var task = {
       "user": user,
       "name": name,
@@ -189,23 +147,16 @@ function addTask(e) {
       "duration": duration,
       "start-time": stime,
       "end-time": etime,
-      //"tag": tag,
       "date": date,
       "is_repeat": is_repeat,
       "repeat": repeat
     };
-  //console.log(!(document.getElementById("setTimeCheck").checked));
   if(!(document.getElementById("setTimeCheck").checked)){
 	var blank = "";
-	//console.log("start-time: " + stime);
-	//console.log("start-time actual: " + task['start-time']);
 	var callbackFunction = function(data) {
 		var time = findTime(data, task);
-		//console.log(time);
 		task['start-time'] = time['start-time'];
 		task['end-time'] = time['end-time'];
-		//console.log(time['start-time']);
-		//console.log(task['start-time']);
 		$.post("/createTask", {task: task}, done);
 	};
 	//wait until findTime finish
@@ -237,7 +188,6 @@ function done(result) {
 function intersect(a, b)
 {
   var ai=0, bi=0;
-  //var result = new Array();
 
   while( ai < a.length && bi < b.length )
   {
@@ -246,13 +196,9 @@ function intersect(a, b)
      else /* they're equal */
      {
 		return true;
-       //result.push(a[ai]);
-       //ai++;
-       //bi++;
      }
   }
   return false;
-  //return result;
 }
 
 //data => all the tasks binded to the account in list
@@ -260,9 +206,6 @@ function findTime(data, currentTask){
 
 	//TODO: check previous task before adding
 
-	//console.log("inside function");
-	//console.log(typeof(currentTask.start-time));
-	//console.log(currentTask.start-time);
 	var sameDate = [];
 
 	var qualified = [];
@@ -304,14 +247,6 @@ function findTime(data, currentTask){
 					qualified.push(data[i]);
 					sameDate.push(data[i])
 				}
-
-				/*
-				if(currentTask['date'].localeCompare((data[i])['date']) == 0 ){
-					sameDate.push(data[i]);
-					if(compare((data[i])['start-time'], time) == 1){
-						qualified.push(data[i]);
-					}
-				}*/
 			}
 		}
 	}
@@ -335,23 +270,10 @@ function findTime(data, currentTask){
 	}
 	qualified.sort(function(a, b){ return compare(a['start-time'], b['start-time'])});
 	sameDate.sort(function(a, b){ return compare(a['start-time'], b['start-time'])});
-	//console.log("here is qualified");
-	//console.log(qualified);
-
 
 	i = 0;
 	while(i < qualified.length){
 		var nearest = qualified[i];
-    /*
-		console.log("here is nearest");
-		//console.log(nearest);
-		console.log("currentTime: " + time);
-		console.log("nearest Time: " + nearest['start-time']);
-		console.log((diff(nearest['start-time'],time)));
-
-		console.log("duration: " +currentTask['duration']);
-		console.log(compare((diff(nearest['start-time'],time)), currentTask['duration']));
-    */
 		//09:03 -
 		if( compare((diff(nearest['start-time'],time)), currentTask['duration']) == 1){
 			if(i > 0){
@@ -364,28 +286,19 @@ function findTime(data, currentTask){
 				if(nearest != (sameDate[j]) && currentTask['is_repeat'] == 0){
 					if(compare((sameDate[j])['end-time'], (diff(nearest['start-time'], currentTask['duration']))) == 1){
 						//problem occurred
-						//console.log((diff(nearest['start-time'], currentTask['duration'])));
-						//console.log((sameDate[j])['end-time']);
 						if(compare((sameDate[j])['start-time'], (diff(nearest['start-time'], currentTask['duration']))) == -1){
-							//console.log("case 1 continue");
 							flag = true;
 							break;
 						}
 					}
 				}
 			}
-			//console.log("case 1.2 continue");
 			if(flag==true){
 				i++;
-				//console.log("case 1.5 continue");
 				continue;
 			}
-			//console.log(currentTask['start-time']);
 			currentTask['start-time'] = diff(nearest['start-time'], currentTask['duration']);
 			currentTask['end-time'] = nearest['start-time'];
-			//console.log("new startTime: " + currentTask['start-time']);
-			//console.log("new endTime: " + currentTask['end-time']);
-			//console.log("current Time: " + time);
 			var t = {
 				"start-time": currentTask['start-time'],
 				"end-time": currentTask['end-time']
@@ -402,7 +315,6 @@ function findTime(data, currentTask){
 			if(compare((sameDate[j])['end-time'], time) == 1 && currentTask['is_repeat'] == 0){
 				//problem occurred
 				if(j == (sameDate.length - 1)){
-					//console.log("case2");
 					var t = {
 						"start-time": (sameDate[j])['end-time'],
 						"end-time": addTime((sameDate[j])['end-time'], currentTask['duration'])
@@ -410,7 +322,6 @@ function findTime(data, currentTask){
 					return t;
 				}
 				else{
-					//console.log("case3");
 					var t = {
 						"start-time": (sameDate[j+1])['end-time'],
 						"end-time": addTime((sameDate[j+1])['end-time'], currentTask['duration'])
@@ -419,14 +330,12 @@ function findTime(data, currentTask){
 				}
 			}
 		}
-		//console.log("case4");
 		var t = {
 			"start-time": time,
 			"end-time": addTime(time, currentTask['duration'])
 		};
 		return t;
 	}
-	//console.log("case 5");
 	var t = {
 		"start-time": (qualified[i])['end-time'],
 		"end-time": addTime((qualified[i])['end-time'], currentTask['duration'])
@@ -497,7 +406,6 @@ function compare(str0, str1){
 
 function callback(result){
   var user = result[getCookie("email")];
-  //console.log(user);
   var taskJson = {
     "name": $('#taskName').val(),
     "priority": $('#prioritySelect').val(),
@@ -505,7 +413,6 @@ function callback(result){
     "duration": $('#hour').val()+":"+$('#minute').val(),
     "start-time": $('#setTimeStart').val(),
     "end-time": $('#setTimeEnd').val(),
-    //"tag": $('.setTagList').val(),
     "date": "",
     "is_repeat": 0,
     "repeat": []
@@ -514,7 +421,6 @@ function callback(result){
   if($('#setRepeat').prop('checked')){
     taskJson.is_repeat = 1;
     taskJson.date = "Repetitive Task";
-    //console.log("repeate checked");
     if($('#repeat'))
     if($('#repeatedMonday').prop('checked')){
       taskJson.repeat.push(1);
@@ -556,7 +462,6 @@ function callback(result){
     taskJson.date = "One Time Task: " + today;
   }
   user.push(taskJson);
-  //console.log(user);
 }
 
 function submit(){

@@ -24,7 +24,6 @@ var scrollTime = '24:59';
 // Callback of get tasks
 function setCalendar(result) {
 	// Add all tasks to tasks array
-	//console.log(result);
 	addTasks(result);
 	// Format calendar
 	if (scrollTime == '24:59')
@@ -43,15 +42,10 @@ function setCalendar(result) {
         scrollTime : scrollTime,
         // Pop up when event is clicked
         eventClick : function(event) {
-        	//var vars = event['startTime'].split('T');
-        	//var stime = vars[vars.length-1];
-        	//vars = event['endTime'].split('T');
-        	//var etime = vars[vars.length-1];
         	var locationMessage = "";
         	if (event['location'] != "") {
         		locationMessage = "\nLocation: " + event['location'];
         	}
-        	//console.log(event['start']);
         	alert('Task: ' + event.title + 
         		'\nType: ' + event['taskType'] + 
         		locationMessage +
@@ -63,19 +57,11 @@ function setCalendar(result) {
 
 // Push all tasks on to the tasks array
 function addTasks(userTasks) {
-	// Get current user
-	//var user = getCookie("email");
-	// There is no task associated
-	//if (!(user in result))
-	//	return -1;
-	// Get the tasks of this user
-	//var userTasks = result[user];
 	// Push each task
 	for (var i=0; i<userTasks.length;i++) {
 		var task = userTasks[i];
 		if (task['start-time'] < scrollTime)
 			scrollTime = task['start-time'];
-		//console.log(task['start-time']);
 		var color = "Chocolate";
 		if (task['type'] == "Homework" || task['type'] == "Programming" || task['type'] == "Reading")
 			color = "LimeGreen";
@@ -96,7 +82,6 @@ function addTasks(userTasks) {
 				location : task['location'],
 				startTime : task['start-time'],
 				endTime: task['end-time'],
-				//tag: task['tag'],
 				start : task['start-time'],
 				end : task['end-time'],
 				dow : task['repeat'],
@@ -113,7 +98,6 @@ function addTasks(userTasks) {
 				location : task['location'],
 				startTime : task['start-time'],
 				endTime: task['end-time'],
-				//tag: task['tag'],
 				start : starttime,
 				end : endtime,
 				taskType : task['type'],

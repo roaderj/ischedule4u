@@ -26,29 +26,6 @@ exports.getTask = function(req, res) {
   	}
 }
 
-/*
-exports.getTag = function(req, res) {
-	var info = tasks['setting'];
-	// Return all tags
-	res.json(info);
-	res.send('ok');
-}*/
-/*
-exports.setTag = function(req, res) {
-	var user = req.body.user;
-	var tag = req.body.tag;
-	if (user in tasks['setting']) {
-		tasks['setting'][user].push(tag);
-	}
-	else {
-		tasks['setting'][user] = [];
-		tasks['setting'][user].push(tag);
-	}
-	// Return all tags
-	res.json("success");
-	res.send('ok');
-}*/
-
 exports.updateTask = function(req, res) {
 	var user = req.body.user;
 	var taskID = req.body.taskID;
@@ -59,21 +36,6 @@ exports.updateTask = function(req, res) {
           	}
           	res.json("success");
         });
-      	/*.find({"user":user,"_id":taskID})
-      	.remove()
-      	.exec(function(err){
-        	if (err) { 
-          		console.log(err); 
-        	}
-        	var newTask = new models.Task(task);
-			newTask.save(function(err){
-				if (err) { 
-    	  			console.log(err); 
-    			}
-    			res.json("success");
-			});
-      	});
-	*/
 }
 
 exports.createTask = function(req, res) {

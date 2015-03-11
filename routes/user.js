@@ -8,13 +8,11 @@ exports.loginCheck = function(req, res) {
 	// password
 	var password = req.body.password;
 	// Check email and password
-	//var checkRes = check(email,password);
 	models.User
 		.find({"email":email})
 		.exec(afterQuery);
 	// Return result
 	function afterQuery(err, user) {
-    	//console.log(user);
     	var checkRes = false;
     	if (err) 
         console.log(err);
@@ -41,7 +39,6 @@ exports.signupCheck = function(req, res) {
 		.exec(afterQuery);
 	// Return result
 	function afterQuery(err, user) {
-    	//console.log(user);
     	var checkRes = false;
     	if (err) 
         console.log(err);
@@ -53,8 +50,6 @@ exports.signupCheck = function(req, res) {
     	}
     	res.json(checkRes);
   	}
-	// Return result
-	//res.json(checkRes);
 }
 
 // Create user on to the database

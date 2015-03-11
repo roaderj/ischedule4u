@@ -20,8 +20,6 @@ function getTasks() {
 // Callback of get tasks
 // Display all the tasks
 function displayTask(tasks) {
-	// Get current user
-	//var user = getCookie("email");
 	// There is no task associated
 
 	if (tasks.length < 1) {
@@ -31,8 +29,6 @@ function displayTask(tasks) {
 		$('#clicktoedit').html(text);
 		return -1;
 	}
-	// Get the tasks of this user
-	//var tasks = result[user];
 	var post = "";
 	var days = ["Mon","Tue","Wed","Thu","Fri","Sat","Sun"];
 	// Display each task
@@ -74,8 +70,6 @@ function displayTask(tasks) {
 			stime + "-" + etime + "</font><br>";
 		post += "<font style='margin-left:0.5%' color='#FFFFFF'>" +
 			repeat + "</font><br>";
-		//post += "<font style='margin-left:0.5%' color='#FFFFFF'>Related To: " +
-		//	task['tag'] + "</font>";
 		post += "</p>";
 		post += "</div></a><br>";
 	}
