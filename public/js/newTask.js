@@ -207,16 +207,28 @@ function findTime(data, currentTask){
 	//TODO: check previous task before adding
 
 	var sameDate = [];
-
+	
 	var qualified = [];
-	if(currentTask['is_repeat']==0)
-		var today = new Date(currentTask['date']);
-	else
-	    var today = new Date();
+	
+	var today = new Date();
 	var day = today.getDay();
 	var time = "";
 	var hours = today.getHours();
 	var minutes = today.getMinutes();
+	if(currentTask['is_repeat']==0){
+		if(today.getDate() == parseInt(currentTask['date'].substring(currentTask['date'].length -2,currentTask['date'].length),10)){
+			today = new Date();
+		}
+		else{
+			today = new Date(currentTask['date']);
+			day = today.getDay();
+			hours = 0;
+			minutes = 0;
+			//starts from 00:00 for other dates
+		}
+	}
+		
+	
 	if (hours<10) {
       hours='0'+hours;
     }
