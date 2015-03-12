@@ -262,7 +262,7 @@ function findTime(data, currentTask){
 		else{
 			today = new Date(currentTask['date']);
 			day = today.getDay();
-			hours = 0;
+			hours = 8;
 			minutes = 0;
 			//starts from 00:00 for other dates
 		}

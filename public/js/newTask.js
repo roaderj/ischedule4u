@@ -222,7 +222,7 @@ function findTime(data, currentTask){
 		else{
 			today = new Date(currentTask['date']);
 			day = today.getDay();
-			hours = 0;
+			hours = 8;
 			minutes = 0;
 			//starts from 00:00 for other dates
 		}
@@ -236,8 +236,9 @@ function findTime(data, currentTask){
       minutes='0'+minutes;
     }
 	time = hours +":" +minutes;
-	if(day == 0){
-		day = 7;
+	day++;
+	if(day == 7){
+		day = 1;
 	}
 	var i = 0;
 
@@ -255,8 +256,9 @@ function findTime(data, currentTask){
 			else{
 				var tempDate = new Date((data[i])['date']);
 				var tempDay = tempDate.getDay();
-				if(tempDay == 0){
-					tempDay = 7;
+				day++;
+				if(tempDay == 7){
+					tempDay = 1;
 				}
 				if(currentTask['repeat'].indexOf(tempDay) != -1){
 					qualified.push(data[i]);
@@ -287,9 +289,11 @@ function findTime(data, currentTask){
 	sameDate.sort(function(a, b){ return compare(a['start-time'], b['start-time'])});
 
 	i = 0;
+	//console.log(qualified.length);
 	while(i < qualified.length){
 		var nearest = qualified[i];
 		//09:03 -
+		
 		if( compare((diff(nearest['start-time'],time)), currentTask['duration']) == 1){
 			if(i > 0){
 				if(compare(diff(nearest['start-time'],(qualified[i-1])['end-time']), currentTask['duration']) != 1 ){
