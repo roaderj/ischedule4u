@@ -251,7 +251,8 @@ function findTime(data, currentTask){
 
 	var qualified = [];
 	var today = new Date();
-	var day = today.getDay();
+	var tDate = new Date(currentTask['date']);
+	var day = (tDate).getDay();
 	var time = "";
 	var hours = today.getHours();
 	var minutes = today.getMinutes();

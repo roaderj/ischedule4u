@@ -211,7 +211,9 @@ function findTime(data, currentTask){
 	var qualified = [];
 	
 	var today = new Date();
-	var day = today.getDay();
+	var tDate = new Date(currentTask['date']);
+	var day = (tDate).getDay();
+	console.log(day);
 	var time = "";
 	var hours = today.getHours();
 	var minutes = today.getMinutes();
@@ -289,7 +291,8 @@ function findTime(data, currentTask){
 	sameDate.sort(function(a, b){ return compare(a['start-time'], b['start-time'])});
 
 	i = 0;
-	//console.log(qualified.length);
+	console.log(day);
+	console.log(qualified.length);
 	while(i < qualified.length){
 		var nearest = qualified[i];
 		//09:03 -
