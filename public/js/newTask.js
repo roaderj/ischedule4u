@@ -209,7 +209,10 @@ function findTime(data, currentTask){
 	var sameDate = [];
 
 	var qualified = [];
-	var today = new Date();
+	if(currentTask['is_repeat']==0)
+		var today = new Date(currentTask['date']);
+	else
+	    var today = new Date();
 	var day = today.getDay();
 	var time = "";
 	var hours = today.getHours();
