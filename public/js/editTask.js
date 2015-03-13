@@ -308,7 +308,9 @@ function findTime(data, currentTask){
 		for(i = 0; i < data.length; i++){
 			if((data[i])['is_repeat'] == 1){
 				if((data[i])['repeat'].indexOf(day) != -1){
-					qualified.push(data[i]);
+					if(compare((data[i])['start-time'], time) == 1){
+						qualified.push(data[i]);
+					}
 					sameDate.push(data[i]);
 				}
 			}
@@ -390,10 +392,17 @@ function findTime(data, currentTask){
 		};
 		return t;
 	}
-	var t = {
-		"start-time": (qualified[i])['end-time'],
-		"end-time": addTime((qualified[i])['end-time'], currentTask['duration'])
-	};
+	if(compare((qualified[i])['end-time'], time) != -1){
+		var t = {
+			"start-time": (qualified[i])['end-time'],
+			"end-time": addTime((qualified[i])['end-time'], currentTask['duration'])
+		};
+	}else{
+		var t = {
+			"start-time": time,
+			"end-time": addTime(time, currentTask['duration'])
+		};
+	}
 	return t;
 }
 function addTime(str0, str1){
